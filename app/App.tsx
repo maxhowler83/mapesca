@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Map, Camera, GeoJSONSource, Layer, UserLocation } from '@maplibre/maplibre-react-native';
@@ -16,6 +16,17 @@ import { C } from './src/theme';
 // Free vector map, no key or per-use fees (OpenFreeMap, © OpenStreetMap contributors).
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/positron';
 const BCS_BOUNDS: [number, number, number, number] = [-115.4, 22.3, -109.0, 28.1];
+// The map can't pan or zoom out past southern Baja: a small margin around the data box.
+const PAN_BOUNDS: [number, number, number, number] = [-116.6, 21.4, -107.8, 29.0];
+// Furthest zoom-out: the whole margin box fits on screen, no further (MapLibre: 512-pt tiles).
+function fitZoom() {
+  const { width, height } = Dimensions.get('window');
+  const mercY = (lat: number) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
+  const zx = Math.log2((width * 360) / ((PAN_BOUNDS[2] - PAN_BOUNDS[0]) * 512));
+  const zy = Math.log2((height * 2 * Math.PI) / ((mercY(PAN_BOUNDS[3]) - mercY(PAN_BOUNDS[1])) * 512));
+  return Math.min(zx, zy); // the whole box fits; any closer and part of it is cut off
+}
+const MIN_ZOOM = fitZoom();
 const rgb = (c: number[]) => `rgb(${c[0]},${c[1]},${c[2]})`;
 
 type Readout = { lat: number; lon: number };
@@ -88,7 +99,12 @@ function Main() {
         compass={false}
         onPress={e => { const { lngLat } = e.nativeEvent; setReadout({ lon: lngLat[0], lat: lngLat[1] }); }}
       >
-        <Camera initialViewState={{ bounds: BCS_BOUNDS, padding: { top: 120, bottom: 160, left: 20, right: 20 } }} />
+        <Camera
+          initialViewState={{ bounds: BCS_BOUNDS, padding: { top: 120, bottom: 160, left: 20, right: 20 } }}
+          minZoom={MIN_ZOOM}
+          maxZoom={14}
+          maxBounds={PAN_BOUNDS}
+        />
         {shapes && (
           <GeoJSONSource id="zones" data={shapes}>
             <Layer
