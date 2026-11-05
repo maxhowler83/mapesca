@@ -1,0 +1,289 @@
+[
+ {
+  "name": "San Blas",
+  "lat": 21.548,
+  "lon": -105.292,
+  "region": "pacsur",
+  "src": "OSM node 5200658805 (marina \"Embarcadero Pescadores\")"
+ },
+ {
+  "name": "La Cruz de Huanacaxtle",
+  "lat": 20.749,
+  "lon": -105.379,
+  "region": "pacsur",
+  "src": "OSM way 376743803 (Marina Cruz de Huanacaxtle)"
+ },
+ {
+  "name": "Nuevo Vallarta",
+  "lat": 20.691,
+  "lon": -105.293,
+  "region": "pacsur",
+  "src": "OSM node 4827986306 (Paradise Village Marina)"
+ },
+ {
+  "name": "Puerto Vallarta",
+  "lat": 20.66,
+  "lon": -105.246,
+  "region": "pacsur",
+  "src": "OSM way 25709720 (Marina Vallarta)"
+ },
+ {
+  "name": "Barra de Navidad",
+  "lat": 19.195,
+  "lon": -104.682,
+  "region": "pacsur",
+  "src": "OSM way 433863692 (Puerto de Barra de Navidad)"
+ },
+ {
+  "name": "Manzanillo",
+  "lat": 19.099,
+  "lon": -104.346,
+  "region": "pacsur",
+  "src": "OSM way 377544026 (Marina Las Hadas)"
+ },
+ {
+  "name": "Lázaro Cárdenas",
+  "lat": 17.953,
+  "lon": -102.185,
+  "region": "pacsur",
+  "src": "INEGI port point (dafishr mx_ports); OSM city node 293980795"
+ },
+ {
+  "name": "Ixtapa",
+  "lat": 17.668,
+  "lon": -101.618,
+  "region": "pacsur",
+  "src": "OSM relation 5603785 (Marina Puerto Ixtapa)"
+ },
+ {
+  "name": "Zihuatanejo",
+  "lat": 17.637,
+  "lon": -101.559,
+  "region": "pacsur",
+  "src": "INEGI Puerto Zihuatanejo (dafishr mx_ports); OSM town node 325654014"
+ },
+ {
+  "name": "Acapulco",
+  "lat": 16.837,
+  "lon": -99.905,
+  "region": "pacsur",
+  "src": "OSM node 1942389019 (Club de Yates)"
+ },
+ {
+  "name": "Puerto Escondido",
+  "lat": 15.869,
+  "lon": -97.073,
+  "region": "pacsur",
+  "src": "OSM city node 458608856"
+ },
+ {
+  "name": "Huatulco (Santa Cruz)",
+  "lat": 15.755,
+  "lon": -96.131,
+  "region": "pacsur",
+  "src": "OSM way 837405298 (Dársena Santa Cruz); INEGI Marina Dársena Santa Cruz"
+ },
+ {
+  "name": "Salina Cruz",
+  "lat": 16.171,
+  "lon": -95.19,
+  "region": "pacsur",
+  "src": "OSM node 12391264187 (API Salina Cruz)"
+ },
+ {
+  "name": "Puerto Chiapas",
+  "lat": 14.711,
+  "lon": -92.402,
+  "region": "pacsur",
+  "src": "OSM node 1950053979 (Puerto Chiapas marina)"
+ },
+ {
+  "name": "Playa Bagdad",
+  "lat": 25.814,
+  "lon": -97.154,
+  "region": "golfo",
+  "src": "OSM village node (Playa Bagdad)"
+ },
+ {
+  "name": "La Pesca",
+  "lat": 23.775,
+  "lon": -97.767,
+  "region": "golfo",
+  "src": "OSM way 435385072 (Puerto La Pesca)"
+ },
+ {
+  "name": "Tampico / Ciudad Madero",
+  "lat": 22.212,
+  "lon": -97.859,
+  "region": "golfo",
+  "src": "INEGI Puerto de Tampico (dafishr mx_ports) on Río Pánuco; OSM city node 273584290 (0.5 km)"
+ },
+ {
+  "name": "Tuxpan (Barra Norte)",
+  "lat": 20.971,
+  "lon": -97.311,
+  "region": "golfo",
+  "src": "OSM hamlet node 473374993 (Barra Norte, mouth of Río Tuxpan); INEGI API Tuxpan"
+ },
+ {
+  "name": "Veracruz",
+  "lat": 19.189,
+  "lon": -96.124,
+  "region": "golfo",
+  "src": "INEGI Club de Yates de Veracruz (dafishr mx_ports); OSM city node 472255714"
+ },
+ {
+  "name": "Alvarado",
+  "lat": 18.771,
+  "lon": -95.761,
+  "region": "golfo",
+  "src": "OSM town node 472257755"
+ },
+ {
+  "name": "Coatzacoalcos",
+  "lat": 18.133,
+  "lon": -94.413,
+  "region": "golfo",
+  "src": "OSM node 10993969157 (harbour)"
+ },
+ {
+  "name": "Frontera",
+  "lat": 18.53,
+  "lon": -92.654,
+  "region": "golfo",
+  "src": "OSM way 434686789 (Puerto de Frontera)"
+ },
+ {
+  "name": "Ciudad del Carmen",
+  "lat": 18.639,
+  "lon": -91.794,
+  "region": "golfo",
+  "src": "OSM way 515079538 (marina)"
+ },
+ {
+  "name": "Campeche",
+  "lat": 19.844,
+  "lon": -90.537,
+  "region": "golfo",
+  "src": "OSM city node 269908857"
+ },
+ {
+  "name": "Celestún",
+  "lat": 20.854,
+  "lon": -90.397,
+  "region": "golfo",
+  "src": "OSM node 10938455429 (Puerto de Pescadores)"
+ },
+ {
+  "name": "Progreso (Yucalpetén)",
+  "lat": 21.278,
+  "lon": -89.708,
+  "region": "golfo",
+  "src": "OSM neighbourhood node 4812445264 (Yucalpetén Puerto); INEGI Puerto de Abrigo de Yucalpetén"
+ },
+ {
+  "name": "Telchac Puerto",
+  "lat": 21.34,
+  "lon": -89.306,
+  "region": "golfo",
+  "src": "OSM way 385519401 (marina); INEGI Marina Telchac"
+ },
+ {
+  "name": "Río Lagartos",
+  "lat": 21.597,
+  "lon": -88.157,
+  "region": "golfo",
+  "src": "OSM way 435396560 (Puerto Lagartos)"
+ },
+ {
+  "name": "El Cuyo",
+  "lat": 21.518,
+  "lon": -87.687,
+  "region": "golfo",
+  "src": "INEGI Puerto de Abrigo El Cuyo (dafishr mx_ports); OSM village node 1913442485"
+ },
+ {
+  "name": "Holbox",
+  "lat": 21.522,
+  "lon": -87.378,
+  "region": "golfo",
+  "src": "OSM village node 618910702"
+ },
+ {
+  "name": "Chiquilá",
+  "lat": 21.428,
+  "lon": -87.339,
+  "region": "golfo",
+  "src": "OSM village node 618909137"
+ },
+ {
+  "name": "Isla Mujeres",
+  "lat": 21.236,
+  "lon": -86.737,
+  "region": "golfo",
+  "src": "OSM way 435219496 (Puerto Isla Mujeres)"
+ },
+ {
+  "name": "Cancún",
+  "lat": 21.169,
+  "lon": -86.806,
+  "region": "golfo",
+  "src": "OSM node 7807439456 (marina, Playa Linda)"
+ },
+ {
+  "name": "Puerto Morelos",
+  "lat": 20.844,
+  "lon": -86.88,
+  "region": "golfo",
+  "src": "INEGI Puerto Morelos (dafishr mx_ports); OSM town node 2134808154"
+ },
+ {
+  "name": "Playa del Carmen",
+  "lat": 20.62,
+  "lon": -87.074,
+  "region": "golfo",
+  "src": "INEGI Puerto Playa del Carmen (dafishr mx_ports); OSM city node 279948657"
+ },
+ {
+  "name": "Cozumel (Caleta)",
+  "lat": 20.468,
+  "lon": -86.98,
+  "region": "golfo",
+  "src": "OSM way 147792098 (Caleta marina)"
+ },
+ {
+  "name": "Puerto Aventuras",
+  "lat": 20.5,
+  "lon": -87.225,
+  "region": "golfo",
+  "src": "OSM node 1437446563 (Marina Puerto Aventuras)"
+ },
+ {
+  "name": "Punta Allen",
+  "lat": 19.801,
+  "lon": -87.478,
+  "region": "golfo",
+  "src": "OSM village node 512546211"
+ },
+ {
+  "name": "Mahahual",
+  "lat": 18.726,
+  "lon": -87.707,
+  "region": "golfo",
+  "src": "OSM town node 10067204023"
+ },
+ {
+  "name": "Xcalak",
+  "lat": 18.27,
+  "lon": -87.836,
+  "region": "golfo",
+  "src": "OSM village node 269910242"
+ },
+ {
+  "name": "Chetumal",
+  "lat": 18.502,
+  "lon": -88.296,
+  "region": "golfo",
+  "src": "OSM city node 269910244"
+ }
+]
