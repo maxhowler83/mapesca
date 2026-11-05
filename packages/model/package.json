@@ -1,0 +1,12 @@
+{
+  "name": "@mapesca/model",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mapesca fishing-zone model (conditions fit per species), shared by the app, the website and the data pipeline.",
+  "exports": {
+    ".": "./zones.js",
+    "./protected": "./protected.js",
+    "./data/*": "./data/*"
+  }
+}

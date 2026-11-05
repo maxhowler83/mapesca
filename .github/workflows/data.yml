@@ -1,0 +1,52 @@
+# Mapesca daily data: downloads today's NOAA satellite water, scores every
+# species, and publishes small static files on GitHub Pages
+# (https://data.mapesca.org/v1/…). Free, no keys, and if NOAA is down the run
+# fails and the previous day's files stay online.
+name: Daily data
+
+on:
+  schedule:
+    - cron: '23 13 * * *'   # 06:23 Cabo, after NOAA's overnight update
+    - cron: '23 1 * * *'    # 18:23 Cabo, catches late satellite passes
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['pipeline/**', 'packages/model/**']
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: data
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build today's zones
+        run: node pipeline/build.mjs
+      - name: Site files
+        run: |
+          rm -rf out/cache
+          echo "data.mapesca.org" > out/CNAME
+          printf '%s\n' '<!doctype html><meta charset="utf-8"><title>Mapesca data</title><p>Mapesca open data. Start at <a href="v1/manifest.json">v1/manifest.json</a>. Free for everyone.</p>' > out/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

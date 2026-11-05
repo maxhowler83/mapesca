@@ -1,0 +1,9 @@
+node_modules/
+out/
+scratch/
+app/.expo/
+app/ios/
+app/android/
+app/dist/
+*.log
+.DS_Store

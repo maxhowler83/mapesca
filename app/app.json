@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Mapesca",
+    "slug": "mapesca",
+    "scheme": "mapesca",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "org.mapesca.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Mapesca muestra tu ubicación en el mapa para que veas qué zonas te quedan cerca. / Mapesca shows your location on the map so you can see which zones are near you.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "org.mapesca.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B2A45",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "@maplibre/maplibre-react-native",
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Mapesca muestra tu ubicación en el mapa para que veas qué zonas te quedan cerca. / Mapesca shows your location on the map so you can see which zones are near you."
+        }
+      ]
+    ],
+    "extra": {
+      "dataUrl": "https://data.mapesca.org/v1"
+    }
+  }
+}
