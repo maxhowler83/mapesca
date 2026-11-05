@@ -88,6 +88,35 @@ export const SPECIES = [
   { k: 'california-halibut', g: 'inshore', en: 'California halibut', es: 'Lenguado de California', temp: [12, 15, 21, 25], depth: [1, 2, 30, 150], chl: [0.2, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
   { k: 'gulf-corvina', g: 'inshore', en: 'Gulf corvina', es: 'Curvina golfina', temp: [16, 20, 28, 32], depth: [0, 1, 10, 30], chl: [0.5, 10], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
   { k: 'gulf-grouper', g: 'inshore', en: 'Gulf grouper (baya)', es: 'Baya (mero del Golfo)', temp: [14, 17, 27, 30], depth: [2, 5, 30, 100], chl: [0.15, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  // ── Both coasts of Mexico (Mapesca). LOW-CONFIDENCE starting profiles: depth from FishBase/NOAA,
+  // temperatures mostly estimated (see species-info.js for sources). season = Los Cabos calendar
+  // (all 0 = not found there; the regional calendars in species-info.js decide where they show).
+  { k: 'white-marlin', g: 'billfish', en: 'White marlin', es: 'Marlín blanco', temp: [21, 24, 29, 31], depth: [100, 200, 4000, 9000], chl: [0.05, 0.3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'swordfish', g: 'billfish', en: 'Swordfish', es: 'Pez espada', temp: [12, 18, 26, 30], depth: [200, 500, 5000, 9000], chl: [0.08, 0.5], season: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+  { k: 'blackfin-tuna', g: 'tuna', en: 'Blackfin tuna', es: 'Atún aleta negra', temp: [20, 23, 29, 31], depth: [30, 80, 2000, 9000], chl: [0.08, 0.4], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'king-mackerel', g: 'wahoo', en: 'King mackerel', es: 'Peto', temp: [20, 23, 29, 31], depth: [5, 10, 60, 180], chl: [0.15, 1], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'tarpon', g: 'inshore', en: 'Tarpon', es: 'Sábalo', temp: [18, 24, 31, 36], depth: [0, 1, 15, 40], chl: [0.2, 5], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'common-snook', g: 'inshore', en: 'Common snook', es: 'Robalo blanco', temp: [16, 25, 31, 34], depth: [0, 1, 10, 30], chl: [0.3, 10], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'pacific-snook', g: 'inshore', en: 'Pacific snook', es: 'Robalo prieto', temp: [20, 24, 31, 34], depth: [0, 1, 10, 30], chl: [0.3, 10], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'permit', g: 'inshore', en: 'Permit', es: 'Palometa', temp: [20, 24, 30, 33], depth: [0, 1, 15, 36], chl: [0.1, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'bonefish', g: 'inshore', en: 'Bonefish', es: 'Macabí', temp: [20, 24, 31, 34], depth: [0, 1, 3, 10], chl: [0.1, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'great-barracuda', g: 'inshore', en: 'Great barracuda', es: 'Picuda (barracuda)', temp: [20, 24, 30, 32], depth: [0, 3, 30, 100], chl: [0.1, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'spanish-mackerel', g: 'inshore', en: 'Spanish mackerel', es: 'Sierra del Golfo', temp: [19, 22, 29, 31], depth: [2, 5, 30, 50], chl: [0.3, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'cero', g: 'inshore', en: 'Cero mackerel', es: 'Sierra pintada', temp: [22, 25, 30, 32], depth: [1, 2, 20, 40], chl: [0.1, 1.5], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'cobia', g: 'inshore', en: 'Cobia', es: 'Cobia', temp: [18, 21, 29, 32], depth: [1, 5, 50, 120], chl: [0.15, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'greater-amberjack', g: 'inshore', en: 'Greater amberjack', es: 'Medregal', temp: [17, 20, 28, 31], depth: [10, 18, 72, 150], chl: [0.1, 1.5], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'atlantic-jack', g: 'inshore', en: 'Crevalle jack (Atlantic)', es: 'Jurel (Atlántico)', temp: [18, 22, 31, 33], depth: [1, 2, 100, 150], chl: [0.15, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'red-drum', g: 'inshore', en: 'Red drum', es: 'Corvina roja', temp: [12, 16, 28, 32], depth: [0, 1, 10, 30], chl: [0.5, 15], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'red-snapper', g: 'inshore', en: 'Red snapper (Gulf)', es: 'Huachinango del Golfo', temp: [18, 20, 31, 33], depth: [10, 30, 130, 190], chl: [0.1, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'mutton-snapper', g: 'inshore', en: 'Mutton snapper', es: 'Pargo criollo', temp: [20, 22, 30, 32], depth: [5, 25, 70, 95], chl: [0.1, 1.5], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'red-grouper', g: 'inshore', en: 'Red grouper', es: 'Mero rojo', temp: [18, 21, 30, 32], depth: [3, 10, 100, 150], chl: [0.1, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'black-grouper', g: 'inshore', en: 'Black grouper', es: 'Negrillo', temp: [20, 23, 30, 32], depth: [10, 30, 120, 150], chl: [0.1, 1.5], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'goliath-grouper', g: 'inshore', en: 'Goliath grouper', es: 'Mero guasa (cherna)', temp: [20, 24, 30, 33], depth: [1, 5, 46, 100], chl: [0.2, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'pacific-goliath', g: 'inshore', en: 'Pacific goliath grouper', es: 'Mero guasa del Pacífico', temp: [20, 24, 31, 33], depth: [1, 5, 40, 100], chl: [0.2, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'giant-sea-bass', g: 'inshore', en: 'Giant sea bass', es: 'Pescada (mero gigante)', temp: [12, 15, 22, 26], depth: [5, 10, 40, 60], chl: [0.2, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'pacific-red-snapper', g: 'inshore', en: 'Pacific red snapper', es: 'Huachinango del Pacífico', temp: [16, 20, 31, 33], depth: [10, 30, 90, 150], chl: [0.1, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'spotted-rose-snapper', g: 'inshore', en: 'Spotted rose snapper', es: 'Flamenco (lunarejo)', temp: [18, 22, 31, 33], depth: [5, 10, 40, 60], chl: [0.15, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'bull-shark', g: 'shark', en: 'Bull shark', es: 'Tiburón toro', temp: [20, 24, 31, 33], depth: [1, 1, 30, 164], chl: [0.1, 5], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
   // Sharks (Mapesca). LOW-CONFIDENCE starting profiles, estimated from tagging and
   // fishery studies off Baja (see species-info.js); no published thresholds exist.
   // Closed every May 1–Jul 31 (shark veda, DOF 2012) — the pipeline zeroes them then.
@@ -123,6 +152,8 @@ const nmBetween = (lat, lon, p) => {
   return 2 * 3440.065 * Math.asin(Math.sqrt(h));
 };
 // Where sport-fishing boats and pangas leave from in Baja California Sur (Cabo Bite Map reach).
+// Ports of the Pacific south and the Gulf/Caribbean (ports-mx.js, built from data/ports-mx.json).
+import { EXTRA_PORTS } from './ports-mx.js';
 export const PORTS = [
   { name: 'Cabo San Lucas', lat: 22.8815, lon: -109.9095 },
   { name: 'San José del Cabo', lat: 23.017, lon: -109.677 },
@@ -159,6 +190,7 @@ export const PORTS = [
   { name: 'Topolobampo', lat: 25.601, lon: -109.054 },
   { name: 'Altata', lat: 24.634, lon: -107.93 },
   { name: 'Mazatlán', lat: 23.204, lon: -106.421 },
+  ...EXTRA_PORTS,
 ];
 /** Nearest port and its straight-line distance (nm). */
 export function nearestPort(lat, lon) {

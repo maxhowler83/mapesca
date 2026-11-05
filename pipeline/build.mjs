@@ -1,6 +1,7 @@
 // Mapesca daily data build.
-// Downloads today's satellite water temperature and chlorophyll for Baja
-// California Sur from NOAA, scores every species with the shared model, closes
+// For each data region (areas.js REGIONS: Baja & Sea of Cortez, Pacific south,
+// Gulf of Mexico & Caribbean) downloads today's satellite water temperature and
+// chlorophyll from NOAA, scores every species with the shared model, closes
 // no-take protected areas, and writes small static files to ./out/v1 that the
 // app and mapesca.org read. Run by .github/workflows/data.yml twice a day and
 // published as static files, so any number of users costs NOAA nothing extra.
@@ -12,17 +13,16 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SPECIES, GROUPS, TIERS, scoreZones, coastGrid, reachFromPorts } from '../packages/model/zones.js';
 import { prepareAreas, maskProtected } from '../packages/model/protected.js';
-import { AREAS } from '../packages/model/areas.js';
-import { seasonFor } from '../packages/model/species-info.js';
-import { INFO, LIMITS, LIMITS_SOURCE, SHARK_VEDA, NEVER_KEEP, isClosed } from '../packages/model/species-info.js';
+import { AREAS, REGIONS, COVERAGE } from '../packages/model/areas.js';
+import { existsSync } from 'node:fs';
+import { seasonFor, oceanOf } from '../packages/model/species-info.js';
+import { INFO, LIMITS, LIMITS_SOURCE, SHARK_VEDA, NEVER_KEEP, closureFor, CLOSURES } from '../packages/model/species-info.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'out', 'v1');
 const CACHE = join(ROOT, 'out', 'cache');
 const readJson = async p => JSON.parse(await readFile(join(ROOT, p), 'utf8'));
 
-// The whole Baja peninsula and Sea of Cortez (incl. Sonora/Sinaloa to Mazatlán).
-const BCS = { lat: [22.0, 32.75], lon: [-118.6, -105.4] };
 const CW = 'https://coastwatch.noaa.gov/erddap/griddap';
 // NOAA renamed the blended SST dataset on Nov 2, 2026; the old id stays as a fallback.
 const SST_IDS = ['noaacwBLENDEDsstDNDaily', 'noaacwBLENDEDCsstDaily'];
@@ -58,12 +58,28 @@ function toGrid(t, vname, digits) {
   for (const r of t.rows) if (r[iv] != null && Number.isFinite(r[iv])) v[li.get(r[ila])][lo.get(r[ilo])] = round(r[iv], digits);
   return { date: t.rows[0] ? String(t.rows[0][it]).slice(0, 10) : null, lat: lats.map(x => round(x, 3)), lon: lons.map(x => round(x, 3)), v };
 }
-async function fetchSst() {
-  const one = id => erddap(`${CW}/${id}.json?${q(`analysed_sst[(last)][(${BCS.lat[0]}):(${BCS.lat[1]})][(${BCS.lon[0]}):(${BCS.lon[1]})]`)}`).then(t => toGrid(t, 'analysed_sst', 2));
-  return Promise.any(SST_IDS.map(one));
+const latlon = b => `[(${b.s}):(${b.n})][(${b.w}):(${b.e})]`;
+// Backup when NOAA's CoastWatch server is down (it returned 502 for hours on Nov 2
+// and Nov 4, 2026): NASA JPL MUR SST from NOAA's other ERDDAP server, sampled
+// every 5th 0.01° pixel = the same 0.05° grid.
+const PFEG = 'https://coastwatch.pfeg.noaa.gov/erddap/griddap';
+async function fetchSst(b) {
+  const one = id => erddap(`${CW}/${id}.json?${q(`analysed_sst[(last)]${latlon(b)}`)}`, 2).then(t => toGrid(t, 'analysed_sst', 2));
+  try { return await Promise.any(SST_IDS.map(one)); }
+  catch {
+    const t = await erddap(`${PFEG}/jplMURSST41.json?${q(`analysed_sst[(last)][(${b.s}):5:(${b.n})][(${b.w}):5:(${b.e})]`)}`);
+    return { ...toGrid(t, 'analysed_sst', 2), source: 'NASA JPL MUR SST (backup)' };
+  }
 }
-async function fetchChl() {
-  const t = await erddap(`${CW}/${CHL_ID}.json?${q(`chlor_a[(last)][(0.0)][(${BCS.lat[0]}):(${BCS.lat[1]})][(${BCS.lon[0]}):(${BCS.lon[1]})]`)}`);
+/** Last good published file for a region (when every satellite source fails). */
+async function lastPublished(path) {
+  try {
+    const r = await fetch(`https://data.mapesca.org/v1/${path}`, { headers: UA, signal: AbortSignal.timeout(60_000) });
+    return r.ok ? { ...(await r.json()), stale: true } : null;
+  } catch { return null; }
+}
+async function fetchChl(b) {
+  const t = await erddap(`${CW}/${CHL_ID}.json?${q(`chlor_a[(last)][(0.0)]${latlon(b)}`)}`);
   return toGrid(t, 'chlor_a', 3);
 }
 
@@ -72,7 +88,7 @@ function packDense(z) {
   const flat = [];
   for (const row of z.v) for (const x of row) flat.push(x == null ? -1 : x);
   return {
-    kind: 'dense', nlat: z.lat.length, nlon: z.lon.length,
+    kind: 'dense', cut: z.cut, nlat: z.lat.length, nlon: z.lon.length,
     lat0: z.lat[0], dlat: round(z.lat[1] - z.lat[0], 5), lon0: z.lon[0], dlon: round(z.lon[1] - z.lon[0], 5),
     v: flat,
   };
@@ -82,9 +98,65 @@ function packSparse(z) {
   const cells = [];
   z.v.forEach((row, i) => row.forEach((x, j) => { if (x != null) cells.push([i, j, x]); }));
   return {
-    kind: 'sparse', nlat: z.lat.length, nlon: z.lon.length,
+    kind: 'sparse', cut: z.cut, nlat: z.lat.length, nlon: z.lon.length,
     lat0: z.lat[0], dlat: round(z.lat[1] - z.lat[0], 5), lon0: z.lon[0], dlon: round(z.lon[1] - z.lon[0], 5),
     cells,
+  };
+}
+
+/** One data region: satellite → zones (website) + inputs for the phone. */
+async function buildRegion(reg, dir, areas, now, offline) {
+  const D = f => join(ROOT, 'packages/model/data', f);
+  const files = { bathy: `bathy-${reg.k}.json`, coast: `bathy-${reg.k}-coast.json`, land: `land-${reg.k}.json` };
+  if (!Object.values(files).every(f => existsSync(D(f)))) { console.warn(`${reg.k}: grids not built yet, skipped`); return null; }
+  await mkdir(join(OUT, dir, 'zones'), { recursive: true });
+  let sst, chl;
+  const cache = n => join(CACHE, `${reg.k}-${n}.json`);
+  if (offline) {
+    sst = JSON.parse(await readFile(cache('sst'), 'utf8'));
+    chl = await readFile(cache('chl'), 'utf8').then(JSON.parse, () => null);
+  } else {
+    const [s, c] = await Promise.allSettled([fetchSst(reg.box), fetchChl(reg.box)]);
+    const last = (s.status !== 'fulfilled' || c.status !== 'fulfilled') ? await lastPublished(`${dir ? dir + '/' : ''}conditions.json`) : null;
+    sst = s.status === 'fulfilled' ? s.value : last?.sst ? { ...last.sst, stale: true } : null;
+    if (!sst) { console.warn(`${reg.k}: no water temperature (${s.reason?.message || s.reason}) and nothing published before, skipped`); return null; }
+    // The model works without color, just less sharply; reuse the last published color if NOAA is down.
+    chl = c.status === 'fulfilled' ? c.value : last?.chl ? { ...last.chl, stale: true } : null;
+    if (c.status !== 'fulfilled') console.warn(`${reg.k}: chlorophyll unavailable (${c.reason?.message}), ${chl ? 'using the last published' : 'none'}`);
+    if (sst.source || sst.stale) console.warn(`${reg.k}: water temperature from ${sst.stale ? 'the last published data' : sst.source}`);
+    await writeFile(cache('sst'), JSON.stringify(sst));
+    if (chl) await writeFile(cache('chl'), JSON.stringify(chl));
+  }
+  console.log(`${reg.k}: SST ${sst.date} (${sst.lat.length}×${sst.lon.length}), chlorophyll ${chl?.date ?? 'none'}`);
+  const bathy = JSON.parse(await readFile(D(files.bathy), 'utf8'));
+  const coast = coastGrid(JSON.parse(await readFile(D(files.coast), 'utf8')));
+  const conditions = { sst, chl };
+  // Website overview season: Baja uses the Los Cabos calendar; other regions their main season region.
+  const overview = AREAS.find(a => a.d === reg.k && (a.big || a.r == null))?.r ?? null;
+  const species = {};
+  for (const sp of SPECIES) {
+    const season = seasonFor(sp, overview);
+    if (!season) continue; // not found in this region
+    const inshore = sp.g === 'inshore';
+    const z = scoreZones({ ...sp, season }, conditions, null, now, { bathy: inshore ? coast : bathy, reach: reachFromPorts });
+    const closed = maskProtected(z, areas);
+    const vedaNow = !!closureFor(sp.k, now, overview);
+    if (vedaNow) z.v = z.v.map(row => row.map(x => (x == null ? null : 0)));
+    const counts = { elite: 0, priority: 0, candidate: 0 };
+    for (const row of z.v) for (const x of row) { if (!x) continue; const t = TIERS.find(t => x >= z.cut[t.k]); if (t) counts[t.k]++; }
+    const file = `${dir ? dir + '/' : ''}zones/${sp.k}.json`;
+    await writeFile(join(OUT, file), JSON.stringify(inshore ? packSparse(z) : packDense(z)));
+    species[sp.k] = { file, cut: z.cut, counts, seasonLevel: z.seasonLevel, closedByProtection: closed, closedSeason: vedaNow };
+  }
+  const pre = dir ? dir + '/' : '';
+  await writeFile(join(OUT, `${pre}conditions.json`), JSON.stringify(conditions));
+  for (const f of Object.values(files)) await copyFile(D(f), join(OUT, `${pre}${f}`));
+  console.log(`${reg.k}: ${Object.keys(species).length} species`);
+  return {
+    k: reg.k, en: reg.en, es: reg.es, ocean: reg.ocean, box: reg.box,
+    data: { sstDate: sst.date, chlDate: chl?.date ?? null, sstSource: sst.source || null, stale: !!(sst.stale || chl?.stale) },
+    files: { conditions: `${pre}conditions.json`, bathy: `${pre}${files.bathy}`, coast: `${pre}${files.coast}`, land: `${pre}${files.land}` },
+    species,
   };
 }
 
@@ -92,56 +164,26 @@ async function main() {
   const offline = process.argv.includes('--offline');
   await mkdir(join(OUT, 'zones'), { recursive: true });
   await mkdir(CACHE, { recursive: true });
-
-  let sst, chl;
-  if (offline) {
-    sst = JSON.parse(await readFile(join(CACHE, 'sst.json'), 'utf8'));
-    chl = await readFile(join(CACHE, 'chl.json'), 'utf8').then(JSON.parse, () => null);
-  } else {
-    const [s, c] = await Promise.allSettled([fetchSst(), fetchChl()]);
-    if (s.status !== 'fulfilled') throw new Error(`No water temperature from NOAA: ${s.reason?.message || s.reason}`);
-    sst = s.value;
-    chl = c.status === 'fulfilled' ? c.value : null; // the model works without color, just less sharply
-    if (!chl) console.warn('chlorophyll unavailable:', c.reason?.message);
-    await writeFile(join(CACHE, 'sst.json'), JSON.stringify(sst));
-    if (chl) await writeFile(join(CACHE, 'chl.json'), JSON.stringify(chl));
-  }
-  console.log(`SST ${sst.date} (${sst.lat.length}×${sst.lon.length}), chlorophyll ${chl?.date ?? 'none'}`);
-
-  const bathy = await readJson('packages/model/data/bathy-baja.json');
-  const coast = coastGrid(await readJson('packages/model/data/bathy-baja-coast.json'));
-  const areasFc = await readJson('packages/model/data/protected-areas.json');
-  const areas = prepareAreas(areasFc);
-  const conditions = { sst, chl };
   const now = new Date();
 
-  const species = [];
-  for (const sp of SPECIES) {
-    const inshore = sp.g === 'inshore';
-    // Website overview: the Los Cabos calendar (northern-only species use their own).
-    const z = scoreZones({ ...sp, season: seasonFor(sp, null) || sp.season }, conditions, null, now, { bathy: inshore ? coast : bathy, reach: reachFromPorts });
-    const closed = maskProtected(z, areas);
-    // Official closed season (shark veda): no zones at all, the app explains why.
-    const vedaNow = isClosed(sp.k, now);
-    if (vedaNow) z.v = z.v.map(row => row.map(x => (x == null ? null : 0)));
-    // Recount tiers after closing protected squares (cut-offs stay as scored).
-    const counts = { elite: 0, priority: 0, candidate: 0 };
-    for (const row of z.v) for (const x of row) { if (!x) continue; const t = TIERS.find(t => x >= z.cut[t.k]); if (t) counts[t.k]++; }
-    const file = `zones/${sp.k}.json`;
-    await writeFile(join(OUT, file), JSON.stringify(inshore ? packSparse(z) : packDense(z)));
-    const info = INFO[sp.k] || {};
-    species.push({
-      k: sp.k, g: sp.g, en: sp.en, es: sp.es, seasonLevel: z.seasonLevel, cut: z.cut, counts, closedByProtection: closed, file,
-      season: sp.season, spawn: info.spawn ?? null, spawnConfidence: info.conf ?? 'low', spawnSources: info.src ?? [],
-      limit: info.limit ? LIMITS[info.limit] : LIMITS.general, reserved50nm: !!info.reserved50nm,
-      closedSeason: vedaNow, beta: !!info.beta,
-    });
-    console.log(`${sp.k.padEnd(22)} elite ${String(counts.elite).padStart(4)}  priority ${String(counts.priority).padStart(4)}  closed ${closed}`);
+  // Protected areas of every region in one file (small).
+  const areasFc = await readJson('packages/model/data/protected-areas.json');
+  for (const r of REGIONS) {
+    const f = join(ROOT, `packages/model/data/protected-areas-${r.k}.json`);
+    if (existsSync(f)) areasFc.features.push(...JSON.parse(await readFile(f, 'utf8')).features);
   }
+  const areas = prepareAreas(areasFc);
+  await writeFile(join(OUT, 'protected-areas.json'), JSON.stringify(areasFc));
 
-  await writeFile(join(OUT, 'conditions.json'), JSON.stringify({ sst, chl }));
-  // Inputs for scoring on the phone (same as the Bite Map does in the browser).
-  for (const f of ['bathy-baja.json', 'bathy-baja-coast.json', 'land-baja.json']) await copyFile(join(ROOT, 'packages/model/data', f), join(OUT, f));
+  // Baja keeps its files at the top level (apps already installed read them there).
+  const regions = [];
+  for (const reg of REGIONS) {
+    const out = await buildRegion(reg, reg.k === 'baja' ? '' : reg.k, areas, now, offline);
+    if (out) regions.push(out);
+  }
+  const baja = regions.find(r => r.k === 'baja');
+  if (!baja) throw new Error('Baja region failed: keeping the previous published data');
+
   let outlookOk = false;
   try {
     const r = await fetch(OUTLOOK_URL, { headers: UA, signal: AbortSignal.timeout(60_000) });
@@ -149,14 +191,34 @@ async function main() {
     if (j?.ok && j.outlook?.sst?.dates?.length) { await writeFile(join(OUT, 'outlook.json'), JSON.stringify(j.outlook)); outlookOk = true; }
   } catch (e) { console.warn('outlook unavailable:', e.message); }
   console.log('outlook', outlookOk ? 'ok' : 'missing');
-  await writeFile(join(OUT, 'protected-areas.json'), JSON.stringify(areasFc));
+
+  // Species list: every species found in at least one region, with its info.
+  const species = [];
+  for (const sp of SPECIES) {
+    // Listed if it lives in any area of a published region (zone files exist only for each region's overview).
+    const where = regions.filter(r => r.species[sp.k] || AREAS.some(a => a.d === r.k && seasonFor(sp, a.r)));
+    if (!where.length) continue;
+    const info = INFO[sp.k] || {}, bz = baja.species[sp.k];
+    const anyZ = bz || where.map(r => r.species[sp.k]).find(Boolean) || { file: null, cut: null, counts: { elite: 0, priority: 0, candidate: 0 }, seasonLevel: 0, closedSeason: false };
+    species.push({
+      k: sp.k, g: sp.g, en: sp.en, es: sp.es, ocean: oceanOf(sp.k), regions: where.map(r => r.k),
+      // Top-level fields for apps already installed (Baja files):
+      file: anyZ.file, cut: anyZ.cut, counts: anyZ.counts,
+      seasonLevel: anyZ.seasonLevel, closedByProtection: bz?.closedByProtection ?? 0, closedSeason: anyZ.closedSeason,
+      season: sp.season, spawn: info.spawn ?? null, spawnConfidence: info.conf ?? 'low', spawnSources: info.src ?? [],
+      limit: info.limit ? LIMITS[info.limit] : LIMITS.general, reserved50nm: !!info.reserved50nm, beta: !!info.beta,
+    });
+    const c = anyZ.counts;
+    console.log(`${sp.k.padEnd(22)} ${where.map(r => r.k).join(',').padEnd(18)} elite ${String(c.elite).padStart(5)}`);
+  }
   const manifest = {
     version: 1,
     updatedAt: now.toISOString(),
-    area: { name: 'Baja California, Baja California Sur and the Sea of Cortez', box: BCS },
+    area: { name: 'Mexico: Pacific, Gulf of Mexico and Caribbean', box: COVERAGE },
     areas: AREAS,
-    files: { conditions: 'conditions.json', bathy: 'bathy-baja.json', coast: 'bathy-baja-coast.json', land: 'land-baja.json', protected: 'protected-areas.json', outlook: outlookOk ? 'outlook.json' : null },
-    data: { sstDate: sst.date, chlDate: chl?.date ?? null },
+    regions: regions.map(({ species: sp, ...r }) => ({ ...r, species: Object.fromEntries(Object.entries(sp).map(([k, v]) => [k, v.file])) })),
+    files: { ...baja.files, protected: 'protected-areas.json', outlook: outlookOk ? 'outlook.json' : null },
+    data: baja.data,
     tiers: TIERS.map(t => ({ k: t.k, en: t.en, es: t.es, color: t.color })),
     groups: GROUPS.map(([k, en, es]) => ({ k, en, es })),
     species,
@@ -164,11 +226,11 @@ async function main() {
       en: 'Scores rate how well today\'s water fits each species. They are not a catch forecast. Check the weather and port status before going out, and follow protected-area rules.',
       es: 'La puntuación indica qué tan bien el agua de hoy le queda a cada especie. No es un pronóstico de captura. Revisa el clima y el estado del puerto antes de salir, y respeta las reglas de las áreas protegidas.',
     },
-    rules: { source: LIMITS_SOURCE, sharkVeda: SHARK_VEDA, neverKeep: NEVER_KEEP,
+    rules: { source: LIMITS_SOURCE, sharkVeda: SHARK_VEDA, closures: CLOSURES, neverKeep: NEVER_KEEP,
       reserved50nm: { en: 'Billfish, dorado, roosterfish and tarpon are reserved for sport fishing within 50 nautical miles of the coast.', es: 'Picudos, dorado, pez gallo y sábalo están reservados a la pesca deportiva dentro de 50 millas náuticas de la costa.' },
       disclaimer: { en: 'Summary only. Official NOM and DOF texts always win; you need a valid sport-fishing license.', es: 'Solo es un resumen. Mandan los textos oficiales de las NOM y el DOF; necesitas un permiso de pesca deportiva vigente.' } },
     attribution: [
-      'Water temperature: NOAA Geo-polar Blended SST (NOAA CoastWatch)',
+      'Water temperature: NOAA Geo-polar Blended SST (NOAA CoastWatch); backup: NASA JPL MUR SST',
       'Water color: NOAA VIIRS DINEOF chlorophyll-a (NOAA CoastWatch)',
       'Depth: NOAA NCEI ETOPO 2022 · Coastline: Natural Earth',
       'Protected areas: CONANP; DOF/SIDOF agreements; © OpenStreetMap contributors',
@@ -177,7 +239,7 @@ async function main() {
     by: ['Top Anglers Sportfishing Charters', 'Asociación Sudcaliforniana de Pesca Deportiva', 'Federación Nacional de Pesca Deportiva'],
   };
   await writeFile(join(OUT, 'manifest.json'), JSON.stringify(manifest, null, 1));
-  console.log(`Wrote ${species.length} species to out/v1`);
+  console.log(`Wrote ${species.length} species in ${regions.length} regions to out/v1`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

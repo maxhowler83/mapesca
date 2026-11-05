@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the Mapesca bathymetry grids from the ETOPO 2022 15" subset made by fetch_etopo.py.
 
-  python3 build_bathy.py WORK_DIR OUT_DIR [--box N S W E] [--name baja] [--no-pad]
+  python3 build_bathy.py WORK_DIR OUT_DIR [--box N S W E] [--name baja] [--etopo baja] [--no-pad]
 
 Writes OUT_DIR/bathy-<name>.json and OUT_DIR/bathy-<name>-coast.json.
 
@@ -52,11 +52,14 @@ def main():
     ap.add_argument('work'); ap.add_argument('out')
     ap.add_argument('--box', nargs=4, type=float, metavar=('N', 'S', 'W', 'E'), default=[32.75, 22.0, -118.6, -105.4])
     ap.add_argument('--name', default='baja')
+    ap.add_argument('--etopo', help='subset made by fetch_etopo.py --name X (default: <name> if '
+                    'WORK_DIR/etopo15_<name>.npy exists, else baja)')
     ap.add_argument('--no-pad', action='store_true')
     a = ap.parse_args()
     N, S, W, E = a.box
     work, out = Path(a.work), Path(a.out); out.mkdir(parents=True, exist_ok=True)
-    z = np.load(work / 'etopo15_baja.npy'); g = json.loads((work / 'etopo15_baja.json').read_text())
+    src = a.etopo or (a.name if (work / f'etopo15_{a.name}.npy').exists() else 'baja')
+    z = np.load(work / f'etopo15_{src}.npy'); g = json.loads((work / f'etopo15_{src}.json').read_text())
     r0, c0 = round((g['n'] - N) * PX), round((W - g['w']) * PX)
     H, Wd = round((N - S) * PX), round((E - W) * PX)
     assert r0 >= 0 and c0 >= 0 and r0 + H <= z.shape[0] and c0 + Wd <= z.shape[1], 'box outside downloaded data'

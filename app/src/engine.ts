@@ -5,33 +5,48 @@
 import { scoreZones, explainAt, tierOf, TIERS, SPECIES_BY_K, coastGrid, reachFromPorts, nearestPort, PORTS } from '../../packages/model/zones.js';
 import { prepareAreas, maskProtected, areaAt } from '../../packages/model/protected.js';
 import { projectConditions, outlookDays, caboToday } from '../../packages/model/outlook.js';
-import { isClosed, INFO, seasonFor } from '../../packages/model/species-info.js';
-import { AREAS, AREAS_BY_K, areaFor, COVERAGE } from '../../packages/model/areas.js';
+import { closureFor, INFO, seasonFor, CLOSURES } from '../../packages/model/species-info.js';
+import { AREAS, AREAS_BY_K, areaFor, COVERAGE, REGIONS_BY_K } from '../../packages/model/areas.js';
 import { nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM } from '../../packages/model/route.js';
 import { parseCoords } from '../../packages/model/coords.js';
 import { DATA_URL, type Manifest } from './data';
 
-export { TIERS, SPECIES_BY_K, PORTS, AREAS, AREAS_BY_K, areaFor, COVERAGE, seasonFor, nearestPort, outlookDays, caboToday, nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt, INFO };
+export { TIERS, SPECIES_BY_K, PORTS, AREAS, AREAS_BY_K, areaFor, COVERAGE, seasonFor, closureFor, CLOSURES, nearestPort, outlookDays, caboToday, nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt, INFO };
 
 export type Box = { w: number; e: number; s: number; n: number };
+/** One data region's inputs (Baja & Sea of Cortez, Pacific south, Gulf & Caribbean). */
+export type RegionData = { k: string; conditions: any; bathy: any; land: any; coast?: any; files: any; data?: any };
 export type Inputs = {
-  manifest: Manifest; conditions: any; bathy: any; land: any; protectedFc: any; areas: any[]; outlook: any | null; coast?: any;
+  manifest: Manifest; protectedFc: any; areas: any[]; outlook: any | null;
+  regions: Record<string, RegionData>;
 };
 
 const get = (f: string) => fetch(`${DATA_URL}/${f}`).then(r => { if (!r.ok) throw new Error(`HTTP ${r.status} ${f}`); return r.json(); });
+const regionFiles = (m: any, k: string) => (m.regions || []).find((r: any) => r.k === k) || (k === 'baja' ? { k, files: m.files, data: m.data } : null);
+export const regionOfArea = (areaKey: string) => (AREAS_BY_K[areaKey] || AREAS_BY_K.cabo).d || 'baja';
+/** Regions published today (a region missing from the manifest isn't available right now). */
+export const availableRegions = (m: any) => new Set(((m.regions || []).map((r: any) => r.k)).concat(m.regions ? [] : ['baja']));
 
+/** Manifest, protected areas and the outlook first; each region's data when it's first opened. */
 export async function loadInputs(): Promise<Inputs> {
-  const manifest: Manifest = await get('manifest.json');
-  const f = (manifest as any).files;
-  const [conditions, bathy, land, protectedFc, outlook] = await Promise.all([
-    get(f.conditions), get(f.bathy), get(f.land), get(f.protected), f.outlook ? get(f.outlook).catch(() => null) : Promise.resolve(null),
+  const manifest: any = await get('manifest.json');
+  const [protectedFc, outlook] = await Promise.all([
+    get(manifest.files.protected), manifest.files.outlook ? get(manifest.files.outlook).catch(() => null) : Promise.resolve(null),
   ]);
-  return { manifest, conditions, bathy, land, protectedFc, areas: prepareAreas(protectedFc), outlook };
+  return { manifest, protectedFc, areas: prepareAreas(protectedFc), outlook, regions: {} };
 }
-/** The ~0.9 km coastal grid for inshore species (≈1 MB), loaded the first time one is picked. */
-export async function loadCoast(inp: Inputs) {
-  if (!inp.coast) inp.coast = coastGrid(await get((inp.manifest as any).files.coast));
-  return inp.coast;
+export async function loadRegion(inp: Inputs, k: string): Promise<RegionData> {
+  if (inp.regions[k]) return inp.regions[k];
+  const r = regionFiles(inp.manifest, k);
+  if (!r) throw new Error(`region ${k} not published`);
+  const [conditions, bathy, land] = await Promise.all([get(r.files.conditions), get(r.files.bathy), get(r.files.land)]);
+  return (inp.regions[k] = { k, conditions, bathy, land, files: r.files, data: r.data });
+}
+/** The ~0.9 km coastal grid for inshore species (1–4 MB), loaded the first time one is picked in a region. */
+export async function loadCoast(inp: Inputs, k: string) {
+  const r = await loadRegion(inp, k);
+  if (!r.coast) r.coast = coastGrid(await get(r.files.coast));
+  return r.coast;
 }
 
 /** Only the part of a grid around an area (plus a margin), so big regions score fast. */
@@ -47,8 +62,6 @@ function crop(B: any, box: Box, key: string) {
   return out;
 }
 
-/** Conditions for a day: '' = today's satellite; 'YYYY-MM-DD' = the outlook for that day. */
-export const conditionsFor = (inp: Inputs, day: string) => (day && inp.outlook && projectConditions(inp.conditions, inp.outlook, day)) || inp.conditions;
 export const whenOf = (day: string) => (day ? new Date(`${day}T19:00:00Z`) : new Date()); // noon in Cabo
 
 /** True when the ocean-forecast grid covers the whole box (the next-days outlook). */
@@ -69,21 +82,24 @@ function areaZones(z: any, v: Box) {
   return { ...out, counts };
 }
 
-export type Result = { az: any; cond: any; closedSeason: boolean; notHere: boolean; geojson: GeoJSON.FeatureCollection; here: number };
+export type Result = { az: any; cond: any; closure: any | null; closedSeason: boolean; notHere: boolean; geojson: GeoJSON.FeatureCollection; here: number; land: any; data: any };
 
 export function compute(inp: Inputs, sp: string, areaKey: string, day: string): Result {
-  const area = AREAS_BY_K[areaKey] || AREAS_BY_K.all;
+  const area = AREAS_BY_K[areaKey] || AREAS_BY_K.cabo;
+  const R = inp.regions[area.d || 'baja'];
+  if (!R) throw new Error('region data not loaded');
   const S = SPECIES_BY_K[sp], inshore = S.g === 'inshore';
-  const base = inshore && inp.coast ? inp.coast : inp.bathy;
-  const B = crop(base, area.box, inshore && inp.coast ? 'coast' : 'bathy');
+  const useCoast = inshore && R.coast;
+  const B = crop(useCoast ? R.coast : R.bathy, area.box, `${R.k}|${useCoast ? 'coast' : 'bathy'}`);
   // Day outlook only where the ocean forecast covers the whole area; otherwise today's satellite.
-  const cond = outlookCovers(inp, area.box) ? conditionsFor(inp, day) : inp.conditions, when = whenOf(day);
+  const cond = day && outlookCovers(inp, area.box) && inp.outlook ? (projectConditions(R.conditions, inp.outlook, day) || R.conditions) : R.conditions;
+  const when = whenOf(day);
   // Regional season (null = not found in this area: no zones).
   const season = seasonFor(S, area.r);
   const z = scoreZones({ ...S, season: season || S.season }, cond, null, when, { bathy: B, reach: reachFromPorts });
   maskProtected(z, inp.areas);
-  const closedSeason = isClosed(sp, when), notHere = !season;
-  if (closedSeason || notHere) z.v = z.v.map((row: any[]) => row.map(x => (x == null ? null : 0)));
+  const closure = closureFor(sp, when, area.r, area.k), notHere = !season;
+  if (closure || notHere) z.v = z.v.map((row: any[]) => row.map(x => (x == null ? null : 0)));
   const az = areaZones(z, area.box);
   const here = az.counts.elite + az.counts.priority + az.counts.candidate;
   // Squares in a tier → GeoJSON (half a cell each way).
@@ -94,7 +110,7 @@ export function compute(inp: Inputs, sp: string, areaKey: string, day: string): 
     const t = tierOf(az, s); if (!t) return;
     features.push({ type: 'Feature', properties: { tier: t.k }, geometry: { type: 'Polygon', coordinates: [[[lo - hlo, la - hla], [lo + hlo, la - hla], [lo + hlo, la + hla], [lo - hlo, la + hla], [lo - hlo, la - hla]]] } });
   }));
-  return { az, cond, closedSeason, notHere, geojson: { type: 'FeatureCollection', features }, here };
+  return { az, cond, closure, closedSeason: !!closure, notHere, geojson: { type: 'FeatureCollection', features }, here, land: R.land, data: R.data };
 }
 
 const WHY: Record<string, [string, string]> = {

@@ -7,11 +7,13 @@ import * as Location from 'expo-location';
 import * as Clipboard from 'expo-clipboard';
 import * as Sharing from 'expo-sharing';
 import {
-  loadInputs, loadCoast, compute, explain, pinText, AREAS, AREAS_BY_K, areaFor, PORTS, SPECIES_BY_K, outlookDays, caboToday,
+  loadInputs, loadRegion, loadCoast, compute, regionOfArea, closureFor, availableRegions, explain, pinText, AREAS, AREAS_BY_K, areaFor, PORTS, SPECIES_BY_K, outlookDays, caboToday,
   nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt, COVERAGE, outlookCovers, seasonFor,
   type Inputs, type Result,
 } from './src/engine';
 import type { Manifest, SpeciesInfo } from './src/data';
+// @ts-ignore — plain JS module
+import { REGIONS } from '../packages/model/areas.js';
 import { t, L, LANG } from './src/i18n';
 import { C } from './src/theme';
 
@@ -78,10 +80,12 @@ function Main() {
     let alive = true;
     setBusy(true);
     (async () => {
-      if (SPECIES_BY_K[sp].g === 'inshore') { try { await loadCoast(inp); } catch {} }
+      const reg = regionOfArea(area);
+      try { await loadRegion(inp, reg); } catch { if (alive) { setRes(null); setMsg(ES ? 'Los datos de esta región no están disponibles ahora. Intenta más tarde.' : 'This region’s data isn’t available right now. Try again later.'); setBusy(false); } return; }
+      if (SPECIES_BY_K[sp].g === 'inshore') { try { await loadCoast(inp, reg); } catch {} }
       await new Promise(r => setTimeout(r, 30)); // let the spinner paint
       if (!alive) return;
-      try { setRes(compute(inp, sp, area, day)); } catch { setRes(null); }
+      try { setRes(compute(inp, sp, area, day)); setMsg(''); } catch { setRes(null); }
       setBusy(false);
     })();
     return () => { alive = false; };
@@ -92,7 +96,11 @@ function Main() {
   const species = inp?.manifest.species.find(s => s.k === sp) as SpeciesInfo | undefined;
   const spName = species ? L(species) : '';
 
-  const goArea = (k: string) => { setArea(k); cam.current?.fitBounds(boundsOf(AREAS_BY_K[k].box), { padding: PAD, duration: 600 }); };
+  const goArea = (k: string) => {
+    const reg = AREAS_BY_K[k].d;
+    const cur: any = inp?.manifest.species.find(x => x.k === sp);
+    if (cur?.regions && !cur.regions.includes(reg)) { const first: any = inp?.manifest.species.find((x: any) => x.regions?.includes(reg) && x.g !== 'bait'); if (first) setSp(first.k); }
+    setArea(k); cam.current?.fitBounds(boundsOf(AREAS_BY_K[k].box), { padding: PAD, duration: 600 }); };
   const goTo = (p: Pt) => {
     const a = areaFor(p.lat, p.lon);
     if (!a) { setMsg(ES ? `${pinText(p)} está fuera del mapa.` : `${pinText(p)} is outside the map.`); return; }
@@ -160,13 +168,13 @@ function Main() {
     );
   }
 
-  const sat = inp?.conditions?.sst?.date;
+  const sat = res?.data?.sstDate || inp?.manifest?.data?.sstDate;
   const dayInfo: any = days.find((d: any) => d.date === day);
   const dateLine = !sat ? '' : dayInfo
     ? (ES ? `Pronóstico para el ${wd(day, { weekday: 'long', day: 'numeric', month: 'short' })} · ${dayInfo.conf.es.toLowerCase()}` : `Outlook for ${wd(day, { weekday: 'long', month: 'short', day: 'numeric' })} · ${dayInfo.conf.en.toLowerCase()}`)
     : (ES ? `Satélite NOAA del ${wd(sat, { day: 'numeric', month: 'short' })}` : `NOAA satellite of ${wd(sat, { month: 'short', day: 'numeric' })}`);
   const bigView = !AREAS_BY_K[area].r;
-  const note = !res || !species ? '' : res.closedSeason ? t.vedaNow
+  const note = !res || !species ? '' : res.closure ? `${t.vedaNow} ${L(res.closure)}`
     : res.notHere ? (ES ? `${spName} no se encuentra en esta área. Prueba otra.` : `${spName} isn't found in this area. Try another.`)
     : !res.here
     ? (ES ? `${day ? 'Ese día no se ve' : 'Hoy no hay'} agua que destaque para ${spName.toLowerCase()} en esta área. Prueba otra área.` : `No water stands out for ${spName.toLowerCase()} in this area ${day ? 'that day' : 'today'}. Try another area.`)
@@ -212,8 +220,19 @@ function Main() {
           <Pressable style={s.round} onPress={() => setSheet('detail')} accessibilityLabel={`${t.seasons} · ${t.rulesTitle}`}><Text style={s.roundText}>📅</Text></Pressable>
           <Pressable style={s.round} onPress={() => setSheet('about')} accessibilityLabel={t.about}><Text style={[s.roundText, { fontStyle: 'italic' }]}>i</Text></Pressable>
         </View>
+        {/* Region (Baja & Cortez · Pacific south · Gulf & Caribbean), then its areas */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.chipRow}>
-          {AREAS.map((a: any) => (
+          {REGIONS.map((r: any) => {
+            const on = regionOfArea(area) === r.k, off = inp && !availableRegions(inp.manifest).has(r.k);
+            return (
+              <Pressable key={r.k} disabled={!!off} onPress={() => goArea(AREAS.find((a: any) => a.d === r.k)!.k)} style={[s.rchip, on && s.rchipOn, off && { opacity: 0.4 }]}>
+                <Text style={[s.rchipText, on && s.mchipTextOn]}>{L(r)}</Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.chipRow}>
+          {AREAS.filter((a: any) => a.d === regionOfArea(area)).map((a: any) => (
             <Pressable key={a.k} onPress={() => goArea(a.k)} style={[s.mchip, area === a.k && s.mchipOn]}>
               <Text style={[s.mchipText, area === a.k && s.mchipTextOn]}>{L(a)}</Text>
             </Pressable>
@@ -248,7 +267,7 @@ function Main() {
         {pickA ? (
           <View style={s.card}><Text style={s.body}>{ES ? 'Toca el mapa para poner el punto A.' : 'Tap the map to set point A.'}</Text></View>
         ) : pin && res ? (
-          <PinCard res={res} pin={pin} A={A!} aAuto={aAuto} kt={kt} setKt={setKt} land={inp?.land} areas={inp?.areas || []} day={day}
+          <PinCard res={res} pin={pin} A={A!} aAuto={aAuto} kt={kt} setKt={setKt} land={res.land} areas={inp?.areas || []} day={day}
             onFrom={() => setSheet('from')} onClear={() => setPin(null)} />
         ) : (
           <>
@@ -271,7 +290,7 @@ function Main() {
           <View key={g.k} style={{ marginBottom: 12 }}>
             <Text style={s.groupTitle}>{L(g)}</Text>
             <View style={s.chips}>
-              {inp.manifest.species.filter(x => x.g === g.k && SPECIES_BY_K[x.k]).map(x => (
+              {inp.manifest.species.filter((x: any) => x.g === g.k && SPECIES_BY_K[x.k] && (!x.regions || x.regions.includes(regionOfArea(area)))).map(x => (
                 <Pressable key={x.k} style={[s.chip, x.k === sp && s.chipOn, !seasonFor(SPECIES_BY_K[x.k], AREAS_BY_K[area].r) && x.k !== sp && { opacity: 0.4 }]} onPress={() => { setSp(x.k); setSheet(null); }}>
                   <Text style={[s.chipText, x.k === sp && s.chipTextOn]}>{L(x)}</Text>
                 </Pressable>
@@ -304,8 +323,8 @@ function Main() {
         {inp?.manifest.by.map(b => <Text key={b} style={s.body}>{b}</Text>)}
         {inp && (
           <>
-            <Text style={s.groupTitle}>{t.sharks}</Text>
-            <Text style={s.body}>{L(inp.manifest.rules.sharkVeda)}</Text>
+            <Text style={s.groupTitle}>{ES ? 'Vedas' : 'Closed seasons'}</Text>
+            {(inp.manifest.rules as any).closures?.map((c: any) => <Text key={c.k} style={[s.body, { marginBottom: 4 }]}>· {L(c)}</Text>) ?? <Text style={s.body}>{L(inp.manifest.rules.sharkVeda)}</Text>}
             <Text style={[s.body, { marginTop: 8, fontWeight: '600' }]}>{t.neverKeep}</Text>
             {inp.manifest.rules.neverKeep[LANG].map(n => <Text key={n} style={s.body}>· {n}</Text>)}
             <Text style={[s.body, { marginTop: 8 }]}>{L(inp.manifest.rules.neverKeep.note)}</Text>
@@ -438,7 +457,7 @@ function SpeciesDetail({ species, manifest, areaName }: { species: SpeciesInfo; 
       <Text style={s.groupTitle}>{t.rulesTitle}</Text>
       <Text style={s.body}>{t.limit}: {L(species.limit)}</Text>
       {species.reserved50nm && <Text style={[s.body, { marginTop: 6 }]}>{t.reserved}</Text>}
-      {species.g === 'shark' && <Text style={[s.body, { marginTop: 6 }]}>{L(manifest.rules.sharkVeda)}</Text>}
+      {((manifest.rules as any).closures || []).filter((c: any) => c.species.includes(species.k)).map((c: any) => <Text key={c.k} style={[s.body, { marginTop: 6 }]}>{L(c)} <Text style={s.small}>({c.source})</Text></Text>)}
       {species.beta && <Text style={[s.body, { marginTop: 6, color: C.muted }]}>{t.beta}</Text>}
       <Text style={[s.small, { marginTop: 8 }]}>{L(manifest.rules.disclaimer)}</Text>
       <Text style={s.small}>{manifest.rules.source}</Text>
@@ -458,6 +477,9 @@ const s = StyleSheet.create({
   round: { width: 46, height: 46, borderRadius: 23, backgroundColor: C.surface, alignItems: 'center', justifyContent: 'center', ...shadow },
   roundText: { fontSize: 18, fontWeight: '700', color: C.ink },
   chipRow: { paddingHorizontal: 16, paddingTop: 8, gap: 8 },
+  rchip: { backgroundColor: 'rgba(255,255,255,0.92)', borderRadius: 18, paddingVertical: 6, paddingHorizontal: 12, borderWidth: 1, borderColor: C.line },
+  rchipOn: { backgroundColor: C.ink, borderColor: C.ink },
+  rchipText: { fontSize: 12, fontWeight: '700', color: C.ink },
   mchip: { backgroundColor: C.surface, borderRadius: 18, paddingVertical: 7, paddingHorizontal: 14, ...shadow },
   mchipOn: { backgroundColor: C.ink },
   mchipText: { fontSize: 13, fontWeight: '600', color: C.ink },

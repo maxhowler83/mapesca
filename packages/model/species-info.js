@@ -80,14 +80,35 @@ export const INFO = {
     src: ['Salomón-Aguilar et al. 2009, Ciencias Marinas'] },
 };
 
-/** Is a date (Cabo time) inside this species' closed season? */
-export function isClosed(k, when = new Date()) {
-  if (INFO[k]?.closed !== 'shark-veda') return false;
-  const [m, d] = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Mazatlan', month: 'numeric', day: 'numeric' })
-    .format(when).split('/').map(Number);
-  const md = m * 100 + d, a = SHARK_VEDA.from[0] * 100 + SHARK_VEDA.from[1], b = SHARK_VEDA.to[0] * 100 + SHARK_VEDA.to[1];
-  return md >= a && md <= b;
+// ── Closed seasons (vedas) by region ────────────────────────────────────────
+// NOM-017 §4.10: no sport fishing for a species in its closed season and zone.
+// periods: [[fromMonth, fromDay, toMonth, toDay], …]; regions: season-region keys; areas: map-area keys.
+const SHARKS = ['shortfin-mako', 'blue-shark', 'silky-shark', 'pelagic-thresher', 'bull-shark'];
+const PACIFIC_REGIONS = ['cabo', 'pac-north', 'pac-central', 'pac-south', 'gulf-south', 'gulf-central', 'gulf-north', 'pac-mx-central', 'pac-mx-south', null];
+export const CLOSURES = [
+  { k: 'shark-pac', species: SHARKS, regions: PACIFIC_REGIONS, periods: [[5, 1, 7, 31]],
+    en: 'Shark and ray closed season (Pacific): May 1 – Jul 31.', es: 'Veda de tiburones y rayas (Pacífico): 1 de mayo al 31 de julio.', source: 'Acuerdo DOF 2012 (vigente 2026)' },
+  { k: 'shark-gom-west', species: SHARKS, regions: ['gom-west', 'caribe'], periods: [[5, 1, 6, 30]],
+    en: 'Shark closed season (Tamaulipas, Veracruz, Quintana Roo): May 1 – Jun 30.', es: 'Veda de tiburón (Tamaulipas, Veracruz, Quintana Roo): 1 de mayo al 30 de junio.', source: 'Acuerdo DOF 15/05/2014' },
+  { k: 'shark-gom-south', species: SHARKS, regions: ['gom-south'], periods: [[5, 15, 6, 15], [8, 1, 8, 29]],
+    en: 'Shark closed season (Tabasco, Campeche, Yucatán): May 15 – Jun 15 and Aug 1 – 29.', es: 'Veda de tiburón (Tabasco, Campeche, Yucatán): 15 de mayo al 15 de junio y 1 al 29 de agosto.', source: 'Acuerdo DOF 15/05/2014' },
+  { k: 'mero', species: ['red-grouper', 'black-grouper', 'goliath-grouper'], regions: ['gom-south', 'caribe'], periods: [[2, 1, 3, 31]],
+    en: 'Grouper (mero) closed season, Tabasco to Quintana Roo: Feb 1 – Mar 31.', es: 'Veda de mero, de Tabasco a Quintana Roo: 1 de febrero al 31 de marzo.', source: 'Acuerdo DOF 24/02/2015 (mod. 2016, 2017)' },
+  { k: 'snook-north', species: ['common-snook'], areas: ['tampico', 'tuxpan'], periods: [[5, 15, 6, 30]],
+    en: 'Snook closed season, Soto la Marina to Chachalacas: May 15 – Jun 30.', es: 'Veda de robalo, de Soto la Marina a Chachalacas: 15 de mayo al 30 de junio.', source: 'Aviso DOF 16/03/1994' },
+  { k: 'snook-south', species: ['common-snook'], areas: ['veracruz'], periods: [[7, 1, 8, 15]],
+    en: 'Snook closed season, Chachalacas to Tonalá: Jul 1 – Aug 15.', es: 'Veda de robalo, de Chachalacas a Tonalá: 1 de julio al 15 de agosto.', source: 'Aviso DOF 16/03/1994' },
+];
+const md = when => { const [m, d] = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Mazatlan', month: 'numeric', day: 'numeric' }).format(when).split('/').map(Number); return m * 100 + d; };
+/** The closure in force for a species on a date in a region/area, or null. */
+export function closureFor(k, when = new Date(), region = 'cabo', area = null) {
+  const today = md(when);
+  return CLOSURES.find(c => c.species.includes(k)
+    && (c.areas ? c.areas.includes(area) : c.regions.includes(region))
+    && c.periods.some(([fm, fd, tm, td]) => today >= fm * 100 + fd && today <= tm * 100 + td)) || null;
 }
+/** Kept for older callers: Pacific rules. */
+export function isClosed(k, when = new Date(), region = 'cabo', area = null) { return !!closureFor(k, when, region, area); }
 
 // ── Regional fishing seasons (Mapesca) ─────────────────────────────────────
 // Jan…Dec on the 0–3 scale; null = the species isn't found / fished there (no zones).
@@ -128,14 +149,39 @@ export const SEASONS = {
  * is one, the species' own (Los Cabos) calendar otherwise; null = not found there.
  * region null (big views) = the Los Cabos calendar, but never for northern-only species.
  */
+// Which ocean each season region is in, and which ocean each species lives in.
+export const REGION_OCEAN = { 'gom-west': 'atl', 'gom-south': 'atl', caribe: 'atl' }; // everything else: Pacific
+export const OCEAN = {
+  // Both oceans (same species in the Pacific and the Atlantic)
+  'blue-marlin': 'both', 'pacific-sailfish': 'both', 'yellowfin-tuna': 'both', dorado: 'both', wahoo: 'both',
+  'skipjack-tuna': 'both', 'almaco-jack': 'both', 'shortfin-mako': 'both', 'blue-shark': 'both', 'silky-shark': 'both',
+  swordfish: 'both', 'bull-shark': 'both',
+  // Atlantic only
+  'white-marlin': 'atl', 'blackfin-tuna': 'atl', 'king-mackerel': 'atl', tarpon: 'atl', 'common-snook': 'atl', permit: 'atl',
+  bonefish: 'atl', 'great-barracuda': 'atl', 'spanish-mackerel': 'atl', cero: 'atl', cobia: 'atl', 'greater-amberjack': 'atl',
+  'atlantic-jack': 'atl', 'red-drum': 'atl', 'red-snapper': 'atl', 'mutton-snapper': 'atl', 'red-grouper': 'atl',
+  'black-grouper': 'atl', 'goliath-grouper': 'atl',
+};
+export const oceanOf = k => OCEAN[k] || 'pac';
+export const regionOcean = r => (r && REGION_OCEAN[r]) || 'pac';
+
 export function seasonFor(sp, region) {
+  const o = oceanOf(sp.k);
+  if (o !== 'both' && o !== regionOcean(region)) return null; // lives in the other ocean
   const byR = SEASONS[sp.k];
   if (region == null || region === 'cabo') {
+    if (o === 'atl') return byR ? firstSeason(byR) : sp.season;
     if (byR && byR.cabo === null) return region == null ? firstSeason(byR) : null;
+    if (byR && Array.isArray(byR.cabo)) return byR.cabo;
+    if (!sp.season.some(x => x > 0)) return region == null ? firstSeason(byR || {}) : null; // not found around Los Cabos
     return sp.season;
   }
   if (byR && region in byR) return byR[region];
-  return sp.season;
+  // No regional calendar yet: Pacific species fall back on their own (Los Cabos)
+  // calendar — unless they aren't found around Los Cabos at all (northern species);
+  // in the Atlantic only species with an Atlantic calendar show.
+  if (regionOcean(region) === 'atl') return null;
+  return sp.season.some(x => x > 0) ? sp.season : null;
 }
 const firstSeason = byR => Object.values(byR).find(v => Array.isArray(v)) || null;
 
@@ -150,3 +196,97 @@ Object.assign(INFO, {
 });
 NEVER_KEEP.en.push('Totoaba (endangered; closed since 1975)');
 NEVER_KEEP.es.push('Totoaba (en peligro; veda total desde 1975)');
+
+// ── Seasons for the Mexican Pacific south and the Gulf of Mexico / Caribbean ──
+// Mostly LOW confidence: from tournament calendars and local reports (no published
+// monthly catch data for these coasts). Higher-confidence anchors: Caribbean sailfish
+// (Isla Mujeres winter run), Holbox tarpon (Apr–Sep), Pacific sailfish movements
+// (Macías-Zamora et al. 2011), snook and grouper spawning (Perera-García 2011; Brulé 1999).
+const NEW = {
+  // existing species
+  'pacific-sailfish': { 'pac-mx-central': '222222233332', 'pac-mx-south': '333332222333', 'gom-west': '000112222100', 'gom-south': '000111111000', caribe: '233322100011' },
+  'blue-marlin': { 'pac-mx-central': '111122233332', 'pac-mx-south': '222222222222', 'gom-west': '000123332100', 'gom-south': '000122221000', caribe: '111233332100' },
+  'black-marlin': { 'pac-mx-central': '322111111123', 'pac-mx-south': '211111111112' },
+  'striped-marlin': { 'pac-mx-central': '233321000012', 'pac-mx-south': '111110000001' },
+  'yellowfin-tuna': { 'pac-mx-central': '222233333332', 'pac-mx-south': '222222222222', 'gom-west': '111222222111', 'gom-south': '111222222111', caribe: '111222222111' },
+  dorado: { 'pac-mx-central': '222222233333', 'pac-mx-south': '222222222222', 'gom-west': '112333222111', 'gom-south': '112222221111', caribe: '112333222111' },
+  wahoo: { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222', 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '222222222222' },
+  'skipjack-tuna': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222', 'gom-west': '222222222222', 'gom-south': '222222222222', caribe: '222222222222' },
+  'black-skipjack': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222' },
+  'striped-bonito': { 'pac-mx-central': '111111111111', 'pac-mx-south': '111111111111' },
+  'pacific-bonito': { 'pac-mx-central': null, 'pac-mx-south': null },
+  roosterfish: { 'pac-mx-central': '222333332222', 'pac-mx-south': '222222222222' },
+  sierra: { 'pac-mx-central': '333222111233', 'pac-mx-south': '222222222222' },
+  'jack-crevalle': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222' },
+  'almaco-jack': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222', 'gom-west': '111111111111', 'gom-south': '222222222222', caribe: '222222222222' },
+  'pacific-dog-snapper': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222' },
+  'yellow-snapper': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222' },
+  'barred-pargo': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222' },
+  'leopard-grouper': { 'pac-mx-central': '111111111111', 'pac-mx-south': null },
+  'mexican-barracuda': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222' },
+  yellowtail: { 'pac-mx-central': null, 'pac-mx-south': null },
+  'shortfin-mako': { 'pac-mx-central': '111111111111', 'pac-mx-south': '111111111111', 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '111111111111' },
+  'blue-shark': { 'pac-mx-central': '111111111111', 'pac-mx-south': '111111111111', 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '111111111111' },
+  'silky-shark': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222', 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '111111111111' },
+  'pelagic-thresher': { 'pac-mx-central': '111111111111', 'pac-mx-south': '111111111111' },
+  // new species
+  'white-marlin': { 'gom-west': '000122221000', 'gom-south': '000111110000', caribe: '001233221000' },
+  swordfish: { 'pac-mx-central': '111111111111', 'pac-mx-south': '111111111111', 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '111111111111' },
+  'blackfin-tuna': { 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '222333222222' },
+  'king-mackerel': { 'gom-west': '333221112333', 'gom-south': '222222222222', caribe: '222222222333' },
+  tarpon: { 'gom-west': '112333332111', 'gom-south': '222333332222', caribe: '111233332111' },
+  'common-snook': { 'gom-west': '333222222333', 'gom-south': '333322222333', caribe: '222222222222' },
+  'pacific-snook': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222', 'pac-south': '111111111111', 'gulf-south': '111111111111' },
+  permit: { 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '222222222222' },
+  bonefish: { 'gom-west': null, 'gom-south': '111111111111', caribe: '222222222222' },
+  'great-barracuda': { 'gom-west': '111111111111', 'gom-south': '222222222222', caribe: '222222222222' },
+  'spanish-mackerel': { 'gom-west': '333222111233', 'gom-south': '333222222233', caribe: '111111111111' },
+  cero: { 'gom-west': null, 'gom-south': '111111111111', caribe: '222222222222' },
+  cobia: { 'gom-west': '222111111222', 'gom-south': '222222222222', caribe: '111111111111' },
+  'greater-amberjack': { 'gom-west': '222222222222', 'gom-south': '222222222222', caribe: '222222222222' },
+  'atlantic-jack': { 'gom-west': '333222222333', 'gom-south': '222222222222', caribe: '222222222222' },
+  'red-drum': { 'gom-west': '333111111333', 'gom-south': null, caribe: null },
+  'red-snapper': { 'gom-west': '222222222222', 'gom-south': '333333333333', caribe: '111111111111' },
+  'mutton-snapper': { 'gom-west': '111111111111', 'gom-south': '222222222222', caribe: '222222222222' },
+  'red-grouper': { 'gom-west': '111111111111', 'gom-south': '333333333333', caribe: '222222222222' },
+  'black-grouper': { 'gom-west': null, 'gom-south': '222222222222', caribe: '222222222222' },
+  'goliath-grouper': { 'gom-west': '111111111111', 'gom-south': '111111111111', caribe: '111111111111' },
+  'pacific-goliath': { 'pac-mx-central': '111111111111', 'pac-mx-south': '111111111111' },
+  'giant-sea-bass': { 'pac-north': '111111111111', 'pac-central': '111111111111' },
+  'pacific-red-snapper': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222', cabo: null },
+  'spotted-rose-snapper': { 'pac-mx-central': '222222222222', 'pac-mx-south': '222222222222', cabo: null },
+  'bull-shark': { 'pac-mx-central': '111111111111', 'pac-mx-south': '111111111111', 'gom-west': '222222222222', 'gom-south': '222222222222', caribe: '222222222222' },
+};
+for (const [k, byR] of Object.entries(NEW)) {
+  SEASONS[k] = SEASONS[k] || {};
+  for (const [r, str] of Object.entries(byR)) SEASONS[k][r] = S(str);
+}
+
+Object.assign(INFO, {
+  'white-marlin': { spawn: null, conf: 'low', limit: 'billfish', reserved50nm: true, beta: true, src: ['No Mexican spawning study found', 'FishBase (depth); Caribbean tournament calendars (season)'] },
+  swordfish: { spawn: null, conf: 'low', limit: 'billfish', reserved50nm: true, beta: true, src: ['Upper Caribbean spawning Dec–Mar (NOAA); rarely targeted in Mexico'] },
+  'blackfin-tuna': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth, temperature)'] },
+  'king-mackerel': { spawn: [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0], conf: 'low', limit: 'general', beta: true, src: ['NOAA (US Gulf data): May–Oct'] },
+  tarpon: { spawn: [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0], conf: 'medium', limit: 'two', reserved50nm: true, beta: true, src: ['Bonefish & Tarpon Trust: spawns offshore late spring–summer', 'Holbox: big fish Apr–Sep (local reports)'] },
+  'common-snook': { spawn: [0, 0, 0, 1, 1, 1, 2, 2, 1, 0, 0, 0], conf: 'high', limit: 'general', beta: true, src: ['Perera-García et al. 2011 (Tabasco)', 'Minimum sizes by state (Plan de manejo, DOF 2014): check before keeping'] },
+  'pacific-snook': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['No regional spawning study found'] },
+  permit: { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['Ascension Bay flats (Bonefish & Tarpon Trust 2021); catch and release is the local custom'] },
+  bonefish: { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['Quintana Roo flats (Bonefish & Tarpon Trust 2021); catch and release is the local custom'] },
+  'great-barracuda': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth)'] },
+  'spanish-mackerel': { spawn: [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0], conf: 'low', limit: 'general', beta: true, src: ['NOAA (US Gulf data): Apr–Sep'] },
+  cero: { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth)'] },
+  cobia: { spawn: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0], conf: 'low', limit: 'general', beta: true, src: ['NOAA (Gulf): late summer–early fall'] },
+  'greater-amberjack': { spawn: [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0], conf: 'low', limit: 'general', beta: true, src: ['NOAA: Mar–Jun'] },
+  'atlantic-jack': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth)'] },
+  'red-drum': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['Tamaulipas and north Veracruz only'] },
+  'red-snapper': { spawn: [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0], conf: 'low', limit: 'general', beta: true, src: ['NOAA (US Gulf data): May–Oct'] },
+  'mutton-snapper': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth, temperature)'] },
+  'red-grouper': { spawn: [2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], conf: 'high', limit: 'general', beta: true, src: ['Brulé et al. 1999 (Campeche Bank)', 'Minimum size 36.3 cm (NOM-065-SAG/PESC-2014)'] },
+  'black-grouper': { spawn: [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], conf: 'medium', limit: 'general', beta: true, src: ['Renán et al. 1999 (southern Gulf of Mexico)'] },
+  'goliath-grouper': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['Vulnerable (IUCN); fully protected in the US — please release it', 'Included in the Yucatán mero closed season (NOM-065)'] },
+  'pacific-goliath': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth); data deficient (IUCN)'] },
+  'giant-sea-bass': { spawn: [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0], conf: 'low', limit: 'billfish', beta: true, src: ['NOM-017: "pescada", 1 per day', 'Critically endangered (IUCN) — please release it'] },
+  'pacific-red-snapper': { spawn: [0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0], conf: 'medium', limit: 'general', beta: true, src: ['Santamaría-Miranda et al. (Guerrero): 2–3 spawning periods a year, peak August'] },
+  'spotted-rose-snapper': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth)'] },
+  'bull-shark': { spawn: null, conf: 'low', limit: 'shark', beta: true, src: ['FishBase (depth); Playa del Carmen winter aggregation'] },
+});

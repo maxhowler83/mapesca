@@ -47,6 +47,10 @@
   .chips::-webkit-scrollbar { display: none; }
   .chip { flex: none; border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit; font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 999px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
   .chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .regions { position: absolute; top: 60px; left: 14px; right: 14px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; z-index: 2; }
+  .regions::-webkit-scrollbar { display: none; }
+  .regions button { flex: none; border: 1px solid var(--line); background: rgba(255,255,255,.92); color: var(--ink); font: inherit; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+  .regions button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
   .legend { position: absolute; left: 14px; bottom: 30px; z-index: 2; background: #fff; border-radius: 14px; padding: 10px 14px; box-shadow: 0 2px 10px rgba(0,0,0,.12); font-size: 13px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 6px 14px; max-width: calc(100% - 28px); }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
@@ -107,6 +111,7 @@
 
     <div class="mapcard">
       <div class="chips" id="chips" role="group" aria-label="Especie"></div>
+      <div class="regions" id="regions" role="group" aria-label="Región"></div>
       <div id="map" role="img" aria-label="Mapa de zonas de pesca de hoy"></div>
       <div class="legend" id="legend"></div>
     </div>
@@ -198,14 +203,19 @@
   let lang = 'es';
   try { lang = localStorage.getItem('mapesca-lang') || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en'); } catch (e) {}
   const L = o => o[lang] || o.es;
-  const FEATURED = ['striped-marlin', 'yellowfin-tuna', 'dorado', 'wahoo', 'roosterfish', 'yellowtail', 'pacific-bluefin', 'white-seabass', 'gulf-corvina'];
+  const FEATURED = {
+    baja: ['striped-marlin', 'yellowfin-tuna', 'dorado', 'wahoo', 'roosterfish', 'yellowtail', 'pacific-bluefin', 'white-seabass', 'gulf-corvina'],
+    pacsur: ['pacific-sailfish', 'blue-marlin', 'black-marlin', 'yellowfin-tuna', 'dorado', 'roosterfish', 'pacific-snook', 'pacific-red-snapper'],
+    golfo: ['pacific-sailfish', 'white-marlin', 'blue-marlin', 'tarpon', 'common-snook', 'permit', 'bonefish', 'king-mackerel', 'red-grouper', 'red-snapper'],
+  };
+  let region = 'baja';
   let manifest = null, current = 'striped-marlin', map = null;
 
   function applyLang() {
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[lang][el.dataset.i18n]; if (v) el.textContent = v; });
     document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
-    if (manifest) { renderChips(); renderLegend(); renderUpdated(); }
+    if (manifest) { renderRegions(); renderChips(); renderLegend(); renderUpdated(); }
   }
   document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
     lang = b.dataset.lang; try { localStorage.setItem('mapesca-lang', lang); } catch (e) {}
@@ -220,15 +230,31 @@
     document.getElementById('legend').innerHTML = tiers + `<span><i class="pa"></i>${T[lang].protected}</span>`;
   }
   function renderUpdated() {
-    const d = manifest.data.sstDate;
+    const R = (manifest.regions || []).find(r => r.k === region);
+    const d = (R && R.data && R.data.sstDate) || manifest.data.sstDate;
     const fmt = d ? new Date(d + 'T12:00:00Z').toLocaleDateString(lang === 'es' ? 'es-MX' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
     document.getElementById('updated').textContent = `${T[lang].updated} ${fmt}`;
+  }
+  function renderRegions() {
+    const box = document.getElementById('regions'); box.innerHTML = '';
+    for (const R of manifest.regions || []) {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = L(R);
+      b.setAttribute('aria-pressed', String(R.k === region));
+      b.addEventListener('click', () => {
+        region = R.k;
+        if (!R.species[current]) current = (FEATURED[region] || []).find(k => R.species[k]) || Object.keys(R.species)[0];
+        renderRegions(); renderChips(); renderLegend(); renderUpdated(); loadZones();
+        map.fitBounds([[R.box.w, R.box.s], [R.box.e, R.box.n]], { padding: { top: 100, bottom: 60, left: 20, right: 20 }, duration: 800 });
+      });
+      box.appendChild(b);
+    }
   }
   function renderChips() {
     const box = document.getElementById('chips');
     box.innerHTML = '';
-    for (const k of FEATURED) {
-      const sp = manifest.species.find(s => s.k === k); if (!sp) continue;
+    const R = (manifest.regions || []).find(r => r.k === region);
+    for (const k of FEATURED[region] || []) {
+      const sp = manifest.species.find(s => s.k === k); if (!sp || (R && !R.species[k])) continue;
       const b = document.createElement('button');
       b.className = 'chip'; b.type = 'button'; b.textContent = L(sp);
       b.setAttribute('aria-pressed', String(k === current));
@@ -239,7 +265,8 @@
 
   function toGeoJSON(z, sp) {
     const feats = [], hla = Math.abs(z.dlat) / 2, hlo = Math.abs(z.dlon) / 2;
-    const tierOf = s => (s > 0 ? manifest.tiers.find(t => s >= sp.cut[t.k]) : null);
+    const cut = z.cut || sp.cut;
+    const tierOf = s => (s > 0 ? manifest.tiers.find(t => s >= cut[t.k]) : null);
     const add = (i, j, s) => {
       const t = tierOf(s); if (!t) return;
       const la = z.lat0 + i * z.dlat, lo = z.lon0 + j * z.dlon;
@@ -251,7 +278,10 @@
   }
   async function loadZones() {
     const sp = manifest.species.find(s => s.k === current);
-    const z = await fetch(`${DATA}/${sp.file}`).then(r => r.json());
+    const R = (manifest.regions || []).find(r => r.k === region);
+    const file = R ? R.species[current] : sp.file;
+    if (!file) return;
+    const z = await fetch(`${DATA}/${file}`).then(r => r.json());
     const gj = toGeoJSON(z, sp);
     const src = map.getSource('zones');
     if (src) src.setData(gj);
@@ -263,7 +293,7 @@
       style: 'https://tiles.openfreemap.org/styles/positron',
       bounds: [[-118.6, 22.0], [-105.4, 32.75]],
       fitBoundsOptions: { padding: { top: 70, bottom: 70, left: 20, right: 20 } },
-      maxBounds: [[-121.5, 20.0], [-102.5, 34.5]],
+      maxBounds: [[-122, 12.5], [-84, 34.5]],
       cooperativeGestures: true,
       attributionControl: { compact: true },
     });
@@ -274,7 +304,7 @@
         fetch(`${DATA}/protected-areas.json`).then(r => r.json()),
       ]);
       manifest = m;
-      renderChips(); renderLegend(); renderUpdated();
+      renderRegions(); renderChips(); renderLegend(); renderUpdated();
       const ready = () => {
         map.addSource('zones', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
         map.addLayer({ id: 'zones', type: 'fill', source: 'zones', paint: {
