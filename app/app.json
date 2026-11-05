@@ -23,7 +23,10 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
       "predictiveBackGestureEnabled": false
     },
     "plugins": [
@@ -37,7 +40,19 @@
       ]
     ],
     "extra": {
-      "dataUrl": "https://data.mapesca.org/v1"
+      "dataUrl": "https://data.mapesca.org/v1",
+      "eas": {
+        "projectId": "cb2c9322-0c97-4b6f-8738-f84fe674b6b1"
+      }
+    },
+    "owner": "topanglers",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/cb2c9322-0c97-4b6f-8738-f84fe674b6b1",
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
     }
   }
 }
