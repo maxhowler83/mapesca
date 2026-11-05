@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 import { SPECIES, GROUPS, TIERS, scoreZones, coastGrid, reachFromPorts } from '../packages/model/zones.js';
 import { prepareAreas, maskProtected } from '../packages/model/protected.js';
 import { AREAS } from '../packages/model/areas.js';
+import { seasonFor } from '../packages/model/species-info.js';
 import { INFO, LIMITS, LIMITS_SOURCE, SHARK_VEDA, NEVER_KEEP, isClosed } from '../packages/model/species-info.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -20,8 +21,8 @@ const OUT = join(ROOT, 'out', 'v1');
 const CACHE = join(ROOT, 'out', 'cache');
 const readJson = async p => JSON.parse(await readFile(join(ROOT, p), 'utf8'));
 
-// Baja California Sur: Cabo to Mulegé and Guerrero Negro.
-const BCS = { lat: [22.3, 28.1], lon: [-115.4, -109.0] };
+// The whole Baja peninsula and Sea of Cortez (incl. Sonora/Sinaloa to Mazatlán).
+const BCS = { lat: [22.0, 32.75], lon: [-118.6, -105.4] };
 const CW = 'https://coastwatch.noaa.gov/erddap/griddap';
 // NOAA renamed the blended SST dataset on Nov 2, 2026; the old id stays as a fallback.
 const SST_IDS = ['noaacwBLENDEDsstDNDaily', 'noaacwBLENDEDCsstDaily'];
@@ -107,8 +108,8 @@ async function main() {
   }
   console.log(`SST ${sst.date} (${sst.lat.length}×${sst.lon.length}), chlorophyll ${chl?.date ?? 'none'}`);
 
-  const bathy = await readJson('packages/model/data/bathy-bcs.json');
-  const coast = coastGrid(await readJson('packages/model/data/bathy-bcs-coast.json'));
+  const bathy = await readJson('packages/model/data/bathy-baja.json');
+  const coast = coastGrid(await readJson('packages/model/data/bathy-baja-coast.json'));
   const areasFc = await readJson('packages/model/data/protected-areas.json');
   const areas = prepareAreas(areasFc);
   const conditions = { sst, chl };
@@ -117,7 +118,8 @@ async function main() {
   const species = [];
   for (const sp of SPECIES) {
     const inshore = sp.g === 'inshore';
-    const z = scoreZones(sp, conditions, null, now, { bathy: inshore ? coast : bathy, reach: reachFromPorts });
+    // Website overview: the Los Cabos calendar (northern-only species use their own).
+    const z = scoreZones({ ...sp, season: seasonFor(sp, null) || sp.season }, conditions, null, now, { bathy: inshore ? coast : bathy, reach: reachFromPorts });
     const closed = maskProtected(z, areas);
     // Official closed season (shark veda): no zones at all, the app explains why.
     const vedaNow = isClosed(sp.k, now);
@@ -139,7 +141,7 @@ async function main() {
 
   await writeFile(join(OUT, 'conditions.json'), JSON.stringify({ sst, chl }));
   // Inputs for scoring on the phone (same as the Bite Map does in the browser).
-  for (const f of ['bathy-bcs.json', 'bathy-bcs-coast.json', 'land-bcs.json']) await copyFile(join(ROOT, 'packages/model/data', f), join(OUT, f));
+  for (const f of ['bathy-baja.json', 'bathy-baja-coast.json', 'land-baja.json']) await copyFile(join(ROOT, 'packages/model/data', f), join(OUT, f));
   let outlookOk = false;
   try {
     const r = await fetch(OUTLOOK_URL, { headers: UA, signal: AbortSignal.timeout(60_000) });
@@ -151,9 +153,9 @@ async function main() {
   const manifest = {
     version: 1,
     updatedAt: now.toISOString(),
-    area: { name: 'Baja California Sur', box: BCS },
+    area: { name: 'Baja California, Baja California Sur and the Sea of Cortez', box: BCS },
     areas: AREAS,
-    files: { conditions: 'conditions.json', bathy: 'bathy-bcs.json', coast: 'bathy-bcs-coast.json', land: 'land-bcs.json', protected: 'protected-areas.json', outlook: outlookOk ? 'outlook.json' : null },
+    files: { conditions: 'conditions.json', bathy: 'bathy-baja.json', coast: 'bathy-baja-coast.json', land: 'land-baja.json', protected: 'protected-areas.json', outlook: outlookOk ? 'outlook.json' : null },
     data: { sstDate: sst.date, chlDate: chl?.date ?? null },
     tiers: TIERS.map(t => ({ k: t.k, en: t.en, es: t.es, color: t.color })),
     groups: GROUPS.map(([k, en, es]) => ({ k, en, es })),
@@ -168,8 +170,8 @@ async function main() {
     attribution: [
       'Water temperature: NOAA Geo-polar Blended SST (NOAA CoastWatch)',
       'Water color: NOAA VIIRS DINEOF chlorophyll-a (NOAA CoastWatch)',
-      'Depth: NOAA NCEI ETOPO 2022',
-      'Protected areas: CONANP; © OpenStreetMap contributors',
+      'Depth: NOAA NCEI ETOPO 2022 · Coastline: Natural Earth',
+      'Protected areas: CONANP; DOF/SIDOF agreements; © OpenStreetMap contributors',
       'Next days: Copernicus Marine Service ocean forecast',
     ],
     by: ['Top Anglers Sportfishing Charters', 'Asociación Sudcaliforniana de Pesca Deportiva', 'Federación Nacional de Pesca Deportiva'],

@@ -35,7 +35,7 @@ function bboxOf(polys) {
 export function prepareAreas(fc) {
   return (fc?.features || []).map(f => {
     const polys = polygonsOf(f.geometry);
-    return { name: f.properties.name, rule: f.properties.rule, category: f.properties.category, polys, bbox: bboxOf(polys) };
+    return { name: f.properties.name, rule: f.properties.rule, category: f.properties.category, note: f.properties.note || null, polys, bbox: bboxOf(polys) };
   });
 }
 

@@ -88,3 +88,65 @@ export function isClosed(k, when = new Date()) {
   const md = m * 100 + d, a = SHARK_VEDA.from[0] * 100 + SHARK_VEDA.from[1], b = SHARK_VEDA.to[0] * 100 + SHARK_VEDA.to[1];
   return md >= a && md <= b;
 }
+
+// ── Regional fishing seasons (Mapesca) ─────────────────────────────────────
+// Jan…Dec on the 0–3 scale; null = the species isn't found / fished there (no zones).
+// 'cabo' (Los Cabos, Todos Santos, East Cape) uses each species' own calendar in zones.js.
+// Mostly LOW confidence: built from monthly fishing reports and local calendars, plus
+// Guaymas yellowtail logbooks (Flores-Guzmán & Fernández-Rivera Melo 2019) and Mazatlán
+// sailfish (Ramírez-Pérez et al. 2011). Tune with local captains' reports.
+const S = str => (str == null ? null : [...str].map(Number));
+const SNAPPER = { 'pac-north': null, 'pac-central': null, 'pac-south': S('111222222111'), 'gulf-south': S('111222332111'), 'gulf-central': S('000122221000'), 'gulf-north': S('000012221000') };
+export const SEASONS = {
+  'striped-marlin': { 'pac-north': S('000000122100'), 'pac-central': S('000000122100'), 'pac-south': S('100000012333'), 'gulf-south': S('221122111122'), 'gulf-central': S('000012332100'), 'gulf-north': null },
+  'blue-marlin': { 'pac-north': null, 'pac-central': null, 'pac-south': S('000001232100'), 'gulf-south': S('000012333210'), 'gulf-central': S('000001232100'), 'gulf-north': null },
+  'black-marlin': { 'pac-north': null, 'pac-central': null, 'pac-south': S('000000011100'), 'gulf-south': S('000011222100'), 'gulf-central': S('000000121100'), 'gulf-north': null },
+  'pacific-sailfish': { 'pac-north': null, 'pac-central': null, 'pac-south': S('000000011100'), 'gulf-south': S('000012333321'), 'gulf-central': S('000001232100'), 'gulf-north': null },
+  'yellowfin-tuna': { 'pac-north': S('000001223210'), 'pac-central': S('000001232100'), 'pac-south': S('211122333332'), 'gulf-south': S('111122333221'), 'gulf-central': S('000012332100'), 'gulf-north': S('000001110000') },
+  dorado: { 'pac-north': S('000001223100'), 'pac-central': S('000001232100'), 'pac-south': S('100001233332'), 'gulf-south': S('000013333321'), 'gulf-central': S('000013333210'), 'gulf-north': S('000012333100') },
+  wahoo: { 'pac-north': null, 'pac-central': null, 'pac-south': S('000000123321'), 'gulf-south': S('000012232100'), 'gulf-central': S('000000121000'), 'gulf-north': null },
+  'skipjack-tuna': { 'pac-north': S('000001221000'), 'pac-central': S('000001221000'), 'pac-south': S('000012333210'), 'gulf-south': S('111123333211'), 'gulf-central': S('000123332100'), 'gulf-north': S('000001221000') },
+  roosterfish: { 'pac-north': null, 'pac-central': null, 'pac-south': S('000012332100'), 'gulf-south': S('111233332111'), 'gulf-central': S('000012221000'), 'gulf-north': S('000001221000') },
+  sierra: { 'pac-north': null, 'pac-central': null, 'pac-south': S('222111112222'), 'gulf-south': S('333221111233'), 'gulf-central': S('222211000122'), 'gulf-north': S('122100000022') },
+  'jack-crevalle': { 'pac-north': null, 'pac-central': null, 'pac-south': S('111122222111'), 'gulf-south': S('222222222222'), 'gulf-central': S('111122222111'), 'gulf-north': S('000012221000') },
+  yellowtail: { 'pac-north': S('222333333322'), 'pac-central': S('122333333221'), 'pac-south': S('333333222333'), 'gulf-south': S('333332111123'), 'gulf-central': S('233333332223'), 'gulf-north': S('223332101232') },
+  'almaco-jack': { 'pac-north': null, 'pac-central': null, 'pac-south': S('111112222111'), 'gulf-south': S('222222222222'), 'gulf-central': S('111122222111'), 'gulf-north': S('111111111111') },
+  'leopard-grouper': { 'pac-north': null, 'pac-central': null, 'pac-south': S('111111111111'), 'gulf-south': S('333322222233'), 'gulf-central': S('222333333222'), 'gulf-north': S('322332222333') },
+  'pacific-dog-snapper': SNAPPER, 'yellow-snapper': SNAPPER, 'barred-pargo': SNAPPER,
+  'mexican-barracuda': { 'pac-north': null, 'pac-central': null },
+  // New northern species: not found around Los Cabos.
+  'pacific-bluefin': { cabo: null, 'pac-north': S('001233333221'), 'pac-central': S('000123333210'), 'pac-south': S('001221000000'), 'gulf-south': null, 'gulf-central': null, 'gulf-north': null },
+  'white-seabass': { cabo: null, 'pac-north': S('011233332111'), 'pac-central': S('222221112222'), 'pac-south': null, 'gulf-south': null, 'gulf-central': null, 'gulf-north': null },
+  'calico-bass': { cabo: null, 'pac-north': S('112233333221'), 'pac-central': S('112233333221'), 'pac-south': S('222233333222'), 'gulf-south': null, 'gulf-central': null, 'gulf-north': null },
+  'barred-sand-bass': { cabo: null, 'pac-north': S('000123332100'), 'pac-central': null, 'pac-south': null, 'gulf-south': null, 'gulf-central': null, 'gulf-north': null },
+  'california-halibut': { cabo: null, 'pac-north': S('112233332111'), 'pac-central': null, 'pac-south': null, 'gulf-south': null, 'gulf-central': null, 'gulf-north': null },
+  'gulf-corvina': { cabo: null, 'pac-north': null, 'pac-central': null, 'pac-south': null, 'gulf-south': null, 'gulf-central': null, 'gulf-north': S('013320000110') },
+  'gulf-grouper': { cabo: null, 'pac-north': null, 'pac-central': null, 'pac-south': null, 'gulf-south': null, 'gulf-central': S('333222222233'), 'gulf-north': S('333222222233') },
+};
+/**
+ * The season to score a species with in a region: the regional calendar when there
+ * is one, the species' own (Los Cabos) calendar otherwise; null = not found there.
+ * region null (big views) = the Los Cabos calendar, but never for northern-only species.
+ */
+export function seasonFor(sp, region) {
+  const byR = SEASONS[sp.k];
+  if (region == null || region === 'cabo') {
+    if (byR && byR.cabo === null) return region == null ? firstSeason(byR) : null;
+    return sp.season;
+  }
+  if (byR && region in byR) return byR[region];
+  return sp.season;
+}
+const firstSeason = byR => Object.values(byR).find(v => Array.isArray(v)) || null;
+
+Object.assign(INFO, {
+  'pacific-bluefin': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['Spawns in the western Pacific, not in Mexico', 'Block & Farwell; Boustany et al. 2010 (temperatures)'] },
+  'white-seabass': { spawn: [0, 0, 1, 2, 2, 2, 1, 1, 1, 0, 0, 0], conf: 'medium', limit: 'general', beta: true, src: ['Fajardo-Yamamoto 2023, CICESE thesis', 'OPC California white seabass assessment'] },
+  'calico-bass': { spawn: [0, 0, 0, 0, 1, 2, 2, 2, 1, 0, 0, 0], conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth); summer spawning, Pacific Baja'] },
+  'barred-sand-bass': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth); no regional spawning study'] },
+  'california-halibut': { spawn: [0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0], conf: 'low', limit: 'general', beta: true, src: ['Spring–summer, earliest in Mexico (California assessments)'] },
+  'gulf-corvina': { spawn: [0, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0], conf: 'medium', limit: 'general', beta: true, src: ['Erisman et al. 2012 (Colorado River delta aggregations)'] },
+  'gulf-grouper': { spawn: [0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0], conf: 'medium', limit: 'two', beta: true, src: ['Spawning aggregations Apr–Jun; IUCN Endangered — consider releasing'] },
+});
+NEVER_KEEP.en.push('Totoaba (endangered; closed since 1975)');
+NEVER_KEEP.es.push('Totoaba (en peligro; veda total desde 1975)');

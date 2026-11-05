@@ -77,6 +77,17 @@ export const SPECIES = [
   { k: 'barred-pargo', g: 'inshore', en: 'Barred pargo', es: 'Pargo coconaco', temp: [20, 23, 31, 33], depth: [2, 3, 25, 100], chl: [0.15, 2], season: [2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2] },
   { k: 'leopard-grouper', g: 'inshore', en: 'Leopard grouper', es: 'Cabrilla sardinera', temp: [15, 18, 28, 31], depth: [1, 3, 50, 100], chl: [0.15, 2], season: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] },
   { k: 'mexican-barracuda', g: 'inshore', en: 'Mexican barracuda', es: 'Barracuda', temp: [20, 23, 31, 33], depth: [2, 10, 60, 100], chl: [0.15, 2], season: [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2] },
+  // Northern Baja and upper/central Gulf species (Mapesca). LOW-CONFIDENCE temperature
+  // profiles: depth and seasons are sourced (species-info.js); several temperatures are
+  // inferred. season here is the Los Cabos calendar: all 0 = not found there (regional
+  // seasons in species-info.js decide where they show).
+  { k: 'pacific-bluefin', g: 'tuna', en: 'Pacific bluefin tuna', es: 'Atún aleta azul', temp: [10, 15, 20, 24], depth: [80, 300, 5000, 9000], chl: [0.1, 0.5], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'white-seabass', g: 'inshore', en: 'White seabass', es: 'Corvina blanca', temp: [11, 13, 16, 24], depth: [2, 5, 30, 122], chl: [0.2, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'calico-bass', g: 'inshore', en: 'Calico (kelp) bass', es: 'Cabrilla de roca (calico)', temp: [12, 15, 22, 26], depth: [1, 3, 25, 61], chl: [0.2, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'barred-sand-bass', g: 'inshore', en: 'Barred sand bass', es: 'Cabrilla de arena', temp: [13, 16, 22, 26], depth: [1, 5, 30, 150], chl: [0.2, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'california-halibut', g: 'inshore', en: 'California halibut', es: 'Lenguado de California', temp: [12, 15, 21, 25], depth: [1, 2, 30, 150], chl: [0.2, 3], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'gulf-corvina', g: 'inshore', en: 'Gulf corvina', es: 'Curvina golfina', temp: [16, 20, 28, 32], depth: [0, 1, 10, 30], chl: [0.5, 10], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+  { k: 'gulf-grouper', g: 'inshore', en: 'Gulf grouper (baya)', es: 'Baya (mero del Golfo)', temp: [14, 17, 27, 30], depth: [2, 5, 30, 100], chl: [0.15, 2], season: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
   // Sharks (Mapesca). LOW-CONFIDENCE starting profiles, estimated from tagging and
   // fishery studies off Baja (see species-info.js); no published thresholds exist.
   // Closed every May 1–Jul 31 (shark veda, DOF 2012) — the pipeline zeroes them then.
@@ -131,6 +142,23 @@ export const PORTS = [
   { name: 'Punta Abreojos', lat: 26.716, lon: -113.573 },
   { name: 'Bahía Asunción', lat: 27.142, lon: -114.295 },
   { name: 'Bahía Tortugas', lat: 27.692, lon: -114.895 },
+  // Mapesca: Baja California and the mainland side of the Gulf (OpenStreetMap; San Felipe pier from the DOF 2026 agreement).
+  { name: 'Guerrero Negro', lat: 27.971, lon: -114.036 },
+  { name: 'Isla de Cedros', lat: 28.096, lon: -115.189 },
+  { name: 'El Rosario', lat: 30.059, lon: -115.725 },
+  { name: 'San Quintín', lat: 30.561, lon: -115.938 },
+  { name: 'Ensenada', lat: 31.866, lon: -116.603 },
+  { name: 'San Felipe', lat: 30.993, lon: -114.829 },
+  { name: 'Puertecitos', lat: 30.349, lon: -114.637 },
+  { name: 'Golfo de Santa Clara', lat: 31.688, lon: -114.494 },
+  { name: 'Puerto Peñasco', lat: 31.317, lon: -113.532 },
+  { name: 'Puerto Libertad', lat: 29.906, lon: -112.682 },
+  { name: 'Bahía de los Ángeles', lat: 28.949, lon: -113.561 },
+  { name: 'Bahía de Kino', lat: 28.825, lon: -111.937 },
+  { name: 'Guaymas', lat: 27.922, lon: -110.899 },
+  { name: 'Topolobampo', lat: 25.601, lon: -109.054 },
+  { name: 'Altata', lat: 24.634, lon: -107.93 },
+  { name: 'Mazatlán', lat: 23.204, lon: -106.421 },
 ];
 /** Nearest port and its straight-line distance (nm). */
 export function nearestPort(lat, lon) {

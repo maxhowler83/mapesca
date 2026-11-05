@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mapesca · Zonas de pesca gratis en Baja California Sur</title>
-<meta name="description" content="Mapa gratuito, actualizado dos veces al día, de las mejores zonas de pesca en Baja California Sur para 25 especies. Gratis para todos, para siempre.">
+<title>Mapesca · Zonas de pesca gratis en Baja y el Mar de Cortés</title>
+<meta name="description" content="Mapa gratuito, actualizado dos veces al día, de las mejores zonas de pesca en toda Baja California, Baja California Sur y el Mar de Cortés para 32 especies. Gratis para todos, para siempre.">
 <meta property="og:title" content="Mapesca">
 <meta property="og:description" content="Mapa gratuito de zonas de pesca en Baja California Sur. Gratis para todos, para siempre.">
 <meta property="og:url" content="https://mapesca.org">
@@ -98,8 +98,8 @@
 <main>
   <div class="wrap hero">
     <span class="eyebrow" data-i18n="eyebrow">Gratis para todos, para siempre</span>
-    <h1 data-i18n="title">Dónde está el agua buena hoy, en todo Baja California Sur.</h1>
-    <p class="lead" data-i18n="lead">Mapesca lee los satélites dos veces al día y marca las mejores zonas para 25 especies, de Cabo San Lucas a Guerrero Negro. Con temporadas, vedas y áreas protegidas.</p>
+    <h1 data-i18n="title">Dónde está el agua buena hoy, en toda Baja y el Mar de Cortés.</h1>
+    <p class="lead" data-i18n="lead">Mapesca lee los satélites dos veces al día y marca las mejores zonas para 32 especies en toda Baja California, Baja California Sur y el Mar de Cortés, de Ensenada y San Felipe a Mazatlán y Cabo. Con temporadas por región, vedas y áreas protegidas.</p>
     <div class="stores">
       <a class="store" aria-disabled="true"><small data-i18n="soon">Próximamente</small><b>App Store</b></a>
       <a class="store" aria-disabled="true"><small data-i18n="soon">Próximamente</small><b>Google Play</b></a>
@@ -119,7 +119,7 @@
       <h2 data-i18n="howTitle">Cómo funciona</h2>
       <div class="grid">
         <div class="card"><div class="icon">🛰️</div><h3 data-i18n="h1t">Satélites de la NOAA</h3><p data-i18n="h1p">Temperatura del agua, color (clorofila), cortes de temperatura y profundidad, actualizados cada mañana y cada tarde.</p></div>
-        <div class="card"><div class="icon">🐟</div><h3 data-i18n="h2t">25 especies</h3><p data-i18n="h2p">Picudos, atún, dorado, wahoo, carnada, costeros y tiburones, cada uno con su rango de temperatura, profundidad y temporada.</p></div>
+        <div class="card"><div class="icon">🐟</div><h3 data-i18n="h2t">32 especies</h3><p data-i18n="h2p">Picudos, atún (también aleta azul), dorado, wahoo, carnada, costeros, especies del norte (corvina blanca, cabrilla, lenguado, curvina golfina, baya) y tiburones, cada uno con su temporada por región.</p></div>
         <div class="card"><div class="icon">🗓️</div><h3 data-i18n="h3t">Temporadas y reproducción</h3><p data-i18n="h3p">Cuándo es buena la pesca de cada especie y cuándo se reproduce, con la fuente de cada dato.</p></div>
         <div class="card"><div class="icon">🛟</div><h3 data-i18n="h4t">Pesca responsable</h3><p data-i18n="h4p">Áreas protegidas, veda de tiburón y límites de captura oficiales. Las zonas nunca caen dentro de áreas donde no se permite pescar.</p></div>
       </div>
@@ -133,7 +133,8 @@
         <li data-i18n="r1">Hasta 10 peces por pescador al día, no más de 5 de una especie.</li>
         <li data-i18n="r2">Picudos (marlín, pez vela, pez espada): 1 por pescador al día. Dorado y pez gallo: 2.</li>
         <li data-i18n="r3">Tiburones: 1 al día; ninguno del 1 de mayo al 31 de julio (veda).</li>
-        <li data-i18n="r4">Siempre se liberan: tiburón ballena, tiburón blanco, tiburón peregrino, pez sierra, mantas y mantarrayas.</li>
+        <li data-i18n="r4">Siempre se liberan: tiburón ballena, tiburón blanco, tiburón peregrino, pez sierra, mantas y mantarrayas, y totoaba.</li>
+        <li data-i18n="r6">Alto Golfo: en la Zona de Tolerancia Cero de la vaquita marina no se puede pescar ni navegar, y en el área de prohibición de redes no se pesca de 19:00 a 05:00.</li>
         <li data-i18n="r5">Necesitas un permiso de pesca deportiva vigente. Mandan los textos oficiales (NOM-017-PESC-1994, NOM-029-PESC-2006, DOF).</li>
       </ul>
     </div>
@@ -167,20 +168,21 @@
   const T = {
     en: {
       eyebrow: 'Free for everyone, forever',
-      title: 'Where the good water is today, across Baja California Sur.',
-      lead: 'Mapesca reads the satellites twice a day and marks the best zones for 25 species, from Cabo San Lucas to Guerrero Negro. With seasons, closed seasons and protected areas.',
+      title: 'Where the good water is today, across Baja and the Sea of Cortez.',
+      lead: 'Mapesca reads the satellites twice a day and marks the best zones for 32 species across Baja California, Baja California Sur and the Sea of Cortez, from Ensenada and San Felipe to Mazatlán and Cabo. With regional seasons, closed seasons and protected areas.',
       soon: 'Coming soon',
       note: 'Scores rate how well today\'s water fits each species. They are not a catch forecast.',
       howTitle: 'How it works',
       h1t: 'NOAA satellites', h1p: 'Water temperature, color (chlorophyll), temperature breaks and depth, updated every morning and every evening.',
-      h2t: '25 species', h2p: 'Billfish, tuna, dorado, wahoo, bait, inshore fish and sharks, each with its own temperature, depth and season.',
+      h2t: '32 species', h2p: 'Billfish, tuna (bluefin too), dorado, wahoo, bait, inshore fish, northern species (white seabass, calico bass, halibut, Gulf corvina, Gulf grouper) and sharks, each with its own season by region.',
       h3t: 'Seasons and spawning', h3p: 'When each species fishes well and when it spawns, with the source of every month.',
       h4t: 'Responsible fishing', h4p: 'Protected areas, the shark closed season and official bag limits. Zones never fall inside areas where fishing is not allowed.',
       rulesTitle: 'Sport-fishing basics in Mexico',
       r1: 'Up to 10 fish per angler per day, no more than 5 of one species.',
       r2: 'Billfish (marlin, sailfish, swordfish): 1 per angler per day. Dorado and roosterfish: 2.',
       r3: 'Sharks: 1 per day; none from May 1 to July 31 (closed season).',
-      r4: 'Always released: whale shark, white shark, basking shark, sawfish, mantas and mobula rays.',
+      r4: 'Always released: whale shark, white shark, basking shark, sawfish, mantas and mobula rays, and totoaba.',
+      r6: 'Upper Gulf: no fishing or navigation in the vaquita Zero Tolerance Zone, and no fishing from 19:00 to 05:00 in the gillnet-ban area.',
       r5: 'You need a valid sport-fishing license. Official texts always win (NOM-017-PESC-1994, NOM-029-PESC-2006, DOF).',
       byTitle: 'A gift to Mexican sport fishing',
       edu: 'Coming soon: edupesca.org, to learn to live from what the sea gives us. Also free, forever.',
@@ -196,7 +198,7 @@
   let lang = 'es';
   try { lang = localStorage.getItem('mapesca-lang') || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en'); } catch (e) {}
   const L = o => o[lang] || o.es;
-  const FEATURED = ['striped-marlin', 'blue-marlin', 'yellowfin-tuna', 'dorado', 'wahoo', 'roosterfish', 'yellowtail', 'shortfin-mako'];
+  const FEATURED = ['striped-marlin', 'yellowfin-tuna', 'dorado', 'wahoo', 'roosterfish', 'yellowtail', 'pacific-bluefin', 'white-seabass', 'gulf-corvina'];
   let manifest = null, current = 'striped-marlin', map = null;
 
   function applyLang() {
@@ -259,9 +261,9 @@
     map = new maplibregl.Map({
       container: 'map',
       style: 'https://tiles.openfreemap.org/styles/positron',
-      bounds: [[-115.4, 22.3], [-109.0, 28.1]],
+      bounds: [[-118.6, 22.0], [-105.4, 32.75]],
       fitBoundsOptions: { padding: { top: 70, bottom: 70, left: 20, right: 20 } },
-      maxBounds: [[-118.5, 20.5], [-105.9, 29.9]],
+      maxBounds: [[-121.5, 20.0], [-102.5, 34.5]],
       cooperativeGestures: true,
       attributionControl: { compact: true },
     });

@@ -8,7 +8,7 @@ import * as Clipboard from 'expo-clipboard';
 import * as Sharing from 'expo-sharing';
 import {
   loadInputs, loadCoast, compute, explain, pinText, AREAS, AREAS_BY_K, areaFor, PORTS, SPECIES_BY_K, outlookDays, caboToday,
-  nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt,
+  nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt, COVERAGE, outlookCovers, seasonFor,
   type Inputs, type Result,
 } from './src/engine';
 import type { Manifest, SpeciesInfo } from './src/data';
@@ -19,7 +19,7 @@ const ES = LANG === 'es';
 // Free vector map, no key or per-use fees (OpenFreeMap, © OpenStreetMap contributors).
 const MAP_STYLE = 'https://tiles.openfreemap.org/styles/positron';
 // The map can't pan or zoom out past the data area (plus a small margin).
-const PAN_BOUNDS: [number, number, number, number] = [-116.6, 21.4, -107.8, 29.0];
+const PAN_BOUNDS: [number, number, number, number] = [COVERAGE.w - 0.6, COVERAGE.s - 0.6, COVERAGE.e + 0.6, COVERAGE.n + 0.6];
 function fitZoom() {
   const { width, height } = Dimensions.get('window');
   const mercY = (lat: number) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
@@ -87,7 +87,8 @@ function Main() {
     return () => { alive = false; };
   }, [inp, sp, area, day]);
 
-  const days = useMemo(() => (inp?.outlook ? outlookDays(inp.outlook) : []), [inp]);
+  const days = useMemo(() => (inp?.outlook && outlookCovers(inp, AREAS_BY_K[area].box) ? outlookDays(inp.outlook) : []), [inp, area]);
+  useEffect(() => { if (day && !days.some((d: any) => d.date === day)) setDay(''); }, [days]);
   const species = inp?.manifest.species.find(s => s.k === sp) as SpeciesInfo | undefined;
   const spName = species ? L(species) : '';
 
@@ -164,10 +165,14 @@ function Main() {
   const dateLine = !sat ? '' : dayInfo
     ? (ES ? `Pronóstico para el ${wd(day, { weekday: 'long', day: 'numeric', month: 'short' })} · ${dayInfo.conf.es.toLowerCase()}` : `Outlook for ${wd(day, { weekday: 'long', month: 'short', day: 'numeric' })} · ${dayInfo.conf.en.toLowerCase()}`)
     : (ES ? `Satélite NOAA del ${wd(sat, { day: 'numeric', month: 'short' })}` : `NOAA satellite of ${wd(sat, { month: 'short', day: 'numeric' })}`);
-  const note = !res || !species ? '' : res.closedSeason ? t.vedaNow : !res.here
+  const bigView = !AREAS_BY_K[area].r;
+  const note = !res || !species ? '' : res.closedSeason ? t.vedaNow
+    : res.notHere ? (ES ? `${spName} no se encuentra en esta área. Prueba otra.` : `${spName} isn't found in this area. Try another.`)
+    : !res.here
     ? (ES ? `${day ? 'Ese día no se ve' : 'Hoy no hay'} agua que destaque para ${spName.toLowerCase()} en esta área. Prueba otra área.` : `No water stands out for ${spName.toLowerCase()} in this area ${day ? 'that day' : 'today'}. Try another area.`)
     : species.g === 'bait' ? (ES ? 'Zonas de carnada: los picudos siguen a la carnada.' : 'Bait zones: billfish follow the bait.')
     : day ? (ES ? 'Pronóstico: el satélite de hoy movido con el pronóstico oceánico. Revisa otra vez la mañana de tu viaje.' : 'Outlook: today’s satellite moved forward with the ocean forecast. Check again the morning of your trip.')
+    : bigView ? (ES ? 'Vista general con temporadas de Los Cabos. Elige un área para ver sus propias temporadas.' : 'Overview using Los Cabos seasons. Pick an area for its own seasons.')
     : (ES ? 'Guía de condiciones, no garantía de pesca.' : 'A guide to conditions, not a promise of fish.');
 
   return (
@@ -266,8 +271,8 @@ function Main() {
           <View key={g.k} style={{ marginBottom: 12 }}>
             <Text style={s.groupTitle}>{L(g)}</Text>
             <View style={s.chips}>
-              {inp.manifest.species.filter(x => x.g === g.k).map(x => (
-                <Pressable key={x.k} style={[s.chip, x.k === sp && s.chipOn]} onPress={() => { setSp(x.k); setSheet(null); }}>
+              {inp.manifest.species.filter(x => x.g === g.k && SPECIES_BY_K[x.k]).map(x => (
+                <Pressable key={x.k} style={[s.chip, x.k === sp && s.chipOn, !seasonFor(SPECIES_BY_K[x.k], AREAS_BY_K[area].r) && x.k !== sp && { opacity: 0.4 }]} onPress={() => { setSp(x.k); setSheet(null); }}>
                   <Text style={[s.chipText, x.k === sp && s.chipTextOn]}>{L(x)}</Text>
                 </Pressable>
               ))}
@@ -277,7 +282,7 @@ function Main() {
       </Sheet>
 
       <Sheet open={sheet === 'detail'} onClose={() => setSheet(null)}>
-        {species && inp && <SpeciesDetail species={species} manifest={inp.manifest} />}
+        {species && inp && <SpeciesDetail species={{ ...species, season: seasonFor(SPECIES_BY_K[species.k], AREAS_BY_K[area].r) || [0,0,0,0,0,0,0,0,0,0,0,0] }} manifest={inp.manifest} areaName={L(AREAS_BY_K[area])} />}
       </Sheet>
 
       <GotoSheet open={sheet === 'goto'} onClose={() => setSheet(null)} onGo={p => { setSheet(null); goTo(p); }} />
@@ -337,6 +342,7 @@ function PinCard({ res, pin, A, aAuto, kt, setKt, land, areas, day, onFrom, onCl
         </View>
       </View>
       {pa && <Text style={[s.badge, { color: pa.rule === 'no-take' ? C.closed : C.rules }]}>{pa.rule === 'no-take' ? t.closed : t.rules} · {pa.name}</Text>}
+      {pa?.note && <Text style={s.small}>{L(pa.note)}</Text>}
       {x.kind === 'outside' && <Text style={s.body}>{ES ? 'Fuera del área del mapa.' : 'Outside the map area.'}</Text>}
       {x.kind === 'land' && <Text style={s.body}>{x.inshore ? (ES ? 'Tierra, o agua de más de 150 m: muy hondo para peces costeros.' : 'Land, or water deeper than 150 m: too deep for inshore fish.') : (ES ? 'Eso es tierra. Toca el agua.' : 'That’s land. Tap the water.')}</Text>}
       {x.kind === 'cloud' && <Text style={s.body}>{ES ? 'El satélite no vio este punto (nubes). Prueba otro.' : 'The satellite couldn’t see this spot (clouds). Try another.'}</Text>}
@@ -410,7 +416,7 @@ function Sheet({ open, onClose, title, children }: { open: boolean; onClose: () 
 }
 
 /** Month strip: fishing season (0–3) and spawning (0/1/2), current month outlined. */
-function SpeciesDetail({ species, manifest }: { species: SpeciesInfo; manifest: Manifest }) {
+function SpeciesDetail({ species, manifest, areaName }: { species: SpeciesInfo; manifest: Manifest; areaName: string }) {
   const now = new Date().getMonth();
   const fishColor = (v: number) => ['#EEF1F4', '#CFE3F3', '#7FB3DD', '#1F6FB2'][v] ?? '#EEF1F4';
   const spawnColor = (v: number) => ['#EEF1F4', '#F6C9A9', '#E07A3F'][v] ?? '#EEF1F4';
@@ -425,7 +431,7 @@ function SpeciesDetail({ species, manifest }: { species: SpeciesInfo; manifest: 
       <Text style={s.sheetTitle}>{L(species)}</Text>
       <Text style={s.groupTitle}>{t.seasons}</Text>
       <View style={s.months}>{t.months.map((m, i) => <Text key={i} style={[s.monthLabel, i === now && { color: C.ink, fontWeight: '800' }]}>{m}</Text>)}</View>
-      <Row label={t.fishing} vals={species.season} color={fishColor} />
+      <Row label={`${t.fishing} · ${areaName}`} vals={species.season} color={fishColor} />
       {species.spawn ? <Row label={`${t.spawning} (${t.confidence[species.spawnConfidence]})`} vals={species.spawn} color={spawnColor} />
         : <Text style={[s.body, { color: C.muted }]}>{t.spawning}: {t.noSpawnData}</Text>}
       {species.spawnSources.map(x => <Text key={x} style={s.small}>{x}</Text>)}
