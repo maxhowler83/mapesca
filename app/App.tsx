@@ -104,6 +104,13 @@ function Main() {
           <GeoJSONSource id="protected" data={protectedFc}>
             <Layer type="fill" id="protected-fill" filter={['==', ['get', 'rule'], 'no-take']} paint={{ 'fill-color': C.closed, 'fill-opacity': 0.25 }} />
             <Layer type="line" id="protected-line" paint={{ 'line-color': ['match', ['get', 'rule'], 'no-take', C.closed, C.rules], 'line-width': 1.5, 'line-dasharray': [2, 2] }} />
+            <Layer
+              type="symbol"
+              id="protected-label"
+              minzoom={6.5}
+              layout={{ 'text-field': ['get', 'name'], 'text-size': 12, 'text-max-width': 10, 'text-font': ['Noto Sans Bold'] }}
+              paint={{ 'text-color': ['match', ['get', 'rule'], 'no-take', C.closed, C.rules], 'text-halo-color': '#fff', 'text-halo-width': 1.5 }}
+            />
           </GeoJSONSource>
         )}
         {showUser && <UserLocation />}
