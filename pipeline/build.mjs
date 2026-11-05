@@ -12,6 +12,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SPECIES, GROUPS, TIERS, scoreZones, coastGrid, reachFromPorts } from '../packages/model/zones.js';
 import { prepareAreas, maskProtected } from '../packages/model/protected.js';
+import { INFO, LIMITS, LIMITS_SOURCE, SHARK_VEDA, NEVER_KEEP, isClosed } from '../packages/model/species-info.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'out', 'v1');
@@ -113,12 +114,21 @@ async function main() {
     const inshore = sp.g === 'inshore';
     const z = scoreZones(sp, conditions, null, now, { bathy: inshore ? coast : bathy, reach: reachFromPorts });
     const closed = maskProtected(z, areas);
+    // Official closed season (shark veda): no zones at all, the app explains why.
+    const vedaNow = isClosed(sp.k, now);
+    if (vedaNow) z.v = z.v.map(row => row.map(x => (x == null ? null : 0)));
     // Recount tiers after closing protected squares (cut-offs stay as scored).
     const counts = { elite: 0, priority: 0, candidate: 0 };
     for (const row of z.v) for (const x of row) { if (!x) continue; const t = TIERS.find(t => x >= z.cut[t.k]); if (t) counts[t.k]++; }
     const file = `zones/${sp.k}.json`;
     await writeFile(join(OUT, file), JSON.stringify(inshore ? packSparse(z) : packDense(z)));
-    species.push({ k: sp.k, g: sp.g, en: sp.en, es: sp.es, seasonLevel: z.seasonLevel, cut: z.cut, counts, closedByProtection: closed, file });
+    const info = INFO[sp.k] || {};
+    species.push({
+      k: sp.k, g: sp.g, en: sp.en, es: sp.es, seasonLevel: z.seasonLevel, cut: z.cut, counts, closedByProtection: closed, file,
+      season: sp.season, spawn: info.spawn ?? null, spawnConfidence: info.conf ?? 'low', spawnSources: info.src ?? [],
+      limit: info.limit ? LIMITS[info.limit] : LIMITS.general, reserved50nm: !!info.reserved50nm,
+      closedSeason: vedaNow, beta: !!info.beta,
+    });
     console.log(`${sp.k.padEnd(22)} elite ${String(counts.elite).padStart(4)}  priority ${String(counts.priority).padStart(4)}  closed ${closed}`);
   }
 
@@ -136,6 +146,9 @@ async function main() {
       en: 'Scores rate how well today\'s water fits each species. They are not a catch forecast. Check the weather and port status before going out, and follow protected-area rules.',
       es: 'La puntuación indica qué tan bien el agua de hoy le queda a cada especie. No es un pronóstico de captura. Revisa el clima y el estado del puerto antes de salir, y respeta las reglas de las áreas protegidas.',
     },
+    rules: { source: LIMITS_SOURCE, sharkVeda: SHARK_VEDA, neverKeep: NEVER_KEEP,
+      reserved50nm: { en: 'Billfish, dorado, roosterfish and tarpon are reserved for sport fishing within 50 nautical miles of the coast.', es: 'Picudos, dorado, pez gallo y sábalo están reservados a la pesca deportiva dentro de 50 millas náuticas de la costa.' },
+      disclaimer: { en: 'Summary only. Official NOM and DOF texts always win; you need a valid sport-fishing license.', es: 'Solo es un resumen. Mandan los textos oficiales de las NOM y el DOF; necesitas un permiso de pesca deportiva vigente.' } },
     attribution: [
       'Water temperature: NOAA Geo-polar Blended SST (NOAA CoastWatch)',
       'Water color: NOAA VIIRS DINEOF chlorophyll-a (NOAA CoastWatch)',

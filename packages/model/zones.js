@@ -42,6 +42,8 @@ const W = {
   dorado:   { temp: 0.35, break: 0.25, color: 0.2, structure: 0.05, depth: 0.1, current: 0.05 },
   wahoo:    { temp: 0.3, break: 0.15, color: 0.05, structure: 0.3, depth: 0.15, current: 0.05 },
   inshore:  { temp: 0.25, break: 0.1, color: 0.1, structure: 0.2, depth: 0.35, current: 0 },
+  // Mapesca: pelagic sharks follow temperature and fronts; no sourced chlorophyll preference.
+  shark:    { temp: 0.4, break: 0.25, color: 0.05, structure: 0.1, depth: 0.1, current: 0.1 },
 };
 
 // Starting profiles, to be tuned with the captains. Upper temperatures are
@@ -75,6 +77,13 @@ export const SPECIES = [
   { k: 'barred-pargo', g: 'inshore', en: 'Barred pargo', es: 'Pargo coconaco', temp: [20, 23, 31, 33], depth: [2, 3, 25, 100], chl: [0.15, 2], season: [2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2, 2] },
   { k: 'leopard-grouper', g: 'inshore', en: 'Leopard grouper', es: 'Cabrilla sardinera', temp: [15, 18, 28, 31], depth: [1, 3, 50, 100], chl: [0.15, 2], season: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] },
   { k: 'mexican-barracuda', g: 'inshore', en: 'Mexican barracuda', es: 'Barracuda', temp: [20, 23, 31, 33], depth: [2, 10, 60, 100], chl: [0.15, 2], season: [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2] },
+  // Sharks (Mapesca). LOW-CONFIDENCE starting profiles, estimated from tagging and
+  // fishery studies off Baja (see species-info.js); no published thresholds exist.
+  // Closed every May 1–Jul 31 (shark veda, DOF 2012) — the pipeline zeroes them then.
+  { k: 'shortfin-mako', g: 'shark', en: 'Shortfin mako', es: 'Tiburón mako', temp: [14, 17, 22, 26], depth: [10, 50, 5000, 9000], chl: [0.05, 2], season: [3, 3, 3, 3, 2, 1, 1, 0, 0, 1, 2, 3] },
+  { k: 'blue-shark', g: 'shark', en: 'Blue shark', es: 'Tiburón azul', temp: [12, 16, 20, 24], depth: [10, 50, 5000, 9000], chl: [0.05, 2], season: [3, 3, 3, 3, 2, 1, 0, 0, 0, 1, 2, 3] },
+  { k: 'silky-shark', g: 'shark', en: 'Silky shark', es: 'Tiburón piloto', temp: [22, 25, 30, 32], depth: [10, 50, 5000, 9000], chl: [0.05, 2], season: [0, 0, 0, 1, 2, 2, 3, 3, 3, 3, 2, 1] },
+  { k: 'pelagic-thresher', g: 'shark', en: 'Pelagic thresher', es: 'Tiburón zorro', temp: [20, 23, 28, 31], depth: [10, 50, 5000, 9000], chl: [0.05, 2], season: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] },
 ];
 export const SPECIES_BY_K = Object.fromEntries(SPECIES.map(s => [s.k, s]));
 export const SIGNALS = [
@@ -86,7 +95,7 @@ export const BAIT = SPECIES.filter(x => x.g === 'bait');
 /** Species groups for the pickers, in this order. */
 export const GROUPS = [
   ['billfish', 'Billfish', 'Picudos'], ['tuna', 'Tuna', 'Atún'], ['dorado', 'Dorado', 'Dorado'], ['wahoo', 'Wahoo', 'Wahoo'],
-  ['bait', 'Bait for billfish', 'Carnada para picudos'], ['inshore', 'Inshore', 'Costeros'],
+  ['bait', 'Bait for billfish', 'Carnada para picudos'], ['inshore', 'Inshore', 'Costeros'], ['shark', 'Sharks', 'Tiburones'],
 ];
 
 const MARINA = { lat: 22.8815, lon: -109.9095 };

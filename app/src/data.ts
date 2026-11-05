@@ -8,6 +8,14 @@ export type Tier = { k: 'elite' | 'priority' | 'candidate'; en: string; es: stri
 export type SpeciesInfo = {
   k: string; g: string; en: string; es: string; seasonLevel: number;
   cut: Record<Tier['k'], number>; counts: Record<Tier['k'], number>; file: string;
+  season: number[]; spawn: number[] | null; spawnConfidence: 'high' | 'medium' | 'low'; spawnSources: string[];
+  limit: { n: number; en: string; es: string }; reserved50nm: boolean; closedSeason: boolean; beta: boolean;
+};
+type Txt = { en: string; es: string };
+export type Rules = {
+  source: string; reserved50nm: Txt; disclaimer: Txt;
+  sharkVeda: Txt & { source: string };
+  neverKeep: { en: string[]; es: string[]; note: Txt; source: string };
 };
 export type Manifest = {
   updatedAt: string;
@@ -15,7 +23,8 @@ export type Manifest = {
   tiers: Tier[];
   groups: { k: string; en: string; es: string }[];
   species: SpeciesInfo[];
-  notice: { en: string; es: string };
+  notice: Txt;
+  rules: Rules;
   attribution: string[];
   by: string[];
 };

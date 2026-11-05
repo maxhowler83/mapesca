@@ -10,7 +10,7 @@ import {
   loadManifest, loadConditions, loadProtected, loadZones, zonesToGeoJSON, scoreAt, tierOf, gridAt,
   type Manifest, type Conditions, type ZoneGrid, type SpeciesInfo,
 } from './src/data';
-import { t, L } from './src/i18n';
+import { t, L, LANG } from './src/i18n';
 import { C } from './src/theme';
 
 // Free vector map, no key or per-use fees (OpenFreeMap, © OpenStreetMap contributors).
@@ -39,6 +39,7 @@ function Main() {
   const [zonesLoading, setZonesLoading] = useState(false);
   const [picker, setPicker] = useState(false);
   const [about, setAbout] = useState(false);
+  const [detail, setDetail] = useState(false);
   const [readout, setReadout] = useState<Readout | null>(null);
   const [showUser, setShowUser] = useState(false);
 
@@ -128,6 +129,15 @@ function Main() {
             <Text style={s.roundText}>i</Text>
           </Pressable>
         </View>
+        {species && (
+          <View style={s.subRow}>
+            <Pressable style={s.smallPill} onPress={() => setDetail(true)} accessibilityRole="button">
+              <Text style={s.smallPillText}>{t.seasons} · {t.rulesTitle}</Text>
+            </Pressable>
+            {species.closedSeason && <Text style={[s.flag, { backgroundColor: C.closed }]}>{t.vedaNow}</Text>}
+            {!species.closedSeason && species.beta && <Text style={[s.flag, { backgroundColor: C.muted }]}>Beta</Text>}
+          </View>
+        )}
       </SafeAreaView>
 
       {/* Bottom: legend or tapped-square card */}
@@ -170,6 +180,15 @@ function Main() {
         </View>
       </Modal>
 
+      <Modal visible={detail} animationType="slide" transparent onRequestClose={() => setDetail(false)}>
+        <Pressable style={s.scrim} onPress={() => setDetail(false)} />
+        <View style={s.sheet}>
+          <View style={s.grabber} />
+          {species && manifest && <SpeciesDetail species={species} manifest={manifest} />}
+          <Pressable style={[s.button, { marginTop: 16 }]} onPress={() => setDetail(false)}><Text style={s.buttonText}>{t.close}</Text></Pressable>
+        </View>
+      </Modal>
+
       <Modal visible={about} animationType="slide" transparent onRequestClose={() => setAbout(false)}>
         <Pressable style={s.scrim} onPress={() => setAbout(false)} />
         <View style={s.sheet}>
@@ -180,6 +199,15 @@ function Main() {
             {manifest && <Text style={[s.body, { marginTop: 12 }]}>{L(manifest.notice)}</Text>}
             <Text style={s.groupTitle}>{t.by}</Text>
             {manifest?.by.map(b => <Text key={b} style={s.body}>{b}</Text>)}
+            {manifest && (
+              <>
+                <Text style={s.groupTitle}>{t.sharks}</Text>
+                <Text style={s.body}>{L(manifest.rules.sharkVeda)}</Text>
+                <Text style={[s.body, { marginTop: 8, fontWeight: '600' }]}>{t.neverKeep}</Text>
+                {manifest.rules.neverKeep[LANG].map(n => <Text key={n} style={s.body}>· {n}</Text>)}
+                <Text style={[s.body, { marginTop: 8 }]}>{L(manifest.rules.neverKeep.note)}</Text>
+              </>
+            )}
             <Text style={s.groupTitle}>{t.sources}</Text>
             {manifest?.attribution.map(a => <Text key={a} style={s.small}>{a}</Text>)}
             <Text style={s.small}>© OpenStreetMap contributors · OpenFreeMap</Text>
@@ -218,6 +246,46 @@ function ReadoutCard({ readout, species, manifest, zones, conditions, areas, onC
   );
 }
 
+/** Month strip: fishing season (0–3) and spawning (0/1/2), current month outlined. */
+function SpeciesDetail({ species, manifest }: { species: SpeciesInfo; manifest: Manifest }) {
+  const now = new Date().getMonth();
+  const fishColor = (v: number) => ['#EEF1F4', '#CFE3F3', '#7FB3DD', '#1F6FB2'][v] ?? '#EEF1F4';
+  const spawnColor = (v: number) => ['#EEF1F4', '#F6C9A9', '#E07A3F'][v] ?? '#EEF1F4';
+  const Row = ({ label, vals, color }: { label: string; vals: number[]; color: (v: number) => string }) => (
+    <View style={{ marginBottom: 10 }}>
+      <Text style={s.statLabel}>{label}</Text>
+      <View style={s.months}>
+        {vals.map((v, i) => <View key={i} style={[s.month, { backgroundColor: color(v) }, i === now && s.monthNow]} />)}
+      </View>
+    </View>
+  );
+  return (
+    <ScrollView>
+      <Text style={s.sheetTitle}>{L(species)}</Text>
+      <Text style={s.groupTitle}>{t.seasons}</Text>
+      <View style={s.months}>{t.months.map((m, i) => <Text key={i} style={[s.monthLabel, i === now && { color: C.ink, fontWeight: '800' }]}>{m}</Text>)}</View>
+      <Row label={t.fishing} vals={species.season} color={fishColor} />
+      {species.spawn ? (
+        <>
+          <Row label={`${t.spawning} (${t.confidence[species.spawnConfidence]})`} vals={species.spawn} color={spawnColor} />
+          <Text style={s.small}>■ {t.peak}</Text>
+        </>
+      ) : (
+        <Text style={[s.body, { color: C.muted }]}>{t.spawning}: {t.noSpawnData}</Text>
+      )}
+      {species.spawnSources.map(x => <Text key={x} style={s.small}>{x}</Text>)}
+
+      <Text style={s.groupTitle}>{t.rulesTitle}</Text>
+      <Text style={s.body}>{t.limit}: {L(species.limit)}</Text>
+      {species.reserved50nm && <Text style={[s.body, { marginTop: 6 }]}>{t.reserved}</Text>}
+      {species.g === 'shark' && <Text style={[s.body, { marginTop: 6 }]}>{L(manifest.rules.sharkVeda)}</Text>}
+      {species.beta && <Text style={[s.body, { marginTop: 6, color: C.muted }]}>{t.beta}</Text>}
+      <Text style={[s.small, { marginTop: 8 }]}>{L(manifest.rules.disclaimer)}</Text>
+      <Text style={s.small}>{manifest.rules.source}</Text>
+    </ScrollView>
+  );
+}
+
 const Stat = ({ label, value }: { label: string; value: string }) => (
   <View style={{ flex: 1 }}>
     <Text style={s.statLabel}>{label}</Text>
@@ -237,6 +305,14 @@ const s = StyleSheet.create({
   pillSub: { fontSize: 12, color: C.muted },
   round: { width: 48, height: 48, borderRadius: 24, backgroundColor: C.surface, alignItems: 'center', justifyContent: 'center', ...shadow },
   roundText: { fontSize: 18, fontWeight: '700', color: C.ink, fontStyle: 'italic' },
+  subRow: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 16, marginTop: 8 },
+  smallPill: { backgroundColor: C.surface, borderRadius: 18, paddingVertical: 7, paddingHorizontal: 14, ...shadow },
+  smallPillText: { fontSize: 13, fontWeight: '600', color: C.ink },
+  flag: { color: '#fff', fontSize: 12, fontWeight: '700', paddingVertical: 5, paddingHorizontal: 10, borderRadius: 12, overflow: 'hidden' },
+  months: { flexDirection: 'row', gap: 3, marginTop: 4 },
+  month: { flex: 1, height: 18, borderRadius: 4 },
+  monthNow: { borderWidth: 2, borderColor: C.ink },
+  monthLabel: { flex: 1, textAlign: 'center', fontSize: 11, color: C.muted },
   bottom: { position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 16, paddingBottom: 8 },
   legend: { flexDirection: 'row', alignSelf: 'center', backgroundColor: C.surface, borderRadius: 24, paddingVertical: 10, paddingHorizontal: 16, gap: 14, alignItems: 'center', ...shadow },
   legendItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },

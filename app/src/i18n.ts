@@ -24,6 +24,13 @@ const T = {
     sources: 'Fuentes',
     free: 'Gratis para todos, para siempre.',
     season: ['Fuera de temporada', 'Temporada baja', 'Buena temporada', 'Temporada alta'],
+    seasons: 'Temporadas', fishing: 'Pesca', spawning: 'Reproducción', peak: 'pico',
+    noSpawnData: 'Aún no hay estudios de la región sobre su reproducción.',
+    confidence: { high: 'confianza alta', medium: 'confianza media', low: 'confianza baja' },
+    rulesTitle: 'Reglas', limit: 'Límite', reserved: 'Reservada a la pesca deportiva a menos de 50 mn de la costa.',
+    vedaNow: 'Veda en curso: no se marcan zonas.', beta: 'Perfil en prueba: puede fallar más que las otras especies.',
+    sharks: 'Tiburones', neverKeep: 'Nunca se retienen (siempre liberar):',
+    months: ['E', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
   },
   en: {
     today: 'Today',
@@ -45,6 +52,13 @@ const T = {
     sources: 'Sources',
     free: 'Free for everyone, forever.',
     season: ['Off season', 'Low season', 'Good season', 'Peak season'],
+    seasons: 'Seasons', fishing: 'Fishing', spawning: 'Spawning', peak: 'peak',
+    noSpawnData: 'No regional spawning studies yet.',
+    confidence: { high: 'high confidence', medium: 'medium confidence', low: 'low confidence' },
+    rulesTitle: 'Rules', limit: 'Limit', reserved: 'Reserved for sport fishing within 50 nm of the coast.',
+    vedaNow: 'Closed season now: no zones are shown.', beta: 'Test profile: expect more misses than other species.',
+    sharks: 'Sharks', neverKeep: 'Never kept (always release):',
+    months: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
   },
 } as const;
 
