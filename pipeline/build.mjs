@@ -7,11 +7,12 @@
 //
 //   node pipeline/build.mjs            → fetch from NOAA and build
 //   node pipeline/build.mjs --offline  → reuse ./out/cache (for development)
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SPECIES, GROUPS, TIERS, scoreZones, coastGrid, reachFromPorts } from '../packages/model/zones.js';
 import { prepareAreas, maskProtected } from '../packages/model/protected.js';
+import { AREAS } from '../packages/model/areas.js';
 import { INFO, LIMITS, LIMITS_SOURCE, SHARK_VEDA, NEVER_KEEP, isClosed } from '../packages/model/species-info.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -25,6 +26,10 @@ const CW = 'https://coastwatch.noaa.gov/erddap/griddap';
 // NOAA renamed the blended SST dataset on Nov 2, 2026; the old id stays as a fallback.
 const SST_IDS = ['noaacwBLENDEDsstDNDaily', 'noaacwBLENDEDCsstDaily'];
 const CHL_ID = 'noaacwNPPN20VIIRSDINEOFDaily';
+// Next days: the Copernicus Marine ocean forecast, as already prepared for the
+// Cabo Bite Map (public endpoint). TODO: fetch Copernicus directly with Mapesca's
+// own (free) account so Mapesca depends on nothing else.
+const OUTLOOK_URL = 'https://receipt-generator-phi-bice.vercel.app/api/bookings/outlook';
 const UA = { 'User-Agent': 'Mapesca/0.1 (mapesca.org; free public fishing-zone map)' };
 
 const q = s => encodeURIComponent(s).replace(/%3A/g, ':').replace(/%2C/g, ',');
@@ -133,11 +138,22 @@ async function main() {
   }
 
   await writeFile(join(OUT, 'conditions.json'), JSON.stringify({ sst, chl }));
+  // Inputs for scoring on the phone (same as the Bite Map does in the browser).
+  for (const f of ['bathy-bcs.json', 'bathy-bcs-coast.json', 'land-bcs.json']) await copyFile(join(ROOT, 'packages/model/data', f), join(OUT, f));
+  let outlookOk = false;
+  try {
+    const r = await fetch(OUTLOOK_URL, { headers: UA, signal: AbortSignal.timeout(60_000) });
+    const j = r.ok ? await r.json() : null;
+    if (j?.ok && j.outlook?.sst?.dates?.length) { await writeFile(join(OUT, 'outlook.json'), JSON.stringify(j.outlook)); outlookOk = true; }
+  } catch (e) { console.warn('outlook unavailable:', e.message); }
+  console.log('outlook', outlookOk ? 'ok' : 'missing');
   await writeFile(join(OUT, 'protected-areas.json'), JSON.stringify(areasFc));
   const manifest = {
     version: 1,
     updatedAt: now.toISOString(),
     area: { name: 'Baja California Sur', box: BCS },
+    areas: AREAS,
+    files: { conditions: 'conditions.json', bathy: 'bathy-bcs.json', coast: 'bathy-bcs-coast.json', land: 'land-bcs.json', protected: 'protected-areas.json', outlook: outlookOk ? 'outlook.json' : null },
     data: { sstDate: sst.date, chlDate: chl?.date ?? null },
     tiers: TIERS.map(t => ({ k: t.k, en: t.en, es: t.es, color: t.color })),
     groups: GROUPS.map(([k, en, es]) => ({ k, en, es })),
@@ -153,7 +169,8 @@ async function main() {
       'Water temperature: NOAA Geo-polar Blended SST (NOAA CoastWatch)',
       'Water color: NOAA VIIRS DINEOF chlorophyll-a (NOAA CoastWatch)',
       'Depth: NOAA NCEI ETOPO 2022',
-      'Protected areas: CONANP',
+      'Protected areas: CONANP; © OpenStreetMap contributors',
+      'Next days: Copernicus Marine Service ocean forecast',
     ],
     by: ['Top Anglers Sportfishing Charters', 'Asociación Sudcaliforniana de Pesca Deportiva', 'Federación Nacional de Pesca Deportiva'],
   };

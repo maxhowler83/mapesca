@@ -37,7 +37,8 @@
         {
           "locationWhenInUsePermission": "Mapesca muestra tu ubicación en el mapa para que veas qué zonas te quedan cerca. / Mapesca shows your location on the map so you can see which zones are near you."
         }
-      ]
+      ],
+      "expo-sharing"
     ],
     "extra": {
       "dataUrl": "https://data.mapesca.org/v1",

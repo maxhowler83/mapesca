@@ -4,6 +4,7 @@ export const C = {
   ink: '#0B2A45',
   muted: '#6A7685',
   line: '#DDE1E6',
+  soft: '#F2F4F6',
   closed: '#C62828',
   rules: '#2E7D32',
 };
