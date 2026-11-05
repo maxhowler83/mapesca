@@ -18,9 +18,8 @@
     "android": {
       "package": "org.mapesca.app",
       "adaptiveIcon": {
-        "backgroundColor": "#0B2A45",
+        "backgroundColor": "#061E3C",
         "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "permissions": [
@@ -38,7 +37,16 @@
           "locationWhenInUsePermission": "Mapesca muestra tu ubicación en el mapa para que veas qué zonas te quedan cerca. / Mapesca shows your location on the map so you can see which zones are near you."
         }
       ],
-      "expo-sharing"
+      "expo-sharing",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#061E3C"
+        }
+      ]
     ],
     "extra": {
       "dataUrl": "https://data.mapesca.org/v1",
@@ -54,6 +62,10 @@
       "url": "https://u.expo.dev/cb2c9322-0c97-4b6f-8738-f84fe674b6b1",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0
+    },
+    "backgroundColor": "#061E3C",
+    "web": {
+      "favicon": "./assets/favicon.png"
     }
   }
 }

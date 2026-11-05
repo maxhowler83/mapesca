@@ -1,0 +1,16 @@
+/* Mapesca v1.0 — Brand Tokens. These are brand-level colors, NOT contrast-verified text-on-background pairs. */
+:root {
+  --mapesca-navy: #061E3C;
+  --mapesca-ink: #07172E;
+  --mapesca-teal: #00BDAF;
+  --mapesca-teal-dark: #006C73;
+  --mapesca-cyan: #20D7CE;
+  --mapesca-hotspot: #FF9C29;
+  --mapesca-white: #FFFFFF;
+  --mapesca-font: 'Inter Display', Inter, system-ui, sans-serif;
+}
+.mapesca-logo { display:block; height:auto; max-width:100%; }
+.mapesca-logo--header { width:min(100%, 230px); }
+.mapesca-logo--footer { width:min(100%, 300px); }
+.mapesca-logo--icon { width:44px; height:44px; }
+/* Display image asset with <img src=...> to keep <svg> internal gradients/paths encapsulated. */

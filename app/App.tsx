@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Dimensions, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Image, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Map, Camera, GeoJSONSource, Layer, UserLocation, StaticMapImageManager, type CameraRef } from '@maplibre/maplibre-react-native';
@@ -162,6 +162,7 @@ function Main() {
   if (error && !inp) {
     return (
       <SafeAreaView style={s.center}>
+        <Image source={require('./assets/brand/symbol.png')} style={{ width: 72, height: 72, marginBottom: 16 }} />
         <Text style={s.body}>{t.offline}</Text>
         <Pressable style={s.button} onPress={load}><Text style={s.buttonText}>{t.retry}</Text></Pressable>
       </SafeAreaView>
@@ -218,7 +219,7 @@ function Main() {
             <Text style={s.pillTitle} numberOfLines={1}>{species ? spName : t.loading}</Text>
           </Pressable>
           <Pressable style={s.round} onPress={() => setSheet('detail')} accessibilityLabel={`${t.seasons} · ${t.rulesTitle}`}><Text style={s.roundText}>📅</Text></Pressable>
-          <Pressable style={s.round} onPress={() => setSheet('about')} accessibilityLabel={t.about}><Text style={[s.roundText, { fontStyle: 'italic' }]}>i</Text></Pressable>
+          <Pressable style={s.round} onPress={() => setSheet('about')} accessibilityLabel={t.about}><Image source={require('./assets/brand/symbol.png')} style={{ width: 30, height: 30 }} /></Pressable>
         </View>
         {/* Region (Baja & Cortez · Pacific south · Gulf & Caribbean), then its areas */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.chipRow}>
@@ -316,7 +317,8 @@ function Main() {
         ))}
       </Sheet>
 
-      <Sheet open={sheet === 'about'} onClose={() => setSheet(null)} title="Mapesca">
+      <Sheet open={sheet === 'about'} onClose={() => setSheet(null)}>
+        <Image source={require('./assets/brand/logo-horizontal.png')} style={{ width: 190, height: 40, resizeMode: 'contain', marginBottom: 14 }} accessibilityLabel="mapesca.org" />
         <Text style={s.body}>{t.free}</Text>
         {inp && <Text style={[s.body, { marginTop: 12 }]}>{L(inp.manifest.notice)}</Text>}
         <Text style={s.groupTitle}>{t.by}</Text>
@@ -478,10 +480,10 @@ const s = StyleSheet.create({
   roundText: { fontSize: 18, fontWeight: '700', color: C.ink },
   chipRow: { paddingHorizontal: 16, paddingTop: 8, gap: 8 },
   rchip: { backgroundColor: 'rgba(255,255,255,0.92)', borderRadius: 18, paddingVertical: 6, paddingHorizontal: 12, borderWidth: 1, borderColor: C.line },
-  rchipOn: { backgroundColor: C.ink, borderColor: C.ink },
+  rchipOn: { backgroundColor: C.accent, borderColor: C.accent },
   rchipText: { fontSize: 12, fontWeight: '700', color: C.ink },
   mchip: { backgroundColor: C.surface, borderRadius: 18, paddingVertical: 7, paddingHorizontal: 14, ...shadow },
-  mchipOn: { backgroundColor: C.ink },
+  mchipOn: { backgroundColor: C.navy },
   mchipText: { fontSize: 13, fontWeight: '600', color: C.ink },
   mchipTextOn: { color: '#fff' },
   dchip: { backgroundColor: C.surface, borderRadius: 14, paddingVertical: 5, paddingHorizontal: 12, alignItems: 'center', minWidth: 58, ...shadow },
@@ -507,7 +509,7 @@ const s = StyleSheet.create({
   tier: { fontSize: 14, fontWeight: '800', paddingVertical: 4, paddingHorizontal: 10, borderRadius: 10, overflow: 'hidden' },
   badge: { marginTop: 6, fontSize: 13, fontWeight: '600' },
   divider: { height: 1, backgroundColor: C.line, marginVertical: 12 },
-  link: { fontSize: 15, fontWeight: '700', color: C.ink },
+  link: { fontSize: 15, fontWeight: '700', color: C.accent },
   stepper: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   step: { width: 32, height: 32, borderRadius: 16, borderWidth: 1, borderColor: C.line, alignItems: 'center', justifyContent: 'center' },
   stepText: { fontSize: 18, color: C.ink },
@@ -523,12 +525,12 @@ const s = StyleSheet.create({
   groupTitle: { fontSize: 13, fontWeight: '700', color: C.muted, textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 12, marginBottom: 8 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: { borderWidth: 1, borderColor: C.line, borderRadius: 20, paddingVertical: 8, paddingHorizontal: 14 },
-  chipOn: { backgroundColor: C.ink, borderColor: C.ink },
+  chipOn: { backgroundColor: C.navy, borderColor: C.navy },
   chipText: { fontSize: 15, color: C.ink },
   chipTextOn: { color: '#fff', fontWeight: '600' },
   body: { fontSize: 15, color: C.ink, lineHeight: 21 },
   small: { fontSize: 12, color: C.muted, lineHeight: 18 },
-  button: { backgroundColor: C.ink, borderRadius: 12, paddingVertical: 14, paddingHorizontal: 24, alignItems: 'center', marginTop: 12 },
+  button: { backgroundColor: C.navy, borderRadius: 12, paddingVertical: 14, paddingHorizontal: 24, alignItems: 'center', marginTop: 12 },
   buttonText: { color: '#fff', fontWeight: '700', fontSize: 16 },
   months: { flexDirection: 'row', gap: 3, marginTop: 4 },
   month: { flex: 1, height: 18, borderRadius: 4 },
