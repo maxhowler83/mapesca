@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapesca · Zonas de pesca gratis en Baja California Sur</title>
+<meta name="description" content="Mapa gratuito, actualizado dos veces al día, de las mejores zonas de pesca en Baja California Sur para 25 especies. Gratis para todos, para siempre.">
+<meta property="og:title" content="Mapesca">
+<meta property="og:description" content="Mapa gratuito de zonas de pesca en Baja California Sur. Gratis para todos, para siempre.">
+<meta property="og:url" content="https://mapesca.org">
+<meta name="theme-color" content="#0B2A45">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B2A45'/%3E%3Cpath d='M14 40c8-14 20-18 36-14-6 2-10 6-12 12 6-2 10-1 14 2-12 4-26 5-38 0z' fill='%23F2B840'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  :root {
+    --ink: #0B2A45; --muted: #5F6B78; --line: #E3E7EB; --bg: #FFFFFF; --soft: #F6F7F8;
+    --elite: #D62839; --priority: #F47D20; --candidate: #F2B840; --closed: #C62828; --rules: #2E7D32;
+    --radius: 20px; --shadow: 0 6px 24px rgba(11, 42, 69, .10);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.92); backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: -.3px; text-decoration: none; }
+  .brand svg { width: 32px; height: 32px; }
+  .lang { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .lang button { border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+  .hero { padding: 64px 0 32px; }
+  .eyebrow { display: inline-block; font-size: 13px; font-weight: 700; color: var(--rules); background: #EAF4EC; padding: 6px 12px; border-radius: 999px; }
+  h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.05; letter-spacing: -1.5px; margin: 18px 0 16px; max-width: 820px; }
+  .lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 680px; margin: 0 0 28px; }
+  .stores { display: flex; flex-wrap: wrap; gap: 12px; }
+  .store { display: inline-flex; flex-direction: column; justify-content: center; min-width: 180px; padding: 10px 18px; border-radius: 14px; background: var(--ink); color: #fff; text-decoration: none; }
+  .store small { font-size: 11px; opacity: .75; }
+  .store b { font-size: 17px; }
+  .store[aria-disabled="true"] { background: var(--soft); color: var(--muted); border: 1px solid var(--line); }
+
+  .mapcard { margin: 24px 0 8px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); position: relative; }
+  #map { height: min(70vh, 620px); min-height: 420px; }
+  .chips { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; z-index: 2; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { flex: none; border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit; font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 999px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .legend { position: absolute; left: 14px; bottom: 30px; z-index: 2; background: #fff; border-radius: 14px; padding: 10px 14px; box-shadow: 0 2px 10px rgba(0,0,0,.12); font-size: 13px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 6px 14px; max-width: calc(100% - 28px); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .legend .pa { border: 2px dashed var(--closed); background: rgba(198,40,40,.15); }
+  .updated { font-size: 13px; color: var(--muted); margin: 8px 2px 0; }
+  .note { font-size: 13px; color: var(--muted); margin: 4px 2px 0; }
+
+  section { padding: 56px 0; }
+  h2 { font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -.8px; margin: 0 0 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; background: #fff; }
+  .card h3 { margin: 10px 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .icon { width: 40px; height: 40px; border-radius: 12px; background: var(--soft); display: grid; place-items: center; font-size: 20px; }
+  .soft { background: var(--soft); }
+  .partners { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .partner { background: #fff; border-radius: var(--radius); padding: 22px; border: 1px solid var(--line); }
+  .partner b { display: block; font-size: 17px; }
+  .partner span { color: var(--muted); font-size: 14px; }
+  .partner a { font-size: 14px; color: var(--muted); }
+  .rules li { margin: 6px 0; }
+  .rules { color: var(--muted); padding-left: 20px; margin: 0; }
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 13px; }
+  footer p { margin: 6px 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding-top: 36px; }
+    .store { flex: 1 1 0; min-width: 0; padding: 10px 14px; }
+    .stores { flex-wrap: nowrap; }
+    #map { min-height: 460px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Mapesca">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0B2A45"/><path d="M14 40c8-14 20-18 36-14-6 2-10 6-12 12 6-2 10-1 14 2-12 4-26 5-38 0z" fill="#F2B840"/></svg>
+      Mapesca
+    </a>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="eyebrow" data-i18n="eyebrow">Gratis para todos, para siempre</span>
+    <h1 data-i18n="title">Dónde está el agua buena hoy, en todo Baja California Sur.</h1>
+    <p class="lead" data-i18n="lead">Mapesca lee los satélites dos veces al día y marca las mejores zonas para 25 especies, de Cabo San Lucas a Guerrero Negro. Con temporadas, vedas y áreas protegidas.</p>
+    <div class="stores">
+      <a class="store" aria-disabled="true"><small data-i18n="soon">Próximamente</small><b>App Store</b></a>
+      <a class="store" aria-disabled="true"><small data-i18n="soon">Próximamente</small><b>Google Play</b></a>
+    </div>
+
+    <div class="mapcard">
+      <div class="chips" id="chips" role="group" aria-label="Especie"></div>
+      <div id="map" role="img" aria-label="Mapa de zonas de pesca de hoy"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <p class="updated" id="updated"></p>
+    <p class="note" data-i18n="note">La puntuación indica qué tan bien el agua de hoy le queda a cada especie. No es un pronóstico de captura.</p>
+  </div>
+
+  <section class="soft">
+    <div class="wrap">
+      <h2 data-i18n="howTitle">Cómo funciona</h2>
+      <div class="grid">
+        <div class="card"><div class="icon">🛰️</div><h3 data-i18n="h1t">Satélites de la NOAA</h3><p data-i18n="h1p">Temperatura del agua, color (clorofila), cortes de temperatura y profundidad, actualizados cada mañana y cada tarde.</p></div>
+        <div class="card"><div class="icon">🐟</div><h3 data-i18n="h2t">25 especies</h3><p data-i18n="h2p">Picudos, atún, dorado, wahoo, carnada, costeros y tiburones, cada uno con su rango de temperatura, profundidad y temporada.</p></div>
+        <div class="card"><div class="icon">🗓️</div><h3 data-i18n="h3t">Temporadas y reproducción</h3><p data-i18n="h3p">Cuándo es buena la pesca de cada especie y cuándo se reproduce, con la fuente de cada dato.</p></div>
+        <div class="card"><div class="icon">🛟</div><h3 data-i18n="h4t">Pesca responsable</h3><p data-i18n="h4p">Áreas protegidas, veda de tiburón y límites de captura oficiales. Las zonas nunca caen dentro de áreas donde no se permite pescar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 data-i18n="rulesTitle">Reglas básicas de pesca deportiva</h2>
+      <ul class="rules">
+        <li data-i18n="r1">Hasta 10 peces por pescador al día, no más de 5 de una especie.</li>
+        <li data-i18n="r2">Picudos (marlín, pez vela, pez espada): 1 por pescador al día. Dorado y pez gallo: 2.</li>
+        <li data-i18n="r3">Tiburones: 1 al día; ninguno del 1 de mayo al 31 de julio (veda).</li>
+        <li data-i18n="r4">Siempre se liberan: tiburón ballena, tiburón blanco, tiburón peregrino, pez sierra, mantas y mantarrayas.</li>
+        <li data-i18n="r5">Necesitas un permiso de pesca deportiva vigente. Mandan los textos oficiales (NOM-017-PESC-1994, NOM-029-PESC-2006, DOF).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="wrap">
+      <h2 data-i18n="byTitle">Un regalo para la pesca de México</h2>
+      <div class="partners">
+        <div class="partner"><b>Top Anglers Sportfishing Charters</b><span>Cabo San Lucas · desde 2004</span><br><a href="https://www.topanglerscharters.com">topanglerscharters.com</a></div>
+        <div class="partner"><b>Asociación Sudcaliforniana de Pesca Deportiva</b><span>Baja California Sur</span></div>
+        <div class="partner"><b>Federación Nacional de Pesca Deportiva</b><span>México</span><br><a href="https://pescaenmexico.com">pescaenmexico.com</a></div>
+      </div>
+      <p class="note" style="margin-top:18px" data-i18n="edu">Pronto: edupesca.org, para aprender a vivir de lo que el mar nos da. También gratis, para siempre.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p data-i18n="sources">Fuentes: NOAA CoastWatch (temperatura y clorofila), NOAA NCEI ETOPO 2022 (profundidad), CONANP y OpenStreetMap (áreas protegidas). Mapa © OpenStreetMap · OpenFreeMap.</p>
+    <p data-i18n="safety">Revisa el clima y el estado del puerto antes de salir. Los límites de las áreas protegidas son aproximados; manda el decreto oficial.</p>
+    <p>Datos abiertos: <a href="https://data.mapesca.org/v1/manifest.json">data.mapesca.org</a> · <a href="https://github.com/maxhowler83/mapesca">GitHub</a></p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+(() => {
+  const DATA = 'https://data.mapesca.org/v1';
+  const T = {
+    en: {
+      eyebrow: 'Free for everyone, forever',
+      title: 'Where the good water is today, across Baja California Sur.',
+      lead: 'Mapesca reads the satellites twice a day and marks the best zones for 25 species, from Cabo San Lucas to Guerrero Negro. With seasons, closed seasons and protected areas.',
+      soon: 'Coming soon',
+      note: 'Scores rate how well today\'s water fits each species. They are not a catch forecast.',
+      howTitle: 'How it works',
+      h1t: 'NOAA satellites', h1p: 'Water temperature, color (chlorophyll), temperature breaks and depth, updated every morning and every evening.',
+      h2t: '25 species', h2p: 'Billfish, tuna, dorado, wahoo, bait, inshore fish and sharks, each with its own temperature, depth and season.',
+      h3t: 'Seasons and spawning', h3p: 'When each species fishes well and when it spawns, with the source of every month.',
+      h4t: 'Responsible fishing', h4p: 'Protected areas, the shark closed season and official bag limits. Zones never fall inside areas where fishing is not allowed.',
+      rulesTitle: 'Sport-fishing basics in Mexico',
+      r1: 'Up to 10 fish per angler per day, no more than 5 of one species.',
+      r2: 'Billfish (marlin, sailfish, swordfish): 1 per angler per day. Dorado and roosterfish: 2.',
+      r3: 'Sharks: 1 per day; none from May 1 to July 31 (closed season).',
+      r4: 'Always released: whale shark, white shark, basking shark, sawfish, mantas and mobula rays.',
+      r5: 'You need a valid sport-fishing license. Official texts always win (NOM-017-PESC-1994, NOM-029-PESC-2006, DOF).',
+      byTitle: 'A gift to Mexican sport fishing',
+      edu: 'Coming soon: edupesca.org, to learn to live from what the sea gives us. Also free, forever.',
+      sources: 'Sources: NOAA CoastWatch (temperature and chlorophyll), NOAA NCEI ETOPO 2022 (depth), CONANP and OpenStreetMap (protected areas). Map © OpenStreetMap · OpenFreeMap.',
+      safety: 'Check the weather and port status before going out. Protected-area boundaries are approximate; the official decree always wins.',
+      updated: 'Satellite water from', protected: 'No fishing', closedNow: 'Closed season: no zones shown',
+    },
+  };
+  const ES = {}; document.querySelectorAll('[data-i18n]').forEach(el => { ES[el.dataset.i18n] = el.textContent; });
+  Object.assign(ES, { updated: 'Agua satelital del', protected: 'Pesca prohibida', closedNow: 'Veda: no se marcan zonas' });
+  T.es = ES;
+
+  let lang = 'es';
+  try { lang = localStorage.getItem('mapesca-lang') || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en'); } catch (e) {}
+  const L = o => o[lang] || o.es;
+  const FEATURED = ['striped-marlin', 'blue-marlin', 'yellowfin-tuna', 'dorado', 'wahoo', 'roosterfish', 'yellowtail', 'shortfin-mako'];
+  let manifest = null, current = 'striped-marlin', map = null;
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[lang][el.dataset.i18n]; if (v) el.textContent = v; });
+    document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    if (manifest) { renderChips(); renderLegend(); renderUpdated(); }
+  }
+  document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
+    lang = b.dataset.lang; try { localStorage.setItem('mapesca-lang', lang); } catch (e) {}
+    applyLang();
+  }));
+
+  const rgb = c => `rgb(${c[0]},${c[1]},${c[2]})`;
+  function renderLegend() {
+    const sp = manifest.species.find(s => s.k === current);
+    const tiers = sp && sp.closedSeason ? `<span>${T[lang].closedNow}</span>` :
+      manifest.tiers.map(t => `<span><i style="background:${rgb(t.color)}"></i>${L(t)}</span>`).join('');
+    document.getElementById('legend').innerHTML = tiers + `<span><i class="pa"></i>${T[lang].protected}</span>`;
+  }
+  function renderUpdated() {
+    const d = manifest.data.sstDate;
+    const fmt = d ? new Date(d + 'T12:00:00Z').toLocaleDateString(lang === 'es' ? 'es-MX' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
+    document.getElementById('updated').textContent = `${T[lang].updated} ${fmt}`;
+  }
+  function renderChips() {
+    const box = document.getElementById('chips');
+    box.innerHTML = '';
+    for (const k of FEATURED) {
+      const sp = manifest.species.find(s => s.k === k); if (!sp) continue;
+      const b = document.createElement('button');
+      b.className = 'chip'; b.type = 'button'; b.textContent = L(sp);
+      b.setAttribute('aria-pressed', String(k === current));
+      b.addEventListener('click', () => { current = k; renderChips(); renderLegend(); loadZones(); });
+      box.appendChild(b);
+    }
+  }
+
+  function toGeoJSON(z, sp) {
+    const feats = [], hla = Math.abs(z.dlat) / 2, hlo = Math.abs(z.dlon) / 2;
+    const tierOf = s => (s > 0 ? manifest.tiers.find(t => s >= sp.cut[t.k]) : null);
+    const add = (i, j, s) => {
+      const t = tierOf(s); if (!t) return;
+      const la = z.lat0 + i * z.dlat, lo = z.lon0 + j * z.dlon;
+      feats.push({ type: 'Feature', properties: { tier: t.k }, geometry: { type: 'Polygon', coordinates: [[[lo - hlo, la - hla], [lo + hlo, la - hla], [lo + hlo, la + hla], [lo - hlo, la + hla], [lo - hlo, la - hla]]] } });
+    };
+    if (z.kind === 'dense') { for (let i = 0; i < z.nlat; i++) for (let j = 0; j < z.nlon; j++) { const s = z.v[i * z.nlon + j]; if (s > 0) add(i, j, s); } }
+    else for (const [i, j, s] of z.cells) if (s > 0) add(i, j, s);
+    return { type: 'FeatureCollection', features: feats };
+  }
+  async function loadZones() {
+    const sp = manifest.species.find(s => s.k === current);
+    const z = await fetch(`${DATA}/${sp.file}`).then(r => r.json());
+    const gj = toGeoJSON(z, sp);
+    const src = map.getSource('zones');
+    if (src) src.setData(gj);
+  }
+
+  async function init() {
+    map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://tiles.openfreemap.org/styles/positron',
+      bounds: [[-115.4, 22.3], [-109.0, 28.1]],
+      fitBoundsOptions: { padding: { top: 70, bottom: 70, left: 20, right: 20 } },
+      maxBounds: [[-118.5, 20.5], [-105.9, 29.9]],
+      cooperativeGestures: true,
+      attributionControl: { compact: true },
+    });
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+    try {
+      const [m, pa] = await Promise.all([
+        fetch(`${DATA}/manifest.json`).then(r => r.json()),
+        fetch(`${DATA}/protected-areas.json`).then(r => r.json()),
+      ]);
+      manifest = m;
+      renderChips(); renderLegend(); renderUpdated();
+      const ready = () => {
+        map.addSource('zones', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+        map.addLayer({ id: 'zones', type: 'fill', source: 'zones', paint: {
+          'fill-color': ['match', ['get', 'tier'], 'elite', '#D62839', 'priority', '#F47D20', '#F2B840'],
+          'fill-opacity': ['match', ['get', 'tier'], 'elite', 0.75, 'priority', 0.55, 0.35] } });
+        map.addSource('pa', { type: 'geojson', data: pa });
+        map.addLayer({ id: 'pa-fill', type: 'fill', source: 'pa', filter: ['==', ['get', 'rule'], 'no-take'], paint: { 'fill-color': '#C62828', 'fill-opacity': 0.25 } });
+        map.addLayer({ id: 'pa-line', type: 'line', source: 'pa', paint: { 'line-color': ['match', ['get', 'rule'], 'no-take', '#C62828', '#2E7D32'], 'line-width': 1.5, 'line-dasharray': [2, 2] } });
+        loadZones();
+      };
+      if (map.loaded()) ready(); else map.on('load', ready);
+    } catch (e) {
+      document.getElementById('updated').textContent = lang === 'es' ? 'No pudimos cargar los datos de hoy. Intenta de nuevo más tarde.' : 'We couldn\'t load today\'s data. Please try again later.';
+    }
+  }
+  applyLang();
+  init();
+})();
+</script>
+</body>
+</html>
