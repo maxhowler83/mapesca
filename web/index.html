@@ -6,7 +6,7 @@
 <title>Mapesca · Zonas de pesca gratis: México, EE. UU. y el Caribe</title>
 <meta name="description" content="Mapa gratuito, actualizado dos veces al día, de las mejores zonas de pesca en México, California, el Golfo de EE. UU., Florida y el Caribe para 69 especies. Gratis para todos, para siempre.">
 <meta property="og:title" content="Mapesca">
-<meta property="og:description" content="Mapa gratuito de zonas de pesca en México, EE. UU. y el Caribe. Gratis para todos, para siempre.">
+<meta property="og:description" content="Dónde está el agua buena hoy. Mapa de zonas de pesca con datos satelitales, en México, EE. UU. y el Caribe. Gratis para todos, para siempre.">
 <meta property="og:url" content="https://mapesca.org">
 <link rel="canonical" href="https://mapesca.org/">
 <meta name="theme-color" content="#061E3C">
@@ -139,6 +139,19 @@
 
   <section>
     <div class="wrap">
+      <h2 data-i18n="promiseTitle">Nuestra promesa</h2>
+      <p class="lead" style="margin-bottom:24px" data-i18n="mission">Leer el mar dos veces al día con datos públicos de satélite y convertirlo en un mapa claro de dónde pescar, cuándo y bajo qué reglas. Para que nadie salga a ciegas.</p>
+      <div class="grid">
+        <div class="card"><div class="icon">🎁</div><h3 data-i18n="p1t">Gratis para siempre</h3><p data-i18n="p1p">Sin suscripción, sin funciones de pago y sin anuncios.</p></div>
+        <div class="card"><div class="icon">🔒</div><h3 data-i18n="p2t">Tus datos no se venden</h3><p data-i18n="p2p">Sin cuentas ni rastreo. Tu ubicación se usa en tu teléfono o navegador y no sale de ahí.</p></div>
+        <div class="card"><div class="icon">🧭</div><h3 data-i18n="p3t">Honesto</h3><p data-i18n="p3p">Cada temporada y cada regla traen su fuente y su nivel de confianza. Marcamos agua buena; no prometemos pesca.</p></div>
+        <div class="card"><div class="icon">🌎</div><h3 data-i18n="p4t">Abierto y local</h3><p data-i18n="p4p">Código y datos públicos. Reglas de cada país o estado, y calendarios corregidos con los capitanes de cada puerto.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="wrap">
       <h2 data-i18n="rulesTitle">Reglas básicas de pesca deportiva en México</h2>
       <ul class="rules">
         <li data-i18n="r1">Hasta 10 peces por pescador al día, no más de 5 de una especie.</li>
@@ -148,12 +161,13 @@
         <li data-i18n="r6">Alto Golfo: en la Zona de Tolerancia Cero de la vaquita marina no se puede pescar ni navegar, y en el área de prohibición de redes no se pesca de 19:00 a 05:00.</li>
         <li data-i18n="r5">Necesitas un permiso de pesca deportiva vigente. Mandan los textos oficiales (NOM-017-PESC-1994, NOM-029-PESC-2006, DOF).</li>
       </ul>
+      <p class="note" style="margin-top:14px" data-i18n="rulesElse">En California, el Golfo de EE. UU., Florida y el Caribe, la app muestra las reglas de cada estado o país, con su fuente oficial.</p>
     </div>
   </section>
 
-  <section class="soft">
+  <section>
     <div class="wrap">
-      <h2 data-i18n="byTitle">Un regalo para la pesca de México</h2>
+      <h2 data-i18n="byTitle">Un regalo de la pesca de México al mundo</h2>
       <div class="partners">
         <div class="partner"><b>Top Anglers Sportfishing Charters</b><span>Cabo San Lucas · desde 2004</span><br><a href="https://www.topanglerscharters.com">topanglerscharters.com</a></div>
         <div class="partner"><b>Asociación Sudcaliforniana de Pesca Deportiva</b><span>Baja California Sur</span></div>
@@ -167,8 +181,8 @@
 <footer>
   <div class="wrap">
     <img class="flogo" src="/brand/mapesca/mapesca-logo-horizontal-white.svg" alt="Mapesca" width="170" height="36">
-    <p data-i18n="sources">Fuentes: NOAA CoastWatch (temperatura y clorofila), NOAA NCEI ETOPO 2022 (profundidad), CONANP y OpenStreetMap (áreas protegidas). Mapa © OpenStreetMap · OpenFreeMap.</p>
-    <p data-i18n="safety">Revisa el clima y el estado del puerto antes de salir. Los límites de las áreas protegidas son aproximados; manda el decreto oficial.</p>
+    <p data-i18n="sources">Fuentes: NOAA CoastWatch (temperatura y clorofila), NOAA NCEI ETOPO 2022 (profundidad), Natural Earth (costa). Áreas protegidas: CONANP, CDFW, NOAA, The Nature Conservancy y gobiernos de cada país. Mapa © OpenStreetMap · OpenFreeMap.</p>
+    <p data-i18n="safety">Revisa el clima y el estado del puerto antes de salir. Los límites de las áreas protegidas son aproximados; manda el texto oficial.</p>
     <p>Datos abiertos: <a href="https://data.mapesca.org/v1/manifest.json">data.mapesca.org</a> · <a href="https://github.com/maxhowler83/mapesca">GitHub</a></p>
   </div>
 </footer>
@@ -196,15 +210,23 @@
       r4: 'Always released: whale shark, white shark, basking shark, sawfish, mantas and mobula rays, and totoaba.',
       r6: 'Upper Gulf: no fishing or navigation in the vaquita Zero Tolerance Zone, and no fishing from 19:00 to 05:00 in the gillnet-ban area.',
       r5: 'You need a valid sport-fishing license. Official texts always win (NOM-017-PESC-1994, NOM-029-PESC-2006, DOF).',
-      byTitle: 'A gift to Mexican sport fishing',
+      byTitle: 'A gift from Mexican sport fishing to the world',
+      promiseTitle: 'Our promise',
+      mission: 'Read the sea twice a day from public satellite data and turn it into a clear map of where to fish, when, and under which rules. So no one heads out blind.',
+      p1t: 'Free forever', p1p: 'No subscription, no paid features and no ads.',
+      p2t: 'Your data is not for sale', p2p: 'No accounts, no tracking. Your location is used on your phone or browser and stays there.',
+      p3t: 'Honest', p3p: 'Every season and rule shows its source and how sure we are. We mark good water; we don\'t promise fish.',
+      p4t: 'Open and local', p4p: 'Public code and data. Each country\'s or state\'s own rules, and calendars corrected by captains in each port.',
+      rulesElse: 'In California, the US Gulf, Florida and the Caribbean, the app shows each state\'s or country\'s rules with their official source.',
       edu: 'Coming soon: edupesca.org, to learn to live from what the sea gives us. Also free, forever.',
-      sources: 'Sources: NOAA CoastWatch (temperature and chlorophyll), NOAA NCEI ETOPO 2022 (depth), CONANP and OpenStreetMap (protected areas). Map © OpenStreetMap · OpenFreeMap.',
-      safety: 'Check the weather and port status before going out. Protected-area boundaries are approximate; the official decree always wins.',
+      sources: 'Sources: NOAA CoastWatch (temperature and chlorophyll), NOAA NCEI ETOPO 2022 (depth), Natural Earth (coastline). Protected areas: CONANP, CDFW, NOAA, The Nature Conservancy and each country\'s government. Map © OpenStreetMap · OpenFreeMap.',
+      safety: 'Check the weather and port status before going out. Protected-area boundaries are approximate; the official text always wins.',
       updated: 'Satellite water from', protected: 'No fishing', closedNow: 'Closed season: no zones shown',
+      farAway: 'Mapesca doesn\'t cover your waters yet. We\'re growing region by region.',
     },
   };
   const ES = {}; document.querySelectorAll('[data-i18n]').forEach(el => { ES[el.dataset.i18n] = el.textContent; });
-  Object.assign(ES, { updated: 'Agua satelital del', protected: 'Pesca prohibida', closedNow: 'Veda: no se marcan zonas' });
+  Object.assign(ES, { updated: 'Agua satelital del', protected: 'Pesca prohibida', closedNow: 'Veda: no se marcan zonas', farAway: 'Mapesca aún no cubre tus aguas. Vamos creciendo región por región.' });
   T.es = ES;
 
   let lang = 'es';
@@ -308,6 +330,19 @@
       attributionControl: { compact: true },
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+    // "Near me": the browser asks permission; the position never leaves the page.
+    const geo = new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: false, timeout: 10000 }, fitBoundsOptions: { maxZoom: 8 }, trackUserLocation: false, showAccuracyCircle: false });
+    map.addControl(geo, 'bottom-right');
+    geo.on('geolocate', e => {
+      if (!manifest) return;
+      const { latitude: la, longitude: lo } = e.coords;
+      const R = (manifest.regions || []).find(r => la >= r.box.s && la <= r.box.n && lo >= r.box.w && lo <= r.box.e);
+      if (R && R.k !== region) {
+        region = R.k;
+        if (!R.species[current]) current = (FEATURED[region] || []).find(k => R.species[k]) || Object.keys(R.species)[0];
+        renderRegions(); renderChips(); renderLegend(); renderUpdated(); loadZones();
+      } else if (!R) document.getElementById('updated').textContent = T[lang].farAway;
+    });
     try {
       const [m, pa] = await Promise.all([
         fetch(`${DATA}/manifest.json`).then(r => r.json()),
