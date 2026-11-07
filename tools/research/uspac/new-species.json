@@ -1,0 +1,324 @@
+[
+ {
+  "k": "albacore",
+  "g": "tuna",
+  "en": "Albacore",
+  "es": "Albacora",
+  "temp": [
+   13,
+   15,
+   19.5,
+   22
+  ],
+  "depth": [
+   200,
+   1000,
+   5000,
+   9000
+  ],
+  "chl": [
+   0.1,
+   0.3
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": null,
+   "conf": "medium",
+   "src": [
+    "Laurs, Fiedler & Montgomery 1984, Deep-Sea Res. 31: troll catches at 15–19.5 °C SST off California",
+    "Polovina et al. 2001, Prog. Oceanogr. 49: albacore along the 0.2 mg/m³ chlorophyll front",
+    "FishBase (10–25 °C, 0–600 m); spawns in subtropical central Pacific, not off California"
+   ]
+  }
+ },
+ {
+  "k": "california-barracuda",
+  "g": "inshore",
+  "en": "California barracuda",
+  "es": "Barracuda de California",
+  "temp": [
+   13,
+   16,
+   22,
+   26
+  ],
+  "depth": [
+   1,
+   3,
+   30,
+   60
+  ],
+  "chl": [
+   0.2,
+   3
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": [
+    0,
+    0,
+    0,
+    0,
+    1,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "conf": "low",
+   "src": [
+    "FishBase: pelagic-neritic, 0–18 m (ours widened to 60 m for boat fishing)",
+    "CDFW species account (California's Living Marine Resources 2001): spawns Apr–Sep, peak Jun–Aug",
+    "Temperatures estimated (warm-water, enters SoCal when SST rises)"
+   ]
+  }
+ },
+ {
+  "k": "rockfish",
+  "g": "inshore",
+  "en": "Rockfish (Sebastes)",
+  "es": "Rocotes (Sebastes)",
+  "temp": [
+   7,
+   9,
+   16,
+   21
+  ],
+  "depth": [
+   3,
+   15,
+   180,
+   400
+  ],
+  "chl": [
+   0.3,
+   5
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": null,
+   "conf": "low",
+   "src": [
+    "Group of ~60 Sebastes species; live-bearing with species-specific winter/spring release — no single calendar",
+    "Depths: CDFW nearshore/shelf/slope groups; most sport fishing 10–100 fathoms (18–180 m)",
+    "Temperatures estimated from the California Current range"
+   ]
+  }
+ },
+ {
+  "k": "lingcod",
+  "g": "inshore",
+  "en": "Lingcod",
+  "es": "Lingcod",
+  "temp": [
+   6,
+   8,
+   14,
+   18
+  ],
+  "depth": [
+   3,
+   10,
+   150,
+   475
+  ],
+  "chl": [
+   0.3,
+   5
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": [
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "conf": "medium",
+   "src": [
+    "FishBase: 0–475 m",
+    "Spawning/nest guarding Dec–Mar (CDFW species account; PFMC lingcod assessment)",
+    "Temperatures estimated"
+   ]
+  }
+ },
+ {
+  "k": "california-sheephead",
+  "g": "inshore",
+  "en": "California sheephead",
+  "es": "Vieja de California",
+  "temp": [
+   12,
+   15,
+   22,
+   26
+  ],
+  "depth": [
+   1,
+   3,
+   30,
+   87
+  ],
+  "chl": [
+   0.2,
+   3
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "conf": "medium",
+   "src": [
+    "FishBase (Bodianus pulcher): 0–150 m, usually 3–30 m",
+    "Spawns Jul–Sep (Warner 1975; CDFW sheephead ESR)",
+    "Temperatures estimated"
+   ]
+  }
+ },
+ {
+  "k": "common-thresher",
+  "g": "shark",
+  "en": "Common thresher",
+  "es": "Tiburón zorro común",
+  "temp": [
+   12,
+   14,
+   20,
+   24
+  ],
+  "depth": [
+   10,
+   20,
+   500,
+   9000
+  ],
+  "chl": [
+   0.2,
+   3
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": [
+    0,
+    0,
+    1,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "conf": "low",
+   "src": [
+    "FishBase: 0–650 m, usually 0–200 m",
+    "Cartamil et al. 2010, Mar. Biol.: SoCal Bight tagging (shelf and slope, mostly upper 100 m); temperature values here are estimates",
+    "Pupping spring in the SoCal Bight nursery (NOAA SWFSC)"
+   ]
+  }
+ }
+]

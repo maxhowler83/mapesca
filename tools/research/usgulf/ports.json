@@ -1,0 +1,254 @@
+[
+ {
+  "name": "South Padre Island / Port Isabel",
+  "lat": 26.0659,
+  "lon": -97.2095,
+  "region": "usgulf",
+  "src": "OSM node 13158889101 (Sea Ranch Marina II)"
+ },
+ {
+  "name": "Port Mansfield",
+  "lat": 26.5527,
+  "lon": -97.4283,
+  "region": "usgulf",
+  "src": "OSM way 861057925 (public boat ramp, Port Mansfield harbor)"
+ },
+ {
+  "name": "Port Aransas",
+  "lat": 27.839,
+  "lon": -97.0641,
+  "region": "usgulf",
+  "src": "OSM node 1896394566 (Port Aransas Marina)"
+ },
+ {
+  "name": "Corpus Christi",
+  "lat": 27.7941,
+  "lon": -97.3896,
+  "region": "usgulf",
+  "src": "OSM way 621507748 (Corpus Christi Marina)"
+ },
+ {
+  "name": "Port O'Connor",
+  "lat": 28.4341,
+  "lon": -96.428,
+  "region": "usgulf",
+  "src": "OSM way 833615898 (harbor basin by the Coast Guard station, Port O'Connor)"
+ },
+ {
+  "name": "Freeport / Surfside",
+  "lat": 28.943,
+  "lon": -95.3012,
+  "region": "usgulf",
+  "src": "OSM way 1041695394 (boat ramp at Freeport Harbor channel)"
+ },
+ {
+  "name": "Galveston",
+  "lat": 29.3198,
+  "lon": -94.7769,
+  "region": "usgulf",
+  "src": "OSM way 555827709 (Galveston Yacht Marina)"
+ },
+ {
+  "name": "Grand Isle",
+  "lat": 29.2377,
+  "lon": -89.9978,
+  "region": "usgulf",
+  "src": "OSM way 924971245 (boat ramp, Grand Isle)"
+ },
+ {
+  "name": "Venice",
+  "lat": 29.2389,
+  "lon": -89.3649,
+  "region": "usgulf",
+  "src": "OSM relation 12225723 (Venice marina)"
+ },
+ {
+  "name": "Gulfport",
+  "lat": 30.3563,
+  "lon": -89.0903,
+  "region": "usgulf",
+  "src": "OSM node 357932693 (Gulfport Harbor)"
+ },
+ {
+  "name": "Biloxi",
+  "lat": 30.3898,
+  "lon": -88.8613,
+  "region": "usgulf",
+  "src": "OSM way 482573843 (Point Cadet Marina)"
+ },
+ {
+  "name": "Dauphin Island",
+  "lat": 30.2635,
+  "lon": -88.1127,
+  "region": "usgulf",
+  "src": "OSM way 1080146695 (Dauphin Island Marina)"
+ },
+ {
+  "name": "Orange Beach",
+  "lat": 30.2785,
+  "lon": -87.5487,
+  "region": "usgulf",
+  "src": "OSM way 619372818 (Caribe Marina, Perdido Pass)"
+ },
+ {
+  "name": "Pensacola",
+  "lat": 30.3442,
+  "lon": -87.29,
+  "region": "usgulf",
+  "src": "OSM way 830745577 (Coast Guard basin, Pensacola Bay; Palafox Pier nearby)"
+ },
+ {
+  "name": "Destin",
+  "lat": 30.391,
+  "lon": -86.4922,
+  "region": "usgulf",
+  "src": "OSM way 1140748460 (marina, Destin Harbor)"
+ },
+ {
+  "name": "Panama City",
+  "lat": 30.1683,
+  "lon": -85.7038,
+  "region": "usgulf",
+  "src": "OSM way 612328573 (Historic Saint Andrews Marina)"
+ },
+ {
+  "name": "Clearwater",
+  "lat": 27.9768,
+  "lon": -82.8263,
+  "region": "usgulf",
+  "src": "OSM way 191972400 (Clearwater Beach Municipal Marina)"
+ },
+ {
+  "name": "St. Petersburg",
+  "lat": 27.7719,
+  "lon": -82.6298,
+  "region": "usgulf",
+  "src": "OSM relation 20041419 (St Petersburg Municipal Marina)"
+ },
+ {
+  "name": "Fort Myers Beach",
+  "lat": 26.4137,
+  "lon": -81.8994,
+  "region": "usgulf",
+  "src": "OSM way 613014422 (Santina Marina Plaza)"
+ },
+ {
+  "name": "Naples",
+  "lat": 26.1321,
+  "lon": -81.7929,
+  "region": "usgulf",
+  "src": "OSM way 1341692593 (Naples City Dock)"
+ },
+ {
+  "name": "Marco Island",
+  "lat": 25.961,
+  "lon": -81.7128,
+  "region": "usgulf",
+  "src": "OSM way 494897410 (Marco Island Marina)"
+ },
+ {
+  "name": "Key West",
+  "lat": 24.5627,
+  "lon": -81.8,
+  "region": "usgulf",
+  "src": "OSM way 960095386 (Conch Harbor Marina, Key West Bight)"
+ },
+ {
+  "name": "Marathon",
+  "lat": 24.7097,
+  "lon": -81.0914,
+  "region": "usgulf",
+  "src": "OSM way 589379803 (Boot Key Harbor City Marina)"
+ },
+ {
+  "name": "Islamorada",
+  "lat": 24.9183,
+  "lon": -80.6367,
+  "region": "usgulf",
+  "src": "OSM way 965392909 (Caribee Marina; Bud n'Mary's nearby)"
+ },
+ {
+  "name": "Key Largo",
+  "lat": 25.0722,
+  "lon": -80.4616,
+  "region": "usgulf",
+  "src": "OSM way 961739931 (Mariner's Club Key Largo Marina)"
+ },
+ {
+  "name": "Miami (Key Biscayne)",
+  "lat": 25.7257,
+  "lon": -80.1561,
+  "region": "usgulf",
+  "src": "OSM way 305515757 (Crandon Marina)"
+ },
+ {
+  "name": "Haulover / North Miami Beach",
+  "lat": 25.9059,
+  "lon": -80.1252,
+  "region": "usgulf",
+  "src": "OSM way 958982447 (Bill Bird Marina, Haulover)"
+ },
+ {
+  "name": "Fort Lauderdale",
+  "lat": 26.1135,
+  "lon": -80.1071,
+  "region": "usgulf",
+  "src": "OSM way 963614683 (Bahia Mar)"
+ },
+ {
+  "name": "Palm Beach (Lake Worth Inlet)",
+  "lat": 26.7771,
+  "lon": -80.0404,
+  "region": "usgulf",
+  "src": "OSM relation 12991921 (Sailfish Marina)"
+ },
+ {
+  "name": "Jupiter",
+  "lat": 26.9764,
+  "lon": -80.0878,
+  "region": "usgulf",
+  "src": "OSM way 1233381215 (Jupiter Pointe Club & Marina)"
+ },
+ {
+  "name": "Stuart",
+  "lat": 27.2226,
+  "lon": -80.2113,
+  "region": "usgulf",
+  "src": "OSM way 471844653 (Outrigger Harbour)"
+ },
+ {
+  "name": "Fort Pierce",
+  "lat": 27.4503,
+  "lon": -80.3215,
+  "region": "usgulf",
+  "src": "OSM way 988845016 (Fort Pierce City Marina)"
+ },
+ {
+  "name": "Port Canaveral",
+  "lat": 28.4088,
+  "lon": -80.6144,
+  "region": "usgulf",
+  "src": "OSM way 1553702171 (Sunrise Marina)"
+ },
+ {
+  "name": "Ponce Inlet",
+  "lat": 29.0791,
+  "lon": -80.9273,
+  "region": "usgulf",
+  "src": "OSM way 399304728 (Lighthouse Boatyard)"
+ },
+ {
+  "name": "St. Augustine",
+  "lat": 29.8917,
+  "lon": -81.3092,
+  "region": "usgulf",
+  "src": "OSM way 364777938 (St. Augustine Municipal Marina)"
+ },
+ {
+  "name": "Jacksonville (Mayport)",
+  "lat": 30.3963,
+  "lon": -81.4293,
+  "region": "usgulf",
+  "src": "OSM way 351674308 (Morningstar Marina, Mayport)"
+ }
+]

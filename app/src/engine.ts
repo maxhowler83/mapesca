@@ -56,10 +56,15 @@ function crop(B: any, box: Box, key: string) {
   if (crops.has(k)) return crops.get(k);
   // Wide margin (~45 nm): like the Bite Map, the water around the area is drawn too (ranked by the
   // area's own cut-offs), so Cabo shows its Pacific grounds, not only what fits in the box.
-  const m = 0.75, rows: number[] = [], cols: number[] = [];
+  // The 30″ coast grid is 9× denser: a smaller margin keeps wide shelves (Florida, Texas, Bahamas) fast.
+  const m = key.endsWith('coast') ? 0.3 : 0.75, rows: number[] = [], cols: number[] = [];
   B.lat.forEach((la: number, i: number) => { if (la >= box.s - m && la <= box.n + m) rows.push(i); });
   B.lon.forEach((lo: number, j: number) => { if (lo >= box.w - m && lo <= box.e + m) cols.push(j); });
-  const out = { lat: rows.map(i => B.lat[i]), lon: cols.map(j => B.lon[j]), depth: rows.map(i => cols.map(j => B.depth[i][j])), relief: rows.map(i => cols.map(j => B.relief[i][j])) };
+  // Phones score ~10,000 squares a second: wide areas (Texas shelf, whole-region views) take every
+  // 2nd/3rd… square so no view needs more than ~20,000 (Los Cabos stays at full detail).
+  const step = Math.max(1, Math.ceil(Math.sqrt((rows.length * cols.length) / 20000)));
+  const R = rows.filter((_, i) => i % step === 0), Cc = cols.filter((_, j) => j % step === 0);
+  const out = { lat: R.map(i => B.lat[i]), lon: Cc.map(j => B.lon[j]), depth: R.map(i => Cc.map(j => B.depth[i][j])), relief: R.map(i => Cc.map(j => B.relief[i][j])) };
   crops.set(k, out);
   return out;
 }
@@ -91,7 +96,8 @@ export function compute(inp: Inputs, sp: string, areaKey: string, day: string): 
   const R = inp.regions[area.d || 'baja'];
   if (!R) throw new Error('region data not loaded');
   const S = SPECIES_BY_K[sp], inshore = S.g === 'inshore';
-  const useCoast = inshore && R.coast;
+  // Big views use the main grid even for inshore species (the coast grid over a whole region is too slow on a phone).
+  const useCoast = inshore && R.coast && area.r != null && !area.big;
   const B = crop(useCoast ? R.coast : R.bathy, area.box, `${R.k}|${useCoast ? 'coast' : 'bathy'}`);
   // Day outlook only where the ocean forecast covers the whole area; otherwise today's satellite.
   const cond = day && outlookCovers(inp, area.box) && inp.outlook ? (projectConditions(R.conditions, inp.outlook, day) || R.conditions) : R.conditions;
@@ -101,7 +107,7 @@ export function compute(inp: Inputs, sp: string, areaKey: string, day: string): 
   const z = scoreZones({ ...S, season: season || S.season }, cond, null, when, { bathy: B, reach: reachFromPorts });
   maskProtected(z, inp.areas, sp);
   const closure = closureFor(sp, when, area.r, area.k), notHere = !season;
-  if (closure || notHere) z.v = z.v.map((row: any[]) => row.map(x => (x == null ? null : 0)));
+  if ((closure && !closure.cr) || notHere) z.v = z.v.map((row: any[]) => row.map(x => (x == null ? null : 0)));
   const az = areaZones(z, area.box);
   const here = az.counts.elite + az.counts.priority + az.counts.candidate;
   // Squares in a tier → GeoJSON (half a cell each way).
@@ -112,7 +118,7 @@ export function compute(inp: Inputs, sp: string, areaKey: string, day: string): 
     const t = tierOf(az, s); if (!t) return;
     features.push({ type: 'Feature', properties: { tier: t.k }, geometry: { type: 'Polygon', coordinates: [[[lo - hlo, la - hla], [lo + hlo, la - hla], [lo + hlo, la + hla], [lo - hlo, la + hla], [lo - hlo, la - hla]]] } });
   }));
-  return { az, cond, closure, closedSeason: !!closure, notHere, geojson: { type: 'FeatureCollection', features }, here, land: R.land, data: R.data };
+  return { az, cond, closure, closedSeason: !!closure && !closure.cr, notHere, geojson: { type: 'FeatureCollection', features }, here, land: R.land, data: R.data };
 }
 
 const WHY: Record<string, [string, string]> = {
@@ -145,4 +151,6 @@ export function closureApplies(c: any, areaKey: string) {
   return c.regions.includes(A.r) || (big && AREAS.some((a: any) => a.d === A.d && c.regions.includes(a.r)));
 }
 /** Jurisdiction of an area (rules, licence, never-keep list). */
-export const jurisOfArea = (areaKey: string) => jurisOf((AREAS_BY_K[areaKey] || AREAS_BY_K.cabo).r);
+const MX_DATA = new Set(['baja', 'pacsur', 'golfo']);
+/** 'multi' = a big view over several countries or states: the rules depend on where you fish. */
+export const jurisOfArea = (areaKey: string) => { const A = AREAS_BY_K[areaKey] || AREAS_BY_K.cabo; return A.j || (MX_DATA.has(A.d) ? 'mx' : 'multi'); };

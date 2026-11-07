@@ -3,10 +3,12 @@
 // DATA REGIONS: each has its own satellite download, depth/coast/land grids and
 // zone files, so the phone only downloads the region you're looking at.
 // ocean: which species can live there (species-info.js OCEAN).
+import { INTL_DATA_REGIONS, INTL_AREAS } from './areas-intl.js';
 export const REGIONS = [
   { k: 'baja', ocean: 'pac', en: 'Baja & Sea of Cortez', es: 'Baja y Mar de Cortés', box: { w: -118.6, e: -105.4, s: 22.0, n: 32.75 } },
   { k: 'pacsur', ocean: 'pac', en: 'Mexican Pacific south', es: 'Pacífico sur de México', box: { w: -107.5, e: -92.0, s: 14.3, n: 23.2 } },
   { k: 'golfo', ocean: 'atl', en: 'Gulf of Mexico & Caribbean', es: 'Golfo de México y Caribe', box: { w: -98.0, e: -86.3, s: 17.8, n: 26.1 } },
+  ...INTL_DATA_REGIONS, // California, US Gulf + Florida, northern Caribbean (areas-intl.js)
 ];
 export const REGIONS_BY_K = Object.fromEntries(REGIONS.map(r => [r.k, r]));
 
@@ -64,9 +66,12 @@ export const AREAS = [
   { k: 'region', d: 'baja', r: null, en: 'All of Baja & Sea of Cortez', es: 'Toda Baja y el Mar de Cortés', box: { w: -118.6, e: -105.4, s: 22.0, n: 32.75 } },
   { k: 'pacsur-all', d: 'pacsur', r: 'pac-mx-south', big: true, en: 'All of the Pacific south', es: 'Todo el Pacífico sur', box: { w: -107.5, e: -92.0, s: 14.3, n: 23.2 } },
   { k: 'golfo-all', d: 'golfo', r: 'gom-south', big: true, en: 'All of the Gulf & Caribbean', es: 'Todo el Golfo y Caribe', box: { w: -98.0, e: -86.3, s: 17.8, n: 26.1 } },
+  ...INTL_AREAS, // j = jurisdiction outside Mexico
 ];
 export const AREAS_BY_K = Object.fromEntries(AREAS.map(a => [a.k, a]));
 const isBig = a => !a.r || a.big;
+/** Jurisdiction of an area: 'mx' unless the area says otherwise. */
+export const jurisOfAreaK = k => AREAS_BY_K[k]?.j || 'mx';
 
 /** Smallest area that contains a point (for "go to coordinates" and GPS), or null. */
 export function areaFor(lat, lon) {

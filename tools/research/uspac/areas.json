@@ -1,0 +1,182 @@
+[
+ {
+  "k": "sandiego",
+  "d": "uspac",
+  "r": "us-socal",
+  "j": "us-ca",
+  "en": "San Diego",
+  "es": "San Diego",
+  "box": {
+   "w": -118.1,
+   "e": -117.1,
+   "s": 32.45,
+   "n": 33.3
+  },
+  "why": "Point Loma and La Jolla kelp, Mission Bay, 9-Mile Bank, 182/302/371 spots, 43-Fathom Spot; Coronado Islands are Mexican waters"
+ },
+ {
+  "k": "clemente",
+  "d": "uspac",
+  "r": "us-socal",
+  "j": "us-ca",
+  "en": "San Clemente Island",
+  "es": "Isla San Clemente",
+  "box": {
+   "w": -118.75,
+   "e": -118.2,
+   "s": 32.7,
+   "n": 33.15
+  },
+  "why": "San Clemente Island kelp and banks fished from San Diego, Dana Point and Long Beach (Navy closure zones apply)"
+ },
+ {
+  "k": "catalina",
+  "d": "uspac",
+  "r": "us-socal",
+  "j": "us-ca",
+  "en": "Catalina Island",
+  "es": "Isla Catalina",
+  "box": {
+   "w": -118.7,
+   "e": -118.2,
+   "s": 33.2,
+   "n": 33.6
+  },
+  "why": "Catalina Island, its backside, the Slide and the Avalon bank"
+ },
+ {
+  "k": "orangecounty",
+  "d": "uspac",
+  "r": "us-socal",
+  "j": "us-ca",
+  "en": "Orange County",
+  "es": "Orange County",
+  "box": {
+   "w": -118.15,
+   "e": -117.3,
+   "s": 33.1,
+   "n": 33.75
+  },
+  "why": "Huntington Flats, Newport, Laguna, Dana Point and Oceanside grounds, Box Canyon"
+ },
+ {
+  "k": "losangeles",
+  "d": "uspac",
+  "r": "us-socal",
+  "j": "us-ca",
+  "en": "Los Angeles",
+  "es": "Los Ángeles",
+  "box": {
+   "w": -118.95,
+   "e": -118.05,
+   "s": 33.55,
+   "n": 34.1
+  },
+  "why": "Santa Monica Bay, Redondo Canyon, Palos Verdes, Horseshoe Kelp, Long Beach breakwater"
+ },
+ {
+  "k": "ventura",
+  "d": "uspac",
+  "r": "us-socal",
+  "j": "us-ca",
+  "en": "Ventura & Channel Islands",
+  "es": "Ventura e Islas del Canal",
+  "box": {
+   "w": -119.95,
+   "e": -118.85,
+   "s": 33.4,
+   "n": 34.35
+  },
+  "why": "Anacapa, Santa Cruz, Santa Rosa and Santa Barbara islands, Hidden Reef and Osborn Bank from Ventura/Oxnard"
+ },
+ {
+  "k": "santabarbara",
+  "d": "uspac",
+  "r": "us-socal",
+  "j": "us-ca",
+  "en": "Santa Barbara",
+  "es": "Santa Barbara",
+  "box": {
+   "w": -120.7,
+   "e": -119.4,
+   "s": 33.85,
+   "n": 34.5
+  },
+  "why": "Santa Barbara Channel, Point Conception, San Miguel Island"
+ },
+ {
+  "k": "morrobay",
+  "d": "uspac",
+  "r": "us-central",
+  "j": "us-ca",
+  "en": "Morro Bay & Port San Luis",
+  "es": "Morro Bay y Port San Luis",
+  "box": {
+   "w": -121.45,
+   "e": -120.55,
+   "s": 34.85,
+   "n": 35.75
+  },
+  "why": "Piedras Blancas to Point Sal, Santa Lucia Bank side, Avila and Morro Bay reefs"
+ },
+ {
+  "k": "monterey",
+  "d": "uspac",
+  "r": "us-central",
+  "j": "us-ca",
+  "en": "Monterey Bay",
+  "es": "Bahía de Monterey",
+  "box": {
+   "w": -122.5,
+   "e": -121.75,
+   "s": 36.4,
+   "n": 37.15
+  },
+  "why": "Monterey canyon, Carmel, Point Pinos, Soquel Hole and Santa Cruz reefs"
+ },
+ {
+  "k": "halfmoonbay",
+  "d": "uspac",
+  "r": "us-norcal",
+  "j": "us-ca",
+  "en": "Half Moon Bay",
+  "es": "Half Moon Bay",
+  "box": {
+   "w": -123.0,
+   "e": -122.35,
+   "s": 37.1,
+   "n": 37.65
+  },
+  "why": "Pillar Point reefs, Pescadero and Pigeon Point, Montara"
+ },
+ {
+  "k": "sanfrancisco",
+  "d": "uspac",
+  "r": "us-norcal",
+  "j": "us-ca",
+  "en": "San Francisco & Farallones",
+  "es": "San Francisco y Farallones",
+  "box": {
+   "w": -123.3,
+   "e": -122.3,
+   "s": 37.45,
+   "n": 38.05
+  },
+  "why": "Golden Gate, SF Bay halibut/striper flats, Farallon Islands, Duxbury and Pacifica"
+ },
+ {
+  "k": "bodega",
+  "d": "uspac",
+  "r": "us-norcal",
+  "j": "us-ca",
+  "en": "Bodega Bay & Cordell Bank",
+  "es": "Bodega Bay y Cordell Bank",
+  "box": {
+   "w": -123.65,
+   "e": -122.85,
+   "s": 37.85,
+   "n": 38.6
+  },
+  "why": "Bodega Head, Point Reyes, Tomales Point and offshore Cordell Bank/edge"
+ }
+]

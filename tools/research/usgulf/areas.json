@@ -1,0 +1,228 @@
+[
+ {
+  "k": "southpadre",
+  "d": "usgulf",
+  "r": "us-gulf-tx",
+  "j": "us-tx",
+  "en": "South Padre Island",
+  "es": "Isla del Padre Sur",
+  "box": {
+   "w": -97.45,
+   "e": -96.4,
+   "s": 25.97,
+   "n": 26.8
+  },
+  "why": "Port Isabel–South Padre, Brazos Santiago Pass, Port Mansfield, nearshore rigs and the shelf edge (state line with Mexico at the south edge)"
+ },
+ {
+  "k": "portaransas",
+  "d": "usgulf",
+  "r": "us-gulf-tx",
+  "j": "us-tx",
+  "en": "Port Aransas & Corpus Christi",
+  "es": "Port Aransas y Corpus Christi",
+  "box": {
+   "w": -97.45,
+   "e": -96.2,
+   "s": 27.2,
+   "n": 28.5
+  },
+  "why": "Corpus Christi Bay, Aransas Pass jetties, Port O'Connor/Matagorda Island, rigs and banks offshore"
+ },
+ {
+  "k": "galveston",
+  "d": "usgulf",
+  "r": "us-gulf-tx",
+  "j": "us-tx",
+  "en": "Galveston & Freeport",
+  "es": "Galveston y Freeport",
+  "box": {
+   "w": -95.6,
+   "e": -94.2,
+   "s": 28.4,
+   "n": 29.6
+  },
+  "why": "Galveston Bay, Freeport and Galveston jetties, nearshore rigs and reefs (Flower Garden Banks lie further offshore, outside this chip)"
+ },
+ {
+  "k": "venice",
+  "d": "usgulf",
+  "r": "us-gulf-north",
+  "j": "us-la",
+  "en": "Venice & Grand Isle",
+  "es": "Venice y Grand Isle",
+  "box": {
+   "w": -90.5,
+   "e": -88.7,
+   "s": 28.4,
+   "n": 29.4
+  },
+  "why": "Mississippi River delta (Venice, South Pass), Grand Isle–Fourchon, the rigs and Mississippi Canyon edge"
+ },
+ {
+  "k": "mscoast",
+  "d": "usgulf",
+  "r": "us-gulf-north",
+  "j": "us-ms",
+  "en": "Biloxi & Gulfport",
+  "es": "Biloxi y Gulfport",
+  "box": {
+   "w": -89.45,
+   "e": -88.4,
+   "s": 29.6,
+   "n": 30.45
+  },
+  "why": "Mississippi Sound, barrier islands, Chandeleur Islands (Louisiana waters) and Mississippi artificial reefs"
+ },
+ {
+  "k": "orangebeach",
+  "d": "usgulf",
+  "r": "us-gulf-north",
+  "j": "us-al",
+  "en": "Orange Beach & Dauphin Island",
+  "es": "Orange Beach y Dauphin Island",
+  "box": {
+   "w": -88.4,
+   "e": -87.52,
+   "s": 29.4,
+   "n": 30.4
+  },
+  "why": "Mobile Bay mouth, Perdido Pass, Alabama artificial-reef zones and the shelf edge (DeSoto Canyon to the SE)"
+ },
+ {
+  "k": "destin",
+  "d": "usgulf",
+  "r": "us-gulf-north",
+  "j": "us-fl-gulf",
+  "en": "Pensacola, Destin & Panama City",
+  "es": "Pensacola, Destin y Panama City",
+  "box": {
+   "w": -87.52,
+   "e": -85.6,
+   "s": 29.4,
+   "n": 30.45
+  },
+  "why": "Pensacola Pass to St. Andrews Bay, DeSoto Canyon edge, Madison-Swanson reserve (no-take) at the SE corner"
+ },
+ {
+  "k": "tampa",
+  "d": "usgulf",
+  "r": "us-gulf-fl",
+  "j": "us-fl-gulf",
+  "en": "Tampa Bay & Clearwater",
+  "es": "Bahía de Tampa y Clearwater",
+  "box": {
+   "w": -84.3,
+   "e": -82.5,
+   "s": 27.2,
+   "n": 28.5
+  },
+  "why": "Tampa Bay, Clearwater–Tarpon Springs, Sarasota, offshore ledges toward the Florida Middle Grounds"
+ },
+ {
+  "k": "naples",
+  "d": "usgulf",
+  "r": "us-gulf-fl",
+  "j": "us-fl-gulf",
+  "en": "Boca Grande, Fort Myers & Naples",
+  "es": "Boca Grande, Fort Myers y Naples",
+  "box": {
+   "w": -82.9,
+   "e": -81.6,
+   "s": 25.75,
+   "n": 26.95
+  },
+  "why": "Boca Grande Pass, Charlotte Harbor, Sanibel, Naples–Marco Island, Ten Thousand Islands"
+ },
+ {
+  "k": "keywest",
+  "d": "usgulf",
+  "r": "us-fl-south",
+  "j": "us-fl-keys",
+  "en": "Key West & Dry Tortugas",
+  "es": "Key West y Dry Tortugas",
+  "box": {
+   "w": -83.2,
+   "e": -81.4,
+   "s": 24.2,
+   "n": 24.95
+  },
+  "why": "Lower Keys reef, Marquesas, Dry Tortugas (park and reserves), western Florida Straits"
+ },
+ {
+  "k": "keys",
+  "d": "usgulf",
+  "r": "us-fl-south",
+  "j": "us-fl-keys",
+  "en": "Marathon, Islamorada & Key Largo",
+  "es": "Marathon, Islamorada y Key Largo",
+  "box": {
+   "w": -81.4,
+   "e": -80.05,
+   "s": 24.35,
+   "n": 25.67
+  },
+  "why": "Middle and Upper Keys reef and humps, Florida Bay, south Biscayne National Park"
+ },
+ {
+  "k": "miami",
+  "d": "usgulf",
+  "r": "us-fl-south",
+  "j": "us-fl-atl",
+  "en": "Miami to Palm Beach",
+  "es": "Miami a Palm Beach",
+  "box": {
+   "w": -80.4,
+   "e": -79.6,
+   "s": 25.67,
+   "n": 26.97
+  },
+  "why": "Biscayne Bay north, Haulover, Fort Lauderdale, Boca Raton, Palm Beach–Jupiter Inlet and the Gulf Stream edge"
+ },
+ {
+  "k": "treasure",
+  "d": "usgulf",
+  "r": "us-fl-east",
+  "j": "us-fl-atl",
+  "en": "Stuart, Fort Pierce & Port Canaveral",
+  "es": "Stuart, Fort Pierce y Port Canaveral",
+  "box": {
+   "w": -80.9,
+   "e": -79.7,
+   "s": 26.97,
+   "n": 29.03
+  },
+  "why": "St. Lucie and Fort Pierce inlets, Sebastian, Port Canaveral, Indian River Lagoon, Oculina Bank"
+ },
+ {
+  "k": "jacksonville",
+  "d": "usgulf",
+  "r": "us-fl-east",
+  "j": "us-fl-atl",
+  "en": "St. Augustine & Jacksonville",
+  "es": "St. Augustine y Jacksonville",
+  "box": {
+   "w": -81.6,
+   "e": -80.2,
+   "s": 29.03,
+   "n": 30.72
+  },
+  "why": "Ponce Inlet to St. Marys (Georgia line), St. Johns River, nearshore and offshore ledges, North Florida MPA"
+ },
+ {
+  "k": "usgulf-all",
+  "d": "usgulf",
+  "r": "us-gulf-fl",
+  "big": true,
+  "j": null,
+  "en": "All of the US Gulf & Florida",
+  "es": "Todo el Golfo de EE. UU. y Florida",
+  "box": {
+   "w": -97.9,
+   "e": -79.0,
+   "s": 24.2,
+   "n": 30.8
+  },
+  "why": "Big view (optional), like golfo-all; uses the Florida west coast calendar"
+ }
+]

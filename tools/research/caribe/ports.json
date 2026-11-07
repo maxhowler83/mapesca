@@ -1,0 +1,247 @@
+[
+ {
+  "name": "Bimini (Alice Town)",
+  "lat": 25.7263,
+  "lon": -79.2955,
+  "region": "caribe",
+  "src": "OSM leisure=marina w963456316 (Bimini Big Game Club)"
+ },
+ {
+  "name": "Walker's Cay",
+  "lat": 27.2593,
+  "lon": -78.4024,
+  "region": "caribe",
+  "src": "OSM Nominatim islet centroid; marina on the south shore — approx"
+ },
+ {
+  "name": "Spanish Cay",
+  "lat": 26.9388,
+  "lon": -77.5249,
+  "region": "caribe",
+  "src": "OSM leisure=marina n4773917095"
+ },
+ {
+  "name": "Green Turtle Cay",
+  "lat": 26.7738,
+  "lon": -77.3268,
+  "region": "caribe",
+  "src": "OSM Nominatim island (White Sound / Black Sound marinas) — approx"
+ },
+ {
+  "name": "Treasure Cay",
+  "lat": 26.6725,
+  "lon": -77.2789,
+  "region": "caribe",
+  "src": "OSM Nominatim Marina Drive, Treasure Cay marina basin — approx"
+ },
+ {
+  "name": "Marsh Harbour",
+  "lat": 26.5465,
+  "lon": -77.0515,
+  "region": "caribe",
+  "src": "OSM leisure=marina n3425101793 (Conch Inn & Marina)"
+ },
+ {
+  "name": "West End (Grand Bahama)",
+  "lat": 26.7006,
+  "lon": -78.9909,
+  "region": "caribe",
+  "src": "OSM Nominatim Old Bahama Bay resort & marina — approx"
+ },
+ {
+  "name": "Harbour Island",
+  "lat": 25.4976,
+  "lon": -76.6384,
+  "region": "caribe",
+  "src": "OSM leisure=marina w731586056 (Valentines)"
+ },
+ {
+  "name": "Chub Cay (Berry Islands)",
+  "lat": 25.4109,
+  "lon": -77.9048,
+  "region": "caribe",
+  "src": "OSM leisure=marina w622118104"
+ },
+ {
+  "name": "Nassau (East Bay St.)",
+  "lat": 25.0749,
+  "lon": -77.313,
+  "region": "caribe",
+  "src": "OSM leisure=marina w522613051 (Nassau Harbour Club)"
+ },
+ {
+  "name": "Lyford Cay",
+  "lat": 25.0339,
+  "lon": -77.5201,
+  "region": "caribe",
+  "src": "OSM leisure=marina r6861829"
+ },
+ {
+  "name": "Marina Hemingway (La Habana)",
+  "lat": 23.0862,
+  "lon": -82.5006,
+  "region": "caribe",
+  "src": "OSM leisure=marina n2652786655"
+ },
+ {
+  "name": "Varadero (Marina Gaviota)",
+  "lat": 23.1916,
+  "lon": -81.1274,
+  "region": "caribe",
+  "src": "OSM leisure=marina r5875987"
+ },
+ {
+  "name": "Júcaro",
+  "lat": 21.6208,
+  "lon": -78.8528,
+  "region": "caribe",
+  "src": "OSM leisure=marina n13699357942 (Marina Júcaro)"
+ },
+ {
+  "name": "Grand Cayman (North Sound)",
+  "lat": 19.3571,
+  "lon": -81.3775,
+  "region": "caribe",
+  "src": "OSM Nominatim Cayman Islands Yacht Club"
+ },
+ {
+  "name": "Morgan's Harbour (Grand Cayman)",
+  "lat": 19.3767,
+  "lon": -81.3807,
+  "region": "caribe",
+  "src": "OSM leisure=marina n775748060"
+ },
+ {
+  "name": "Port Antonio (Errol Flynn Marina)",
+  "lat": 18.1806,
+  "lon": -76.4533,
+  "region": "caribe",
+  "src": "OSM leisure=marina n2865075662"
+ },
+ {
+  "name": "Cap Cana",
+  "lat": 18.5026,
+  "lon": -68.3819,
+  "region": "caribe",
+  "src": "OSM leisure=marina w238836079"
+ },
+ {
+  "name": "Casa de Campo (La Romana)",
+  "lat": 18.4005,
+  "lon": -68.9008,
+  "region": "caribe",
+  "src": "OSM leisure=marina n3213289768"
+ },
+ {
+  "name": "San Juan (Club Náutico)",
+  "lat": 18.4598,
+  "lon": -66.0876,
+  "region": "caribe",
+  "src": "OSM leisure=marina n2080483222"
+ },
+ {
+  "name": "Cangrejos (Carolina)",
+  "lat": 18.4558,
+  "lon": -65.9917,
+  "region": "caribe",
+  "src": "OSM leisure=marina n3475180044"
+ },
+ {
+  "name": "Fajardo (Villa Marina)",
+  "lat": 18.3431,
+  "lon": -65.638,
+  "region": "caribe",
+  "src": "OSM Nominatim Villa Marina Yacht Basin"
+ },
+ {
+  "name": "Puerto del Rey",
+  "lat": 18.2851,
+  "lon": -65.6353,
+  "region": "caribe",
+  "src": "OSM leisure=marina r2720614 (unnamed marina polygon at Puerto del Rey)"
+ },
+ {
+  "name": "Palmas del Mar",
+  "lat": 18.0776,
+  "lon": -65.7986,
+  "region": "caribe",
+  "src": "OSM leisure=marina n1576343818"
+ },
+ {
+  "name": "Salinas",
+  "lat": 17.9591,
+  "lon": -66.2945,
+  "region": "caribe",
+  "src": "OSM leisure=marina n1382988171"
+ },
+ {
+  "name": "La Parguera",
+  "lat": 17.9726,
+  "lon": -67.039,
+  "region": "caribe",
+  "src": "OSM leisure=marina w474942781 (Club Náutico La Parguera)"
+ },
+ {
+  "name": "Boquerón",
+  "lat": 18.0265,
+  "lon": -67.1762,
+  "region": "caribe",
+  "src": "OSM leisure=marina w333977232"
+ },
+ {
+  "name": "Puerto Real (Cabo Rojo)",
+  "lat": 18.0745,
+  "lon": -67.1889,
+  "region": "caribe",
+  "src": "OSM leisure=marina w663043197 (Marina Pescadería)"
+ },
+ {
+  "name": "Red Hook (St. Thomas)",
+  "lat": 18.3253,
+  "lon": -64.8521,
+  "region": "caribe",
+  "src": "OSM leisure=marina n453040017 (American Yacht Harbor)"
+ },
+ {
+  "name": "Charlotte Amalie (Crown Bay)",
+  "lat": 18.334,
+  "lon": -64.9522,
+  "region": "caribe",
+  "src": "OSM leisure=marina n452129995"
+ },
+ {
+  "name": "Green Cay (St. Croix)",
+  "lat": 17.7591,
+  "lon": -64.6687,
+  "region": "caribe",
+  "src": "OSM leisure=marina w1319827232"
+ },
+ {
+  "name": "Road Town (Tortola)",
+  "lat": 18.4233,
+  "lon": -64.6172,
+  "region": "caribe",
+  "src": "OSM leisure=marina n2286686410 (Village Cay)"
+ },
+ {
+  "name": "Nanny Cay (Tortola)",
+  "lat": 18.3986,
+  "lon": -64.6363,
+  "region": "caribe",
+  "src": "OSM leisure=marina n2286707319"
+ },
+ {
+  "name": "Virgin Gorda Yacht Harbour",
+  "lat": 18.4487,
+  "lon": -64.4364,
+  "region": "caribe",
+  "src": "OSM leisure=marina n2537963597"
+ },
+ {
+  "name": "Providenciales (Turtle Cove)",
+  "lat": 21.7852,
+  "lon": -72.2256,
+  "region": "caribe",
+  "src": "OSM leisure=marina r7551045"
+ }
+]

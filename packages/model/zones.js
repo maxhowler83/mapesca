@@ -1,3 +1,4 @@
+import { INTL_SPECIES } from './species-intl.js';
 // Fishing zones ("Zonas"): a 0–100 score per ~2.7 km square of how well
 // today's conditions match what each species likes, from the same data the
 // map already shows. It rates conditions; it is NOT a catch probability and
@@ -124,6 +125,7 @@ export const SPECIES = [
   { k: 'blue-shark', g: 'shark', en: 'Blue shark', es: 'Tiburón azul', temp: [12, 16, 20, 24], depth: [10, 50, 5000, 9000], chl: [0.05, 2], season: [3, 3, 3, 3, 2, 1, 0, 0, 0, 1, 2, 3] },
   { k: 'silky-shark', g: 'shark', en: 'Silky shark', es: 'Tiburón piloto', temp: [22, 25, 30, 32], depth: [10, 50, 5000, 9000], chl: [0.05, 2], season: [0, 0, 0, 1, 2, 2, 3, 3, 3, 3, 2, 1] },
   { k: 'pelagic-thresher', g: 'shark', en: 'Pelagic thresher', es: 'Tiburón zorro', temp: [20, 23, 28, 31], depth: [10, 50, 5000, 9000], chl: [0.05, 2], season: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] },
+  ...INTL_SPECIES, // US waters and the Caribbean (species-intl.js)
 ];
 export const SPECIES_BY_K = Object.fromEntries(SPECIES.map(s => [s.k, s]));
 export const SIGNALS = [
@@ -154,6 +156,7 @@ const nmBetween = (lat, lon, p) => {
 // Where sport-fishing boats and pangas leave from in Baja California Sur (Cabo Bite Map reach).
 // Ports of the Pacific south and the Gulf/Caribbean (ports-mx.js, built from data/ports-mx.json).
 import { EXTRA_PORTS } from './ports-mx.js';
+import { INTL_PORTS } from './ports-intl.js';
 export const PORTS = [
   { name: 'Cabo San Lucas', lat: 22.8815, lon: -109.9095 },
   { name: 'San José del Cabo', lat: 23.017, lon: -109.677 },
@@ -191,6 +194,7 @@ export const PORTS = [
   { name: 'Altata', lat: 24.634, lon: -107.93 },
   { name: 'Mazatlán', lat: 23.204, lon: -106.421 },
   ...EXTRA_PORTS,
+  ...INTL_PORTS,
 ];
 /** Nearest port and its straight-line distance (nm). */
 export function nearestPort(lat, lon) {

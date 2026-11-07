@@ -1,0 +1,254 @@
+{
+ "yellowtail": {
+  "us-socal": "111233333211",
+  "us-central": "000000111000",
+  "us-norcal": null
+ },
+ "white-seabass": {
+  "us-socal": "112333322111",
+  "us-central": "000122333210",
+  "us-norcal": "000012332100"
+ },
+ "calico-bass": {
+  "us-socal": "111223333211",
+  "us-central": null,
+  "us-norcal": null
+ },
+ "barred-sand-bass": {
+  "us-socal": "000123332100",
+  "us-central": null,
+  "us-norcal": null
+ },
+ "california-halibut": {
+  "us-socal": "112233332111",
+  "us-central": "001223332110",
+  "us-norcal": "001233332110"
+ },
+ "pacific-bluefin": {
+  "us-socal": "001233333221",
+  "us-central": "000001221000",
+  "us-norcal": null
+ },
+ "yellowfin-tuna": {
+  "us-socal": "000001233210",
+  "us-central": null,
+  "us-norcal": null
+ },
+ "dorado": {
+  "us-socal": "000000233210",
+  "us-central": null,
+  "us-norcal": null
+ },
+ "striped-marlin": {
+  "us-socal": "000000123321",
+  "us-central": null,
+  "us-norcal": null
+ },
+ "swordfish": {
+  "us-socal": "000000123321",
+  "us-central": "000000011100",
+  "us-norcal": null
+ },
+ "shortfin-mako": {
+  "us-socal": "000123332100",
+  "us-central": "000001221000",
+  "us-norcal": "000000111000"
+ },
+ "blue-shark": {
+  "us-socal": "111233322111",
+  "us-central": "000122221000",
+  "us-norcal": "000012221000"
+ },
+ "pacific-bonito": {
+  "us-socal": "112233332211",
+  "us-central": "000012221000",
+  "us-norcal": null
+ },
+ "skipjack-tuna": {
+  "us-socal": "000000122100",
+  "us-central": null,
+  "us-norcal": null
+ },
+ "giant-sea-bass": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "pelagic-thresher": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "albacore": {
+  "us-socal": "000000122210",
+  "us-central": "000000123321",
+  "us-norcal": "000000123320"
+ },
+ "california-barracuda": {
+  "us-socal": "001233332100",
+  "us-central": null,
+  "us-norcal": null
+ },
+ "rockfish": {
+  "us-socal": "222333332211",
+  "us-central": "222333333222",
+  "us-norcal": "222333333222"
+ },
+ "lingcod": {
+  "us-socal": "222233322233",
+  "us-central": "222233322233",
+  "us-norcal": "222233322233"
+ },
+ "california-sheephead": {
+  "us-socal": "222233333222",
+  "us-central": "111111111111",
+  "us-norcal": null
+ },
+ "common-thresher": {
+  "us-socal": "112333322111",
+  "us-central": "000122221000",
+  "us-norcal": "000123332100"
+ },
+ "blue-marlin": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "black-marlin": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "pacific-sailfish": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "wahoo": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "black-skipjack": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "striped-bonito": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "roosterfish": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "sierra": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "jack-crevalle": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "almaco-jack": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "pacific-dog-snapper": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "yellow-snapper": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "barred-pargo": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "leopard-grouper": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "mexican-barracuda": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "gulf-corvina": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "gulf-grouper": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "pacific-snook": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "pacific-goliath": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "pacific-red-snapper": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "spotted-rose-snapper": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "bull-shark": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "silky-shark": {
+  "us-socal": null,
+  "us-central": null,
+  "us-norcal": null
+ },
+ "_sources": {
+  "_regions": "us-socal = Mexico border to Point Conception (34°27'N) incl. Channel Islands = CDFW Southern Groundfish Management Area; us-central = Point Conception to Pigeon Point (37°11'N) = Central GMA; us-norcal = Pigeon Point to the box edge at 38.6°N (Bodega) = southern part of the San Francisco GMA (Point Arena 38°57.5'N). Boundaries chosen so groundfish closures map 1:1 to season regions.",
+  "_method": "LOW confidence overall: built from well-documented fishery patterns (CDFW species accounts in \"California's Living Marine Resources\" and Review of Selected California Fisheries/CalCOFI reports; PFMC HMS SAFE descriptions; CDFW CRFS sampling) rather than a per-month catch dataset. No monthly RecFIN/CRFS series was downloaded. Calibrate with RecFIN CTE estimates (https://www.recfin.org) or CPFV logbooks before trusting fine month differences.",
+  "yellowtail": "SoCal spring–fall run at the islands and coast; warm years reach Monterey (rare). medium/low",
+  "white-seabass": "SoCal spring squid-spawn peak Mar–Jun (note 1-fish limit Mar 15–Jun 15 south of Pt Conception), Monterey/SF summer–fall in recent years. CDFW WSB Enhanced Status Report. low",
+  "calico-bass": "Kelp bass are a SoCal species (rare north of Pt Conception); best in warm months. low",
+  "barred-sand-bass": "Summer spawning aggregations (Jun–Aug) on sand flats (Huntington Flats, Silver Strand); CDFW barred sand bass ESR. medium",
+  "california-halibut": "Spring–summer inshore movement; SF Bay summer fishery. CDFW California halibut ESR. low",
+  "pacific-bluefin": "2012–2025 SoCal sport fishery near year-round offshore, peak May–Oct; occasional central coast. low",
+  "yellowfin-tuna": "Warm-water summer/fall visitor, mainly Jul–Oct in SoCal; very variable year to year. low",
+  "dorado": "Late summer–early fall on kelp paddies in warm years. low",
+  "striped-marlin": "SoCal season Aug–Oct (peak Sep–Oct) off San Diego/Catalina. low",
+  "swordfish": "Late summer–fall (harpoon and deep-drop) in SoCal; occasional central coast. low",
+  "shortfin-mako": "Summer peak, SoCal Bight is a mako nursery (NOAA SWFSC juvenile shark survey). low",
+  "blue-shark": "Present most of the year offshore; best spring–summer. low",
+  "pacific-bonito": "SoCal mostly year-round, best summer–fall; reaches Monterey in warm years. low",
+  "skipjack-tuna": "Only in warm summers/falls in SoCal. low",
+  "giant-sea-bass": "Occurs in SoCal but take is prohibited in California (14 CCR §28.10) → null so it is never mapped as a target.",
+  "pelagic-thresher": "Alopias pelagicus is essentially absent from California sport catches; the California thresher is the common thresher (new species \"common-thresher\").",
+  "albacore": "Offshore, irregular: in the 2020s mostly Aug–Oct off central/northern California, some summers off SoCal. PFMC HMS SAFE. low",
+  "california-barracuda": "Spring–summer schools in SoCal (CDFW barracuda species account). low",
+  "rockfish": "Available year-round; Jan–Mar boat closure handled by closures; SoCal Oct–Dec nearshore closed (limits text). low",
+  "lingcod": "Year-round availability, larger fish shallower in late fall–winter before nesting; Jan–Mar boat closure handled by closures. low",
+  "california-sheephead": "SoCal reef species, rare north of Pt Conception (range to Monterey Bay); Jan–Feb boat closure. low",
+  "common-thresher": "Spring–early summer coastal run in SoCal (Santa Monica Bay, San Diego), summer in SF Bay/Monterey (Cartamil et al. 2010; NOAA SWFSC). low",
+  "_others": "All other existing zones.js species are tropical/Gulf of California species not caught (or extremely rare) in California → null."
+ }
+}

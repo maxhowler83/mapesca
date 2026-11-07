@@ -1,0 +1,207 @@
+{
+ "juris": {
+  "us-ca": {
+   "en": "California (state and federal waters)",
+   "es": "California (aguas estatales y federales)",
+   "agency": "California Department of Fish and Wildlife (CDFW) / Fish and Game Commission; federal groundfish and HMS rules by NOAA Fisheries & PFMC (California adopts them in state rules)",
+   "url": "https://wildlife.ca.gov/Fishing/Ocean/Regulations",
+   "license": {
+    "en": "California sport fishing license required from age 16 (not needed on public piers); buy online at wildlife.ca.gov/Licensing. Fishing in Mexican waters (e.g. Coronado Islands) needs a Mexican license.",
+    "es": "Se requiere licencia de pesca deportiva de California desde los 16 años (no en muelles públicos); se compra en línea en wildlife.ca.gov/Licensing. En aguas mexicanas (p. ej. Islas Coronado) se necesita permiso mexicano."
+   },
+   "neverKeep": {
+    "en": [
+     "Giant (black) sea bass",
+     "White shark",
+     "Garibaldi",
+     "Cowcod",
+     "Yelloweye rockfish",
+     "Quillback rockfish",
+     "Bronzespotted rockfish",
+     "Gulf and broomtail grouper",
+     "Green sturgeon",
+     "Coho salmon",
+     "Steelhead (in the ocean)"
+    ],
+    "es": [
+     "Mero gigante / pescada (giant sea bass)",
+     "Tiburón blanco",
+     "Garibaldi",
+     "Cowcod (rocote vaca)",
+     "Rocote yelloweye",
+     "Rocote quillback",
+     "Rocote bronzespotted",
+     "Baya y garropa (gulf/broomtail grouper)",
+     "Esturión verde",
+     "Salmón coho",
+     "Trucha arcoíris anádroma (steelhead) en el mar"
+    ]
+   },
+   "read": "2026-11-06",
+   "version": "2026 Ocean Sport Fishing Regulations booklet, last updated Jul 17, 2026 (https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985); Groundfish Summary updated Jun 23, 2026 (https://wildlife.ca.gov/Fishing/Ocean/Regulations/Groundfish-Summary)"
+  }
+ },
+ "limits": {
+  "us-ca": {
+   "_general": {
+    "en": "General bag limit: 20 finfish total, max 10 of one species unless stated (14 CCR §27.60).",
+    "es": "Límite general: 20 peces en total, máx. 10 de una especie salvo indicación (14 CCR §27.60).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "yellowtail": {
+    "en": "10 per day; minimum 24 in fork length, except 5 may be smaller (§28.37). Fillets ≥17 in with skin.",
+    "es": "10 al día; mínimo 24 pulgadas a la horquilla, salvo 5 que pueden ser menores (§28.37). Filetes ≥17 pulgadas con piel.",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "white-seabass": {
+    "en": "3 per day; minimum 28 in total length. Only 1 per day south of Point Conception from Mar 15 to Jun 15 (§28.35).",
+    "es": "3 al día; mínimo 28 pulgadas de largo total. Solo 1 al día al sur de Point Conception del 15 mar al 15 jun (§28.35).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "calico-bass": {
+    "en": "Kelp, barred sand and spotted sand bass: 5 combined per day, minimum 14 in total length (§28.30).",
+    "es": "Calico, cabrilla de arena y spotted sand bass: 5 combinados al día, mínimo 14 pulgadas (§28.30).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "barred-sand-bass": {
+    "en": "Max 4 barred sand bass within the 5-bass combined limit; minimum 14 in total length (§28.30, in force until Jun 1, 2028).",
+    "es": "Máx. 4 cabrillas de arena dentro del límite de 5 combinadas; mínimo 14 pulgadas (§28.30, vigente hasta el 1 jun 2028).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "california-halibut": {
+    "en": "Minimum 22 in total length. 5 per day south of Point Sur, 2 per day north of Point Sur (§28.15).",
+    "es": "Mínimo 22 pulgadas. 5 al día al sur de Point Sur y 2 al norte de Point Sur (§28.15).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "pacific-bluefin": {
+    "en": "2 per day, in addition to the 20-fish general limit; no size limit (§28.38(b)).",
+    "es": "2 al día, aparte del límite general de 20; sin talla mínima (§28.38(b)).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "yellowfin-tuna": {
+    "en": "10 per day (yellowfin, bigeye and other tunas), within the 20-fish general limit (§28.38(d)).",
+    "es": "10 al día (aleta amarilla, patudo y otros atunes), dentro del límite general de 20 (§28.38(d)).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "skipjack-tuna": {
+    "en": "No limit (§28.38(c)).",
+    "es": "Sin límite (§28.38(c)).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "dorado": {
+    "en": "10 per day within the 20-fish general limit (§27.60(a)).",
+    "es": "10 al día dentro del límite general de 20 (§27.60(a)).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "striped-marlin": {
+    "en": "1 marlin per day (striped, blue, black) (§28.50).",
+    "es": "1 marlín al día (rayado, azul o negro) (§28.50).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "swordfish": {
+    "en": "2 per day (§28.40).",
+    "es": "2 al día (§28.40).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "shortfin-mako": {
+    "en": "2 per day of each species (mako, thresher, blue) (§28.42).",
+    "es": "2 al día de cada especie (mako, zorro, azul) (§28.42).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "blue-shark": {
+    "en": "2 per day (§28.42).",
+    "es": "2 al día (§28.42).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "common-thresher": {
+    "en": "2 per day (§28.42). Common thresher is a federally managed HMS species.",
+    "es": "2 al día (§28.42). Especie altamente migratoria de manejo federal.",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "pacific-bonito": {
+    "en": "10 per day; minimum 24 in fork length or 5 lb, except 5 may be smaller (§28.32).",
+    "es": "10 al día; mínimo 24 pulgadas a la horquilla o 5 libras, salvo 5 menores (§28.32).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "albacore": {
+    "en": "10 per day south of Point Conception, 25 per day north of it; in addition to the 20-fish general limit; no size limit (§28.38(a)).",
+    "es": "10 al día al sur de Point Conception y 25 al norte; aparte del límite general de 20; sin talla mínima (§28.38(a)).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "california-barracuda": {
+    "en": "10 per day within the general limit; minimum 28 in total length (§28.25).",
+    "es": "10 al día dentro del límite general; mínimo 28 pulgadas (§28.25).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "california-sheephead": {
+    "en": "2 per day; minimum 12 in total length. Boat anglers: closed Jan 1–end of Feb; shore anglers and divers year-round (§28.26).",
+    "es": "2 al día; mínimo 12 pulgadas. Desde embarcación: cerrado del 1 ene a fin de febrero; orilla y buceo todo el año (§28.26).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "giant-sea-bass": {
+    "en": "May not be taken off California; release immediately (§28.10).",
+    "es": "Prohibido capturarla en California; liberarla de inmediato (§28.10).",
+    "src": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985"
+   },
+   "rockfish": {
+    "en": "Central & San Francisco areas (north of Point Conception): Boat anglers: closed Jan 1–Mar 31; Apr 1–Dec 31 open all depths. 10 rockfish/cabezon/greenling combined (max 1 copper, 2 vermilion/sunset, 2 canary). Never keep cowcod, yelloweye, quillback, bronzespotted. Descending device required. Shore anglers and divers exempt from season/depth. Cordell Bank: no groundfish. — Southern area (Point Conception–Mexico): closed Jan 1–Mar 31; Apr 1–Jun 30 all depths; Jul 1–Sep 30 only inside 50 fathoms (300 ft); Oct 1–Dec 31 nearshore rockfish closed, shelf/slope rockfish only outside 50 fathoms. 10 RCG combined (max 1 copper, 2 vermilion/sunset, 2 canary). Closed year-round in the 8 Groundfish Exclusion Areas. Never keep cowcod, yelloweye, quillback, bronzespotted. Descending device required.",
+    "es": "Zonas Central y San Francisco (al norte de Point Conception): Desde embarcación: cerrado del 1 ene al 31 mar; del 1 abr al 31 dic abierto a toda profundidad. 10 rocotes/cabezón/greenling combinados (máx. 1 copper, 2 vermilion/sunset, 2 canary). Nunca retener cowcod, yelloweye, quillback ni bronzespotted. Obligatorio llevar dispositivo de descenso. Pesca desde orilla y buceo exentos de temporada y profundidad. Cordell Bank: sin peces de fondo. — Zona sur (Point Conception–México): cerrado del 1 ene al 31 mar; 1 abr–30 jun toda profundidad; 1 jul–30 sep solo dentro de 50 brazas (300 pies); 1 oct–31 dic rocotes costeros cerrados y de plataforma/talud solo fuera de 50 brazas. 10 RCG combinados (máx. 1 copper, 2 vermilion/sunset, 2 canary). Cerrado todo el año en las 8 zonas de exclusión. Nunca retener cowcod, yelloweye, quillback ni bronzespotted. Dispositivo de descenso obligatorio.",
+    "src": "https://wildlife.ca.gov/Fishing/Ocean/Regulations/Groundfish-Summary"
+   },
+   "lingcod": {
+    "en": "2 per day, minimum 22 in total length (§28.27). North of Point Conception: closed Jan 1–Mar 31, open all depths Apr 1–Dec 31. Southern area: closed Jan 1–Mar 31; all depths Apr 1–Jun 30; inside 50 fathoms only Jul 1–Sep 30; outside 50 fathoms only Oct 1–Dec 31. Closed in Groundfish Exclusion Areas and Cordell Bank.",
+    "es": "2 al día, mínimo 22 pulgadas (§28.27). Al norte de Point Conception: cerrado 1 ene–31 mar, abierto a toda profundidad 1 abr–31 dic. Zona sur: cerrado 1 ene–31 mar; toda profundidad 1 abr–30 jun; solo dentro de 50 brazas 1 jul–30 sep; solo fuera de 50 brazas 1 oct–31 dic. Cerrado en zonas de exclusión y Cordell Bank.",
+    "src": "https://wildlife.ca.gov/Fishing/Ocean/Regulations/Groundfish-Summary"
+   }
+  }
+ },
+ "closures": [
+  {
+   "k": "groundfish-winter-ca",
+   "species": [
+    "rockfish",
+    "lingcod"
+   ],
+   "regions": [
+    "us-socal",
+    "us-central",
+    "us-norcal"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     3,
+     31
+    ]
+   ],
+   "en": "Groundfish closed to boat anglers Jan 1 – Mar 31 (rockfish, lingcod, cabezon, greenlings). Shore anglers and divers exempt.",
+   "es": "Peces de fondo cerrados para embarcaciones del 1 ene al 31 mar (rocotes, lingcod, cabezón, greenling). Pesca desde orilla y buceo exentos.",
+   "source": "https://wildlife.ca.gov/Fishing/Ocean/Regulations/Groundfish-Summary (updated Jun 23, 2026; 14 CCR §§27.35, 27.40, 27.45)",
+   "conf": "high"
+  },
+  {
+   "k": "sheephead-winter-ca",
+   "species": [
+    "california-sheephead"
+   ],
+   "regions": [
+    "us-socal",
+    "us-central",
+    "us-norcal"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     2,
+     29
+    ]
+   ],
+   "en": "California sheephead closed to boat anglers Jan 1 – end of February (shore anglers and divers exempt).",
+   "es": "Vieja de California cerrada para embarcaciones del 1 ene a fin de febrero (orilla y buceo exentos).",
+   "source": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985 (14 CCR §28.26)",
+   "conf": "high"
+  }
+ ]
+}

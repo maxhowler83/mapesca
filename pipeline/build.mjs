@@ -140,7 +140,7 @@ async function buildRegion(reg, dir, areas, now, offline) {
     const inshore = sp.g === 'inshore';
     const z = scoreZones({ ...sp, season }, conditions, null, now, { bathy: inshore ? coast : bathy, reach: reachFromPorts });
     const closed = maskProtected(z, areas, sp.k);
-    const vedaNow = !!closureFor(sp.k, now, overview);
+    const cl = closureFor(sp.k, now, overview), vedaNow = !!cl && !cl.cr; // cr = release only: zones stay
     if (vedaNow) z.v = z.v.map(row => row.map(x => (x == null ? null : 0)));
     const counts = { elite: 0, priority: 0, candidate: 0 };
     for (const row of z.v) for (const x of row) { if (!x) continue; const t = TIERS.find(t => x >= z.cut[t.k]); if (t) counts[t.k]++; }
@@ -229,6 +229,7 @@ async function main() {
       es: 'La puntuación indica qué tan bien el agua de hoy le queda a cada especie. No es un pronóstico de captura. Revisa el clima y el estado del puerto antes de salir, y respeta las reglas de las áreas protegidas.',
     },
     rules: { source: LIMITS_SOURCE, sharkVeda: SHARK_VEDA, closures: CLOSURES, neverKeep: NEVER_KEEP, juris: JURIS,
+      limitsGeneral: Object.fromEntries(Object.entries(LIMITS_BY_J).filter(([, m]) => m._general).map(([j, m]) => [j, m._general])),
       reserved50nm: { en: 'Billfish, dorado, roosterfish and tarpon are reserved for sport fishing within 50 nautical miles of the coast.', es: 'Picudos, dorado, pez gallo y sábalo están reservados a la pesca deportiva dentro de 50 millas náuticas de la costa.' },
       disclaimer: { en: 'Summary only. Official NOM and DOF texts always win; you need a valid sport-fishing license.', es: 'Solo es un resumen. Mandan los textos oficiales de las NOM y el DOF; necesitas un permiso de pesca deportiva vigente.' } },
     attribution: [

@@ -1,0 +1,222 @@
+{
+ "blue-marlin": {
+  "bahamas": "001233321100",
+  "cuba": "000123333210",
+  "carib-west": "111222223321",
+  "carib-east": "122223333221"
+ },
+ "white-marlin": {
+  "bahamas": "001232100000",
+  "cuba": "001232100000",
+  "carib-west": "001110000000",
+  "carib-east": "002332100000"
+ },
+ "pacific-sailfish": {
+  "bahamas": "332110000123",
+  "cuba": "222210000122",
+  "carib-west": "222210000112",
+  "carib-east": "332110000112"
+ },
+ "swordfish": {
+  "bahamas": "111111111111",
+  "cuba": "111111111111",
+  "carib-west": "111111111111",
+  "carib-east": "111111111111"
+ },
+ "yellowfin-tuna": {
+  "bahamas": "111233221111",
+  "cuba": "111122221111",
+  "carib-west": "222332111222",
+  "carib-east": "111222111111"
+ },
+ "blackfin-tuna": {
+  "bahamas": "222332222222",
+  "cuba": "222222222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "skipjack-tuna": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "dorado": {
+  "bahamas": "123332111111",
+  "cuba": "123332111111",
+  "carib-west": "233321111122",
+  "carib-east": "233321111112"
+ },
+ "wahoo": {
+  "bahamas": "333211111233",
+  "cuba": "332111111233",
+  "carib-west": "333211111233",
+  "carib-east": "333211111233"
+ },
+ "king-mackerel": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "111111111111",
+  "carib-east": "222222222222"
+ },
+ "cero": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "tarpon": {
+  "bahamas": "111222222111",
+  "cuba": "112333332211",
+  "carib-west": "111222222111",
+  "carib-east": "222222222222"
+ },
+ "common-snook": {
+  "bahamas": "111111111111",
+  "cuba": "222222222222",
+  "carib-west": "111111111111",
+  "carib-east": "222222222222"
+ },
+ "permit": {
+  "bahamas": "222222222222",
+  "cuba": "222333322222",
+  "carib-west": "222222222222",
+  "carib-east": "111111111111"
+ },
+ "bonefish": {
+  "bahamas": "233332223332",
+  "cuba": "233333333332",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "great-barracuda": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "mutton-snapper": {
+  "bahamas": "222333222222",
+  "cuba": "222333222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "black-grouper": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "red-grouper": {
+  "bahamas": "111111111111",
+  "cuba": "222222222222",
+  "carib-west": "111111111111",
+  "carib-east": "111111111111"
+ },
+ "goliath-grouper": {
+  "bahamas": "111111111111",
+  "cuba": "111111111111",
+  "carib-west": "111111111111",
+  "carib-east": "111111111111"
+ },
+ "greater-amberjack": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "111111111111",
+  "carib-east": "111111111111"
+ },
+ "almaco-jack": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "atlantic-jack": {
+  "bahamas": "222222222222",
+  "cuba": "222222222222",
+  "carib-west": "222222222222",
+  "carib-east": "222222222222"
+ },
+ "cobia": {
+  "bahamas": "111111111111",
+  "cuba": "111111111111",
+  "carib-west": null,
+  "carib-east": null
+ },
+ "bull-shark": {
+  "bahamas": "222222222222",
+  "cuba": "111111111111",
+  "carib-west": "111111111111",
+  "carib-east": "111111111111"
+ },
+ "silky-shark": {
+  "bahamas": "111111111111",
+  "cuba": "111111111111",
+  "carib-west": "111111111111",
+  "carib-east": "111111111111"
+ },
+ "shortfin-mako": {
+  "bahamas": null,
+  "cuba": null,
+  "carib-west": null,
+  "carib-east": null
+ },
+ "blue-shark": {
+  "bahamas": null,
+  "cuba": null,
+  "carib-west": null,
+  "carib-east": null
+ },
+ "spanish-mackerel": {
+  "bahamas": null,
+  "cuba": null,
+  "carib-west": null,
+  "carib-east": null
+ },
+ "red-drum": {
+  "bahamas": null,
+  "cuba": null,
+  "carib-west": null,
+  "carib-east": null
+ },
+ "red-snapper": {
+  "bahamas": null,
+  "cuba": null,
+  "carib-west": null,
+  "carib-east": null
+ },
+ "yellowtail-snapper": {
+  "bahamas": "222333332222",
+  "cuba": "222333222222",
+  "carib-west": "222222222222",
+  "carib-east": "222333222222"
+ },
+ "_regions": {
+  "bahamas": "Bahamas (Bimini, Abaco, Nassau/Berry Islands/Eleuthera). Gulf Stream and Tongue of the Ocean pelagics; spring billfish run.",
+  "cuba": "Cuba north coast (Havana–Varadero) and Jardines de la Reina. Summer blue marlin on the north coast; flats/tarpon in the south.",
+  "carib-west": "Western Caribbean islands: Cayman Islands and Jamaica. Spring and autumn blue marlin, winter wahoo/dolphin.",
+  "carib-east": "Mona Passage and Virgin Islands: eastern Dominican Republic, Puerto Rico, USVI, BVI. Summer blue marlin (North Drop Aug), spring white marlin (Cap Cana Apr–May), winter dolphin/wahoo/sailfish."
+ },
+ "_sources": {
+  "_all": "LOW confidence overall: built from tournament calendars, charter/fishing-press reports and general knowledge; no published monthly catch-rate data were found for these islands. Tune with captains' reports.",
+  "blue-marlin": "Bahamas: bluewater season Mar–early Jul (Sport Fishing Mag, Bimini: https://www.sportfishingmag.com/story/travel/bimini-the-original-island-in-the-stream/). Cuba: Hemingway tournament held May/June (https://en.wikipedia.org/wiki/Ernest_Hemingway_International_Billfishing_Tournament), north-coast peak Aug–Sep (low). Jamaica: Port Antonio International Marlin Tournament Sep/Oct (Jamaica Gleaner 2024/2025, e.g. https://web4.jamaica-gleaner.com/article/sports/20240914/all-set-september-23-28-port-antonio-international-marlin-tournament). East: Cap Cana peak Jun–Aug, Casa de Campo Feb–Apr (Marlin Mag https://www.marlinmag.com/travel/marlin-fishing-in-dominican-republic-cap-cana-casa-de-campo/); USVI North Drop: big tournaments on the July and August full moons (https://virginislandsthisweek.com/st-thomas/st-thomas-water-activities/summer-sportfishing-season/); San Juan International Billfish Tournament late Aug/Sep (low).",
+  "white-marlin": "Cap Cana: Mar–Jun, best Apr–May (Marlin Mag, above). Bahamas spring (low). Rare in Cayman/Jamaica (low).",
+  "pacific-sailfish": "Atlantic sailfish (the app uses one key for both oceans). DR: Jan–Feb excellent (Marlin Mag). Bahamas/Cuba: winter along the Gulf Stream/Straits (low).",
+  "swordfish": "Deep-drop daytime fishery exists (Bahamas, Cuba, PR) but little documented — flat 1 (low).",
+  "yellowfin-tuna": "Bahamas spring run May–Jun (Bimini/Cat Cay, low); Cayman spring and Jamaica winter (low).",
+  "dorado": "Winter–spring peak Jan–May across the region (PR/USVI/DR charter reports; low).",
+  "wahoo": "Bimini: Nov–Mar run (Sport Fishing Mag). Same winter peak used elsewhere (low).",
+  "tarpon": "Jardines de la Reina: spring–summer (low). San Juan lagoons year-round (low).",
+  "bonefish": "Bahamas flats year-round (Sport Fishing Mag, Bimini); spring/fall peaks (low).",
+  "mutton-snapper": "Seasons are availability only; closures are applied separately (USVI Apr–Jun, PR Apr–May territorial / Apr–Jun federal).",
+  "black-grouper": "Availability only; USVI closure Feb–Apr applied separately; PR closure is federal-only (see rules.json limits).",
+  "cobia": "Listed by the Bahamas Ministry of Tourism as a flats species; occasional elsewhere (low).",
+  "bull-shark": "Bahamas: all shark fishing banned — closure in rules.json zeroes it there.",
+  "shortfin-mako": "null: retention prohibited in US Caribbean waters (NOAA HMS 2026), sharks fully protected in The Bahamas, ICCAT North Atlantic non-retention; rare in these warm surface waters. Recommend not mapping here.",
+  "blue-shark": "null: rare in warm Caribbean surface waters; not a sport target here.",
+  "spanish-mackerel": "null: S. maculatus is a US/Gulf species; island \"sierras\" here are cero and king mackerel.",
+  "red-drum": "null: not found in the islands.",
+  "red-snapper": "null: Lutjanus campechanus is a Gulf/US species; the islands' \"red snappers\" are other species (silk, blackfin).",
+  "yellowtail-snapper": "New species. Year-round reef staple; spring–summer spawning peaks (SEDAR 64; FishBase). Bahamas has a designated yellowtail snapper spawning site (Steven's Rock)."
+ }
+}

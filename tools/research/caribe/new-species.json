@@ -1,0 +1,63 @@
+[
+ {
+  "k": "yellowtail-snapper",
+  "g": "inshore",
+  "en": "Yellowtail snapper",
+  "es": "Rubia (pargo cola amarilla)",
+  "temp": [
+   19,
+   23,
+   30,
+   32
+  ],
+  "depth": [
+   3,
+   10,
+   70,
+   180
+  ],
+  "chl": [
+   0.08,
+   1.0
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "conf": "low",
+   "limit": "general",
+   "beta": true,
+   "src": [
+    "FishBase, Ocyurus chrysurus: reef-associated, depth 0–180 m, usually 10–70 m; most common in the Bahamas, south Florida and the Caribbean; spawns year-round with regional peaks (https://www.fishbase.se/summary/Ocyurus-chrysurus.html)",
+    "SEDAR 64 Southeastern U.S. yellowtail snapper assessment (2020): spawning peaks late spring–summer in Florida (https://sedarweb.org/assessments/sedar-64/) — temperature profile ESTIMATED (tropical reef fish, cold-sensitive below ~19–20 °C); tune with catches"
+   ],
+   "oceans": "atl"
+  },
+  "why": "Most-landed reef sport/food fish in the Bahamas, Puerto Rico and the Virgin Islands; has its own size limit in US Caribbean federal waters (12 in TL) and Puerto Rico (10.5 in)."
+ }
+]

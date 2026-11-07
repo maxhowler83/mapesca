@@ -1,0 +1,234 @@
+[
+ {
+  "k": "spotted-seatrout",
+  "g": "inshore",
+  "en": "Spotted seatrout",
+  "es": "Trucha pinta (corvina pinta)",
+  "temp": [
+   10,
+   15,
+   28,
+   33
+  ],
+  "depth": [
+   0,
+   0.5,
+   5,
+   15
+  ],
+  "chl": [
+   1,
+   15
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "spawn": [
+   0,
+   0,
+   1,
+   2,
+   2,
+   2,
+   2,
+   2,
+   1,
+   0,
+   0,
+   0
+  ],
+  "conf": "medium",
+  "limit": "see rules.json",
+  "beta": true,
+  "src": [
+   "FishBase Cynoscion nebulosus lists depth \"10 – ? m\", which does not fit its known habitat; depth here from its estuarine/grass-flat habitat (0.5–3 m, winter holes to ~10 m) — medium-low confidence · https://fishbase.se/summary/Cynoscion-nebulosus.html",
+   "FWC spotted seatrout species profile (spawning spring–early fall in estuaries) · https://myfwc.com/wildlifehabitats/profiles/saltwater/seatrout/ (not re-read for this report)",
+   "Temperature range: judgment from its estuarine range (cold-kills below ~5 °C documented in Texas/Florida); not a FishBase field — low confidence"
+  ]
+ },
+ {
+  "k": "gag-grouper",
+  "g": "inshore",
+  "en": "Gag grouper",
+  "es": "Abadejo (gag)",
+  "temp": [
+   12,
+   16,
+   28,
+   31
+  ],
+  "depth": [
+   1,
+   10,
+   80,
+   160
+  ],
+  "chl": [
+   0.1,
+   2
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "spawn": [
+   1,
+   2,
+   2,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "conf": "high",
+  "limit": "see rules.json",
+  "beta": true,
+  "src": [
+   "FishBase Mycteroperca microlepis: adults 30–160 m; juveniles in seagrass/estuaries (so min 1 m) · https://fishbase.se/summary/Mycteroperca-microlepis.html",
+   "Coleman et al. 1996, Env. Biol. Fish. 47: spawning Jan–Apr, peak Feb–Mar, shelf-edge aggregations (eastern Gulf)",
+   "Temperature: judgment (warm-temperate/subtropical range) — low confidence"
+  ]
+ },
+ {
+  "k": "gray-snapper",
+  "g": "inshore",
+  "en": "Gray (mangrove) snapper",
+  "es": "Pargo prieto del Atlántico (mangrove)",
+  "temp": [
+   14,
+   20,
+   31,
+   33
+  ],
+  "depth": [
+   0,
+   1,
+   40,
+   180
+  ],
+  "chl": [
+   0.2,
+   5
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "spawn": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   2,
+   2,
+   1,
+   0,
+   0,
+   0
+  ],
+  "conf": "medium",
+  "limit": "see rules.json",
+  "beta": true,
+  "src": [
+   "FishBase Lutjanus griseus: depth 5–180 m; \"spawning in summer near the full moon\"; juveniles in mangroves/estuaries (so min 0 m) · https://fishbase.se/summary/Lutjanus-griseus.html",
+   "Domeier, Koenig & Coleman 1996; Allman & Grimes 2002 (Fish. Bull.): spawning Jun–Sep, peak Jul, Florida Keys/NE Gulf",
+   "Temperature: judgment — low confidence"
+  ]
+ },
+ {
+  "k": "yellowtail-snapper",
+  "g": "inshore",
+  "en": "Yellowtail snapper",
+  "es": "Rabirrubia",
+  "temp": [
+   20,
+   23,
+   30,
+   32
+  ],
+  "depth": [
+   1,
+   10,
+   70,
+   180
+  ],
+  "chl": [
+   0.05,
+   1
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "spawn": [
+   0,
+   0,
+   0,
+   1,
+   2,
+   2,
+   2,
+   1,
+   1,
+   0,
+   0,
+   0
+  ],
+  "conf": "medium",
+  "limit": "see rules.json",
+  "beta": true,
+  "src": [
+   "FishBase Ocyurus chrysurus: reef-associated, depth 0–180 m; spawning year-round with regional peaks · https://fishbase.se/summary/Ocyurus-chrysurus.html",
+   "Muller, Murphy et al. 2003, FWC yellowtail snapper assessment: spawning Apr–Sep, peak May–Jul (Florida Keys)",
+   "Temperature: judgment (tropical reef fish; Keys cold-water stress <~18 °C) — low confidence"
+  ]
+ }
+]

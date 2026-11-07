@@ -1,0 +1,1347 @@
+{
+ "juris": {
+  "us-tx": {
+   "en": "Texas",
+   "es": "Texas",
+   "agency": "Texas Parks and Wildlife Department (TPWD); federal waters beyond 9 nm: NOAA Fisheries / Gulf Council / HMS",
+   "url": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/",
+   "license": {
+    "en": "Texas fishing license with saltwater endorsement, needed to land fish from state or federal waters; red drum and seatrout over-slot only with the license tag; federal HMS Angling permit for tunas, billfish, swordfish and sharks in federal waters.",
+    "es": "Licencia de pesca de Texas con endoso de agua salada, también para desembarcar peces de aguas federales; corvina roja y trucha fuera del rango solo con la etiqueta de la licencia; permiso federal HMS Angling para atunes, picudos, pez espada y tiburones en aguas federales."
+   },
+   "neverKeep": {
+    "en": [
+     "Goliath grouper",
+     "Nassau grouper",
+     "Shortfin mako, silky, sandbar, dusky, oceanic whitetip, white, whale, basking and the other TPWD-prohibited sharks"
+    ],
+    "es": [
+     "Mero guasa (goliat)",
+     "Mero de Nassau",
+     "Mako, tiburón piloto (silky), trozo, oscuro, oceánico, blanco, ballena, peregrino y demás tiburones prohibidos por TPWD"
+    ]
+   },
+   "read": "2026-11-06"
+  },
+  "us-la": {
+   "en": "Louisiana",
+   "es": "Luisiana",
+   "agency": "Louisiana Department of Wildlife and Fisheries (LDWF); federal waters: NOAA Fisheries / Gulf Council / HMS",
+   "url": "https://wlf.louisiana.gov/fishing/saltwater-seasons-limits",
+   "license": {
+    "en": "Louisiana basic + saltwater fishing license; free Recreational Offshore Landing Permit (ROLP) to possess tunas, billfish, swordfish, reef fish, dolphin, wahoo, cobia and others; HMS Angling permit in federal waters.",
+    "es": "Licencia básica + de agua salada de Luisiana; permiso gratuito ROLP para tener atunes, picudos, pez espada, peces de arrecife, dorado, peto y cobia, entre otros; permiso HMS Angling en aguas federales."
+   },
+   "neverKeep": {
+    "en": [
+     "Goliath grouper",
+     "Nassau grouper",
+     "Shortfin mako and the other LDWF-prohibited sharks; sandbar and silky sharks",
+     "Red drum in federal waters (harvest prohibited in the EEZ)"
+    ],
+    "es": [
+     "Mero guasa (goliat)",
+     "Mero de Nassau",
+     "Mako y demás tiburones prohibidos por LDWF; tiburón trozo y piloto (silky)",
+     "Corvina roja en aguas federales (prohibida su captura en la ZEE)"
+    ]
+   },
+   "read": "2026-11-06"
+  },
+  "us-ms": {
+   "en": "Mississippi",
+   "es": "Misisipi",
+   "agency": "Mississippi Department of Marine Resources (MDMR); federal waters: NOAA Fisheries / Gulf Council / HMS",
+   "url": "https://dmr.ms.gov/recreational-catch-limits/",
+   "license": {
+    "en": "Mississippi saltwater license; Mississippi Recreational Offshore Landing Permit (MS-ROLP) to land reef fish and cobia; red snapper trips reported through Tails n' Scales; HMS Angling permit in federal waters.",
+    "es": "Licencia de agua salada de Misisipi; permiso MS-ROLP para desembarcar peces de arrecife y cobia; los viajes de huachinango se reportan en Tails n' Scales; permiso HMS Angling en aguas federales."
+   },
+   "neverKeep": {
+    "en": [
+     "Goliath grouper",
+     "Nassau grouper",
+     "Silky, sandbar, dusky and the other MDMR-prohibited sharks",
+     "Shortfin mako: zero retention in federal waters (MDMR's state table still lists it — rare in state waters)"
+    ],
+    "es": [
+     "Mero guasa (goliat)",
+     "Mero de Nassau",
+     "Tiburón piloto (silky), trozo, oscuro y demás tiburones prohibidos por MDMR",
+     "Mako: retención cero en aguas federales (la tabla estatal de MDMR aún lo incluye; es raro en aguas estatales)"
+    ]
+   },
+   "read": "2026-11-06"
+  },
+  "us-al": {
+   "en": "Alabama",
+   "es": "Alabama",
+   "agency": "Alabama DCNR Marine Resources Division; federal waters: NOAA Fisheries / Gulf Council / HMS",
+   "url": "https://www.outdooralabama.com/mrd-season-closures-notices-and-updates",
+   "license": {
+    "en": "Alabama saltwater license (or Saltwater Angler Registry); Reef Fish Endorsement for reef fish; report red snapper, amberjack and triggerfish through Snapper Check; HMS Angling permit in federal waters.",
+    "es": "Licencia de agua salada de Alabama (o registro de pescadores); endoso de peces de arrecife; reportar huachinango, medregal y pez ballesta en Snapper Check; permiso HMS Angling en aguas federales."
+   },
+   "neverKeep": {
+    "en": [
+     "Goliath grouper",
+     "Nassau grouper",
+     "Shortfin mako, longfin mako, dusky, sandbar, white, whale, basking, sand tiger and the other Alabama-prohibited sharks",
+     "Sawfish, spotted eagle ray, Atlantic manta"
+    ],
+    "es": [
+     "Mero guasa (goliat)",
+     "Mero de Nassau",
+     "Mako, mako aleta larga, oscuro, trozo, blanco, ballena, peregrino, toro arenero y demás tiburones prohibidos en Alabama",
+     "Pez sierra, chucho pintado, manta"
+    ]
+   },
+   "read": "2026-11-06"
+  },
+  "us-fl-gulf": {
+   "en": "Florida (Gulf coast)",
+   "es": "Florida (costa del Golfo)",
+   "agency": "Florida Fish and Wildlife Conservation Commission (FWC); federal waters: NOAA Fisheries / Gulf Council / HMS",
+   "url": "https://myfwc.com/fishing/saltwater/recreational/",
+   "license": {
+    "en": "Florida saltwater license; free State Reef Fish Angler designation (renew yearly) for reef fish from a private boat; snook permit to keep snook; HMS Angling permit for billfish, swordfish and sharks in federal waters and for tunas everywhere.",
+    "es": "Licencia de agua salada de Florida; registro gratuito State Reef Fish Angler (anual) para peces de arrecife desde embarcación privada; permiso de robalo para quedarte robalo; permiso HMS Angling para picudos, pez espada y tiburones en aguas federales y para atunes en todas partes."
+   },
+   "neverKeep": {
+    "en": [
+     "Nassau grouper",
+     "Goliath grouper (except ~200 lottery permits a year, Mar 1–May 31, 24–36 in, state waters only)",
+     "Bonefish (catch-and-release only)",
+     "Tarpon (catch-and-release; one $50 tag a year only for a record attempt)",
+     "Shortfin mako, silky, sandbar, dusky, tiger, lemon, great/scalloped/smooth hammerhead and the other FWC-prohibited sharks",
+     "Giant manta ray, spotted eagle ray, sawfish"
+    ],
+    "es": [
+     "Mero de Nassau",
+     "Mero guasa (salvo ~200 permisos por sorteo al año, 1 mar–31 may, 61–91 cm, solo aguas estatales)",
+     "Macabí (solo captura y liberación)",
+     "Sábalo (captura y liberación; una etiqueta al año solo para intentar récord)",
+     "Mako, piloto (silky), trozo, oscuro, tigre, limón, martillos y demás tiburones prohibidos por FWC",
+     "Manta gigante, chucho pintado, pez sierra"
+    ]
+   },
+   "read": "2026-11-06"
+  },
+  "us-fl-keys": {
+   "en": "Florida Keys (Monroe County)",
+   "es": "Cayos de Florida (condado Monroe)",
+   "agency": "FWC (Monroe County follows Atlantic grouper/amberjack rules and Gulf king mackerel rules); NOAA Florida Keys NMS zones; federal waters: South Atlantic and Gulf councils / HMS",
+   "url": "https://myfwc.com/fishing/saltwater/recreational/",
+   "license": {
+    "en": "Same as Florida; also the sanctuary zones (no-take SPAs and reserves) and Dry Tortugas National Park rules.",
+    "es": "Igual que Florida; además las zonas del santuario (áreas de no pesca) y las reglas del Parque Nacional Dry Tortugas."
+   },
+   "neverKeep": {
+    "en": [
+     "Nassau grouper",
+     "Goliath grouper (no lottery harvest in the Atlantic Keys, Dry Tortugas NP or any federal waters)",
+     "Bonefish",
+     "Tarpon (except record tag)",
+     "Shortfin mako, silky and the other FWC-prohibited sharks"
+    ],
+    "es": [
+     "Mero de Nassau",
+     "Mero guasa (sin captura por sorteo en los Cayos del lado Atlántico, Dry Tortugas ni aguas federales)",
+     "Macabí",
+     "Sábalo (salvo etiqueta de récord)",
+     "Mako, piloto (silky) y demás tiburones prohibidos por FWC"
+    ]
+   },
+   "read": "2026-11-06"
+  },
+  "us-fl-atl": {
+   "en": "Florida (Atlantic coast)",
+   "es": "Florida (costa Atlántica)",
+   "agency": "FWC; federal waters: NOAA Fisheries / South Atlantic Council / HMS",
+   "url": "https://myfwc.com/fishing/saltwater/recreational/",
+   "license": {
+    "en": "Same as Florida Gulf; Atlantic red snapper is state-managed under an Exempted Fishing Permit (2026) with State Reef Fish Angler designation required.",
+    "es": "Igual que Florida Golfo; el huachinango del Atlántico lo maneja el estado con un permiso de pesca exento (2026) y requiere el registro State Reef Fish Angler."
+   },
+   "neverKeep": {
+    "en": [
+     "Nassau grouper",
+     "Goliath grouper (no lottery harvest from Martin County south or in federal waters)",
+     "Bonefish",
+     "Tarpon (except record tag)",
+     "Red drum in the Indian River Lagoon region (catch-and-release only)",
+     "Shortfin mako, silky and the other FWC-prohibited sharks",
+     "Warsaw grouper and speckled hind in federal waters"
+    ],
+    "es": [
+     "Mero de Nassau",
+     "Mero guasa (sin captura por sorteo del condado Martin al sur ni en aguas federales)",
+     "Macabí",
+     "Sábalo (salvo etiqueta de récord)",
+     "Corvina roja en la región Indian River Lagoon (solo captura y liberación)",
+     "Mako, piloto (silky) y demás tiburones prohibidos por FWC",
+     "Mero Warsaw y mero pintado (speckled hind) en aguas federales"
+    ]
+   },
+   "read": "2026-11-06"
+  },
+  "us-federal": {
+   "en": "US federal waters (Gulf EEZ, South Atlantic EEZ, Atlantic HMS)",
+   "es": "Aguas federales de EE. UU. (ZEE del Golfo, ZEE del Atlántico Sur, HMS)",
+   "agency": "NOAA Fisheries (SERO, HMS); Gulf of America and South Atlantic Fishery Management Councils",
+   "url": "https://www.ecfr.gov/current/title-50/chapter-VI/part-622",
+   "license": {
+    "en": "HMS Angling permit for tunas, billfish, swordfish and sharks; landed billfish/swordfish reported within 24 h; DESCEND Act: descending device or venting tool ready when reef fishing; circle hooks with natural bait for reef fish and sharks. Not used by any chip — reference for all areas offshore of state waters (TX/FL Gulf 9 nm; LA/MS/AL 3 nm except reef fish 9 nm; FL Atlantic 3 nm).",
+    "es": "Permiso HMS Angling para atunes, picudos, pez espada y tiburones; reportar picudos y pez espada en 24 h; ley DESCEND: dispositivo de descenso o ventilación listo al pescar en arrecife; anzuelo circular con carnada natural. Referencia para aguas federales (más allá de 9 mn en TX/FL Golfo; 3 mn en LA/MS/AL salvo peces de arrecife 9 mn; 3 mn en FL Atlántico)."
+   },
+   "neverKeep": {
+    "en": [
+     "Shortfin mako (zero retention, all Atlantic/Gulf federal waters since July 2022)",
+     "Silky shark and sandbar shark (recreational)",
+     "Dusky, night, oceanic whitetip, white, whale, basking, sand tiger, bignose, Caribbean reef, Galapagos, longfin mako and the other federally prohibited sharks",
+     "Nassau grouper",
+     "Goliath grouper",
+     "Longbill spearfish",
+     "Giant manta ray; smalltooth and largetooth sawfish"
+    ],
+    "es": [
+     "Tiburón mako (retención cero en aguas federales del Atlántico y Golfo desde julio de 2022)",
+     "Tiburón piloto (silky) y tiburón trozo (sandbar) en pesca recreativa",
+     "Tiburón oscuro, nocturno, oceánico de puntas blancas, blanco, ballena, peregrino, toro arenero, y los demás tiburones prohibidos por la ley federal",
+     "Mero de Nassau",
+     "Mero guasa (goliat)",
+     "Marlín pico largo (longbill spearfish)",
+     "Manta gigante; pez sierra"
+    ]
+   },
+   "read": "2026-11-06"
+  }
+ },
+ "limits": {
+  "us-tx": {
+   "red-snapper": {
+    "en": "State waters (to 9 nm): open all year, 4/day, 15 in min. Federal waters: private anglers opened May 22, 2026, 2/day, 16 in min; closing date set by TPWD (still open Oct 23).",
+    "es": "Aguas estatales (hasta 9 mn): abierto todo el año, 4/día, mín. 38 cm. Aguas federales: abrió el 22 may 2026, 2/día, mín. 41 cm; TPWD anunciará el cierre (seguía abierto el 23 oct).",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/red-snapper/"
+   },
+   "red-drum": {
+    "en": "3/day, 20–28 in; one over 28 in per license year with the Red Drum Tag (+1 bonus tag). No red drum may be kept in federal waters.",
+    "es": "3/día, 51–71 cm; uno mayor de 71 cm por año con la etiqueta de la licencia (+1 etiqueta extra). En aguas federales no se puede retener.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/drum-bag-length-limits"
+   },
+   "spotted-seatrout": {
+    "en": "3/day, 15–20 in; one over 28 in per year with the Spotted Seatrout Tag (+1 bonus tag).",
+    "es": "3/día, 38–51 cm; una mayor de 71 cm al año con etiqueta (+1 extra).",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/seatrout-bag-length-limits"
+   },
+   "common-snook": {
+    "en": "1/day, 24–28 in slot.",
+    "es": "1/día, rango 61–71 cm.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/snook-bag-length-limits"
+   },
+   "tarpon": {
+    "en": "1 per year, 85 in minimum, with a Tarpon Tag.",
+    "es": "1 al año, mín. 216 cm, con etiqueta de sábalo.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/tarpon-bag-length-limits"
+   },
+   "cobia": {
+    "en": "1/day, 40 in minimum (state rule, stricter than federal 36 in FL).",
+    "es": "1/día, mín. 102 cm (regla estatal, más estricta que la federal).",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/cobia-bag-length-limits"
+   },
+   "king-mackerel": {
+    "en": "3/day, 27 in TL minimum.",
+    "es": "3/día, mín. 69 cm.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/mackerel-bag-length-limits"
+   },
+   "spanish-mackerel": {
+    "en": "15/day, 14 in minimum.",
+    "es": "15/día, mín. 36 cm.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/mackerel-bag-length-limits"
+   },
+   "greater-amberjack": {
+    "en": "1/day, 38 in minimum (state). Federal waters: open Sep 1 – Oct 13, 2026 only, 34 in FL.",
+    "es": "1/día, mín. 97 cm (estatal). Aguas federales: solo del 1 sep al 13 oct 2026, mín. 86 cm LH.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/amberjack-bag-length-limits"
+   },
+   "gag-grouper": {
+    "en": "State: 2/day, 24 in. Federal waters: open Sep 1–30, 2026 only.",
+    "es": "Estatal: 2/día, 61 cm. Aguas federales: solo del 1 al 30 sep 2026.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/grouper-bag-length-limits"
+   },
+   "pacific-sailfish": {
+    "en": "Sailfish 84 in min; blue marlin 131 in; white marlin 86 in (Texas minimums, stricter than federal 63/99/66 in).",
+    "es": "Pez vela mín. 213 cm; marlín azul 333 cm; marlín blanco 218 cm (mínimos de Texas, más estrictos que los federales).",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/sailfish-bag-length-limits"
+   },
+   "bull-shark": {
+    "en": "1 shark/day total; 64 in minimum for bull and other large sharks; circle hooks required.",
+    "es": "1 tiburón/día en total; mín. 163 cm para toro y otros grandes; anzuelo circular obligatorio.",
+    "src": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/shark-bag-length-limits"
+   }
+  },
+  "us-la": {
+   "red-snapper": {
+    "en": "4/day, 16 in. 2026 private/state-charter season: May 1 – Aug 9, Aug 27–30, Sep 4–7; closed until further notice. Applies in state and federal waters off Louisiana.",
+    "es": "4/día, 41 cm. Temporada 2026: 1 may–9 ago, 27–30 ago, 4–7 sep; cerrada hasta nuevo aviso. Aplica en aguas estatales y federales frente a Luisiana.",
+    "src": "https://www.wlf.louisiana.gov/news/rec-red-snapper-season-reopens-for-two-fourday-periods"
+   },
+   "spotted-seatrout": {
+    "en": "15/day, 13–20 in, no more than 2 over 20 in.",
+    "es": "15/día, 33–51 cm, máximo 2 mayores de 51 cm.",
+    "src": "https://wlf.louisiana.gov/fishing/saltwater-seasons-limits"
+   },
+   "red-drum": {
+    "en": "4/day, 18–27 in, none over 27 in. No take in federal waters.",
+    "es": "4/día, 46–69 cm, ninguna mayor. Prohibida en aguas federales.",
+    "src": "https://wlf.louisiana.gov/fishing/saltwater-seasons-limits"
+   },
+   "cobia": {
+    "en": "1/person, 2/vessel, 36 in FL.",
+    "es": "1/persona, 2/embarcación, 91 cm LH.",
+    "src": "https://wlf.louisiana.gov/fishing/saltwater-seasons-limits"
+   },
+   "greater-amberjack": {
+    "en": "1/day, 34 in FL; open Sep 1 – Oct 13, 2026.",
+    "es": "1/día, 86 cm LH; abierto del 1 sep al 13 oct 2026.",
+    "src": "https://wlf.louisiana.gov/fishing/saltwater-seasons-limits"
+   },
+   "gag-grouper": {
+    "en": "2/day, 24 in; federal season Sep 1–30, 2026 (LDWF page lists the state season differently — check).",
+    "es": "2/día, 61 cm; temporada federal 1–30 sep 2026 (la página de LDWF muestra otra fecha para aguas estatales — verifica).",
+    "src": "https://wlf.louisiana.gov/fishing/saltwater-seasons-limits"
+   },
+   "yellowfin-tuna": {
+    "en": "3/day, 27 in curved fork length; ROLP required.",
+    "es": "3/día, 69 cm; requiere ROLP.",
+    "src": "https://wlf.louisiana.gov/fishing/saltwater-seasons-limits"
+   }
+  },
+  "us-ms": {
+   "red-snapper": {
+    "en": "2/day, 16 in. 2026: May 22 – Jul 5 daily; reopened Sep 4 with Fri–Sun weekends (plus Sep 7) until the state quota is projected to be met. Private anglers: state and federal waters.",
+    "es": "2/día, 41 cm. 2026: 22 may–5 jul diario; reabrió el 4 sep en fines de semana (vie–dom, más el 7 sep) hasta alcanzar la cuota. Aguas estatales y federales.",
+    "src": "https://mississippisportsman.com/fishing/offshore-fishing/snapper/mississippis-recreational-red-snapper-season-reopens/"
+   },
+   "spotted-seatrout": {
+    "en": "15/day, 15 in TL minimum.",
+    "es": "15/día, mín. 38 cm.",
+    "src": "https://dmr.ms.gov/recreational-catch-limits/"
+   },
+   "red-drum": {
+    "en": "3/day, 18–30 in; one over 30 in allowed.",
+    "es": "3/día, 46–76 cm; se permite uno mayor de 76 cm.",
+    "src": "https://dmr.ms.gov/recreational-catch-limits/"
+   },
+   "tarpon": {
+    "en": "75 in FL minimum, 1 per vessel; fish over 40 in may not be removed from the water unless kept legally.",
+    "es": "Mín. 191 cm LH, 1 por embarcación; los mayores de 102 cm no se sacan del agua salvo para retenerlos legalmente.",
+    "src": "https://dmr.ms.gov/recreational-catch-limits/"
+   },
+   "cobia": {
+    "en": "2/day, 36 in FL (state table; federal Gulf rule is 1/person, 2/vessel).",
+    "es": "2/día, 91 cm LH (tabla estatal; la regla federal del Golfo es 1/persona, 2/embarcación).",
+    "src": "https://dmr.ms.gov/recreational-catch-limits/"
+   },
+   "greater-amberjack": {
+    "en": "1/day, 34 in FL; open Sep 1 – Oct 13, 2026.",
+    "es": "1/día, 86 cm LH; abierto del 1 sep al 13 oct 2026.",
+    "src": "https://dmr.ms.gov/recreational-catch-limits/"
+   }
+  },
+  "us-al": {
+   "red-snapper": {
+    "en": "2/day, 16 in. 2026: open 7 days a week from May 22 in state and federal waters until Dec 31 or until Alabama's quota is met.",
+    "es": "2/día, 41 cm. 2026: abierto 7 días desde el 22 may en aguas estatales y federales hasta el 31 dic o hasta llenar la cuota.",
+    "src": "https://www.outdooralabama.com/mrd-season-closures-notices-and-updates"
+   },
+   "spotted-seatrout": {
+    "en": "6/day, 15–22 in, 1 over 22 in allowed.",
+    "es": "6/día, 38–56 cm, se permite 1 mayor.",
+    "src": "https://www.outdooralabama.com/sites/default/files/Recreational-Fishing-Handout_6-2025.pdf"
+   },
+   "red-drum": {
+    "en": "3/day, 16–26 in, slot only.",
+    "es": "3/día, 41–66 cm, solo dentro del rango.",
+    "src": "https://www.outdooralabama.com/sites/default/files/Recreational-Fishing-Handout_6-2025.pdf"
+   },
+   "tarpon": {
+    "en": "60 in TL minimum, tag required.",
+    "es": "Mín. 152 cm, requiere etiqueta.",
+    "src": "https://www.outdooralabama.com/sites/default/files/Recreational-Fishing-Handout_6-2025.pdf"
+   },
+   "common-snook": {
+    "en": "1/day, 28 in minimum.",
+    "es": "1/día, mín. 71 cm.",
+    "src": "https://www.outdooralabama.com/sites/default/files/Recreational-Fishing-Handout_6-2025.pdf"
+   },
+   "greater-amberjack": {
+    "en": "1/day, 34 in FL; open only when federal waters are open (Sep 1 – Oct 13, 2026).",
+    "es": "1/día, 86 cm LH; abierto solo cuando abren aguas federales (1 sep–13 oct 2026).",
+    "src": "https://www.outdooralabama.com/mrd-season-closures-notices-and-updates"
+   }
+  },
+  "us-fl-gulf": {
+   "red-snapper": {
+    "en": "2/day, 16 in TL; private-boat season in Gulf state AND federal waters: May 22–Jul 31, Sep 1–Oct 25, Oct 30–Nov 1, then weekends Nov 7–8, 14–15, 21–22, Nov 26–29, Dec 5–6, 12–13, 19–20, Dec 25–27, Jan 1–4, 2027. State Reef Fish Angler required.",
+    "es": "2/día, 41 cm; temporada para embarcación privada en aguas estatales Y federales del Golfo: 22 may–31 jul, 1 sep–25 oct, 30 oct–1 nov, luego fines de semana 7–8, 14–15, 21–22 nov, 26–29 nov, 5–6, 12–13, 19–20 dic, 25–27 dic y 1–4 ene 2027.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snappers/"
+   },
+   "gag-grouper": {
+    "en": "2/day within 4-grouper aggregate, 24 in; 2026 season Sep 1–30 (state waters except Monroe, and federal). Captain/crew: zero.",
+    "es": "2/día dentro del total de 4 meros, 61 cm; temporada 2026: 1–30 sep.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/groupers/"
+   },
+   "red-grouper": {
+    "en": "2/day, 20 in; open all year in state waters; federal: closed Feb 1–Mar 31 seaward of 20 fathoms; The Edges closed Jan–Apr.",
+    "es": "2/día, 51 cm; abierto todo el año en aguas estatales; federal: cerrado 1 feb–31 mar más allá de 20 brazas; The Edges cerrado ene–abr.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/groupers/"
+   },
+   "black-grouper": {
+    "en": "4/day within aggregate, 24 in; same 20-fathom Feb–Mar federal closure.",
+    "es": "4/día dentro del total, 61 cm; mismo cierre federal feb–mar a más de 20 brazas.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/groupers/"
+   },
+   "greater-amberjack": {
+    "en": "1/day, 34 in FL; open Sep 1 – Oct 13, 2026 only.",
+    "es": "1/día, 86 cm LH; solo del 1 sep al 13 oct 2026.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/amberjack/"
+   },
+   "common-snook": {
+    "en": "1/day, 28–33 in slot; snook permit. Closed Dec 1–end Feb and May 1–Aug 31 (Panhandle to Sarasota) or May 1–Sep 30 (Charlotte Harbor, Southwest).",
+    "es": "1/día, 71–84 cm; permiso de robalo. Cerrado 1 dic–fin de feb y 1 may–31 ago (Panhandle a Sarasota) o 1 may–30 sep (Charlotte Harbor, Suroeste).",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snook/"
+   },
+   "spotted-seatrout": {
+    "en": "15–19 in slot, one over 19 in per vessel; 3/day (5/day Big Bend); Panhandle closed in February.",
+    "es": "Rango 38–48 cm, una mayor por embarcación; 3/día (5/día en Big Bend); Panhandle cerrado en febrero.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/spotted-seatrout/"
+   },
+   "red-drum": {
+    "en": "1/day, 18–27 in; vessel limit 4 (Panhandle, Big Bend) or 2 (Tampa Bay south). No take in federal waters.",
+    "es": "1/día, 46–69 cm; 4 por embarcación (Panhandle, Big Bend) o 2 (de Tampa al sur). Prohibida en aguas federales.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/red-drum/"
+   },
+   "gray-snapper": {
+    "en": "State 5/day, 10 in; federal 10/day, 12 in (within 10-snapper aggregate).",
+    "es": "Estatal 5/día, 25 cm; federal 10/día, 30 cm.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snappers/"
+   },
+   "cobia": {
+    "en": "1/person or 2/vessel, 36 in FL (state and federal).",
+    "es": "1/persona o 2/embarcación, 91 cm LH.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/cobia/"
+   },
+   "king-mackerel": {
+    "en": "3/day, 24 in FL.",
+    "es": "3/día, 61 cm LH.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/king-mackerel/"
+   },
+   "tarpon": {
+    "en": "Catch-and-release; fish over 40 in must stay in the water; one tag per year only for a record.",
+    "es": "Captura y liberación; los mayores de 102 cm se quedan en el agua; una etiqueta al año solo para récord.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/tarpon/"
+   },
+   "goliath-grouper": {
+    "en": "Release only, except ~200 lottery permits/year: 1 fish 24–36 in TL, Mar 1–May 31, Gulf/NE state waters only.",
+    "es": "Solo liberar, salvo ~200 permisos por sorteo: 1 pez de 61–91 cm, 1 mar–31 may, solo aguas estatales.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/goliath/"
+   },
+   "pacific-sailfish": {
+    "en": "Sailfish 63 in LJFL, blue marlin 99 in, white marlin 66 in; 1 billfish/person/day; HMS permit in federal waters; report landings within 24 h.",
+    "es": "Pez vela 160 cm, marlín azul 251 cm, marlín blanco 168 cm (mandíbula inferior–horquilla); 1 picudo/persona/día; permiso HMS en aguas federales; reportar en 24 h.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/billfish-tuna/"
+   },
+   "dorado": {
+    "en": "10/person or 60/vessel, no minimum (Gulf).",
+    "es": "10/persona o 60/embarcación, sin talla mínima (Golfo).",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/dolphinfish/"
+   }
+  },
+  "us-fl-keys": {
+   "gag-grouper": {
+    "en": "1 gag or black/person, 2/vessel combined, 24 in; open May 1 – Aug 1, 2026 (Atlantic rules apply in all Monroe state waters).",
+    "es": "1 abadejo o negrillo por persona, 2 por embarcación, 61 cm; abierto 1 may–1 ago 2026 (reglas del Atlántico en todo Monroe).",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/groupers/"
+   },
+   "black-grouper": {
+    "en": "Within 1 gag-or-black/person and 2/vessel, 24 in; closed Jan 1–Apr 30.",
+    "es": "Dentro de 1 abadejo o negrillo/persona y 2/embarcación, 61 cm; cerrado 1 ene–30 abr.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/groupers/"
+   },
+   "red-grouper": {
+    "en": "3/day within 3-grouper aggregate, 20 in; closed Jan 1–Apr 30.",
+    "es": "3/día dentro del total de 3, 51 cm; cerrado 1 ene–30 abr.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/groupers/"
+   },
+   "permit": {
+    "en": "Special Permit Zone: 1/person, 2/vessel, 22 in FL minimum; closed Apr 1 – Jul 31.",
+    "es": "Zona especial de palometa: 1/persona, 2/embarcación, mín. 56 cm LH; cerrada 1 abr–31 jul.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/permit/"
+   },
+   "yellowtail-snapper": {
+    "en": "12 in TL, within 10-snapper aggregate.",
+    "es": "30 cm, dentro del total de 10 pargos.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snappers/"
+   },
+   "mutton-snapper": {
+    "en": "5/day, 18 in TL.",
+    "es": "5/día, 46 cm.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snappers/"
+   },
+   "common-snook": {
+    "en": "1/day, 28–33 in; Southwest region closed Dec 1–end Feb and May 1–Sep 30.",
+    "es": "1/día, 71–84 cm; región Suroeste cerrada 1 dic–fin feb y 1 may–30 sep.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snook/"
+   },
+   "king-mackerel": {
+    "en": "3/day, 24 in FL (Monroe follows Gulf king rules).",
+    "es": "3/día, 61 cm LH.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/king-mackerel/"
+   },
+   "great-barracuda": {
+    "en": "15–36 in FL slot, 2/person, 6/vessel, one over 36 in per person or vessel.",
+    "es": "Rango 38–91 cm, 2/persona, 6/embarcación, uno mayor por persona o embarcación.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/barracuda/"
+   },
+   "dorado": {
+    "en": "5/person, 30/vessel, 20 in FL (Atlantic).",
+    "es": "5/persona, 30/embarcación, 51 cm LH (Atlántico).",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/dolphinfish/"
+   }
+  },
+  "us-fl-atl": {
+   "red-snapper": {
+    "en": "1/day, no minimum size. 2026 state-managed (EFP) season in state and federal waters: May 22–Jun 20 and Oct 2–4, 9–11, 16–18 (FWC later said the EFP season \"concluded on October 22\"). Now closed.",
+    "es": "1/día, sin talla mínima. Temporada 2026 (EFP) en aguas estatales y federales: 22 may–20 jun y 2–4, 9–11, 16–18 oct (FWC dice que terminó el 22 oct). Cerrada.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snappers/"
+   },
+   "gag-grouper": {
+    "en": "1 gag or black/person, 2/vessel, 24 in; open May 1 – Aug 1, 2026 (federal closure from Aug 2 after the 2025 overage).",
+    "es": "1 abadejo o negrillo por persona, 2/embarcación, 61 cm; abierto 1 may–1 ago 2026.",
+    "src": "https://www.federalregister.gov/documents/2026/04/22/2026-07792"
+   },
+   "greater-amberjack": {
+    "en": "1/day, 28 in FL; closed in April.",
+    "es": "1/día, 71 cm LH; cerrado en abril.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/amberjack/"
+   },
+   "dorado": {
+    "en": "5/person, 30/vessel, 20 in FL.",
+    "es": "5/persona, 30/embarcación, 51 cm LH.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/dolphinfish/"
+   },
+   "king-mackerel": {
+    "en": "2/day, 24 in FL.",
+    "es": "2/día, 61 cm LH.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/king-mackerel/"
+   },
+   "common-snook": {
+    "en": "1/day, 28–32 in; closed Dec 15–Jan 31 and Jun 1–Aug 31.",
+    "es": "1/día, 71–81 cm; cerrado 15 dic–31 ene y 1 jun–31 ago.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/snook/"
+   },
+   "red-drum": {
+    "en": "1/day, 18–27 in (Southeast 2/vessel, Northeast 4/vessel); Indian River Lagoon region catch-and-release only.",
+    "es": "1/día, 46–69 cm (Sureste 2/embarcación, Noreste 4); región Indian River Lagoon solo captura y liberación.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/red-drum/"
+   },
+   "spotted-seatrout": {
+    "en": "15–19 in; 3/day (SE, NE), 2/day and closed Nov 1–Dec 31 in the Indian River Lagoon; no fish over 19 in (IRL, NE).",
+    "es": "38–48 cm; 3/día (SE, NE), 2/día y cerrada 1 nov–31 dic en Indian River Lagoon; ninguna mayor de 48 cm (IRL, NE).",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/spotted-seatrout/"
+   },
+   "great-barracuda": {
+    "en": "Collier–Martin counties: 15–36 in slot, 2/person, 6/vessel; rest of state: 2 fish or 100 lb.",
+    "es": "Condados Collier–Martin: 38–91 cm, 2/persona, 6/embarcación; resto: 2 peces o 45 kg.",
+    "src": "https://myfwc.com/fishing/saltwater/recreational/barracuda/"
+   }
+  },
+  "us-federal": {
+   "shortfin-mako": {
+    "en": "Zero retention in all Atlantic/Gulf HMS fisheries (in force since July 2022; 2026 shark landings page still lists zero). Default zero each year unless NMFS adjusts in-season (50 CFR 635.22(c)(8)).",
+    "es": "Retención cero en todas las pesquerías HMS del Atlántico y Golfo (desde julio 2022; sigue en cero en 2026).",
+    "src": "https://www.fisheries.noaa.gov/atlantic-highly-migratory-species/2026-atlantic-shark-commercial-fishery-landings-and-retention"
+   },
+   "silky-shark": {
+    "en": "Not on the recreational retention list (50 CFR 635.22(c)(2)), so recreational anglers must release it.",
+    "es": "No está en la lista de retención recreativa (50 CFR 635.22(c)(2)); se debe liberar.",
+    "src": "https://www.ecfr.gov/current/title-50/section-635.22"
+   },
+   "blue-shark": {
+    "en": "1 shark/vessel/trip from the authorized list, 54 in FL minimum; circle hooks; HMS permit with shark endorsement.",
+    "es": "1 tiburón/embarcación/viaje de la lista autorizada, mín. 137 cm LH; anzuelo circular; permiso HMS con endoso de tiburón.",
+    "src": "https://www.ecfr.gov/current/title-50/section-635.22"
+   },
+   "bull-shark": {
+    "en": "Same as blue shark: 1/vessel/trip, 54 in FL.",
+    "es": "Igual que el azul: 1/embarcación/viaje, 137 cm LH.",
+    "src": "https://www.ecfr.gov/current/title-50/section-635.22"
+   },
+   "swordfish": {
+    "en": "47 in LJFL (25 in CK); vessel limits per HMS rules; report within 24 h.",
+    "es": "119 cm mandíbula–horquilla; límites por embarcación según HMS; reportar en 24 h.",
+    "src": "https://www.ecfr.gov/current/title-50/section-635.20"
+   },
+   "blue-marlin": {
+    "en": "Blue marlin 99 in LJFL; white marlin 66 in; sailfish 63 in; longbill spearfish may not be kept.",
+    "es": "Marlín azul 251 cm; blanco 168 cm; vela 160 cm; el pico largo no se puede retener.",
+    "src": "https://www.ecfr.gov/current/title-50/section-635.20"
+   },
+   "red-drum": {
+    "en": "Harvest and possession of red drum in Gulf and South Atlantic federal waters is prohibited.",
+    "es": "Prohibida la captura y posesión de corvina roja en aguas federales del Golfo y del Atlántico Sur.",
+    "src": "https://www.ecfr.gov/current/title-50/chapter-VI/part-622"
+   }
+  }
+ },
+ "closures": [
+  {
+   "k": "rs-la",
+   "species": [
+    "red-snapper"
+   ],
+   "areas": [
+    "venice"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     4,
+     30
+    ],
+    [
+     8,
+     10,
+     8,
+     26
+    ],
+    [
+     8,
+     31,
+     9,
+     3
+    ],
+    [
+     9,
+     8,
+     12,
+     31
+    ]
+   ],
+   "en": "Louisiana red snapper 2026: open May 1–Aug 9, Aug 27–30 and Sep 4–7 only; closed until further notice.",
+   "es": "Huachinango en Luisiana 2026: abierto solo 1 may–9 ago, 27–30 ago y 4–7 sep; cerrado hasta nuevo aviso.",
+   "source": "https://www.wlf.louisiana.gov/news/rec-red-snapper-season-reopens-for-two-fourday-periods",
+   "conf": "medium (LDWF may reopen if quota remains)"
+  },
+  {
+   "k": "rs-ms",
+   "species": [
+    "red-snapper"
+   ],
+   "areas": [
+    "mscoast"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     5,
+     21
+    ],
+    [
+     7,
+     6,
+     9,
+     3
+    ]
+   ],
+   "en": "Mississippi red snapper 2026: May 22–Jul 5 daily; from Sep 4 weekends only (Fri–Sun) until the quota is met. Weekday closures and the end date are not modelled.",
+   "es": "Huachinango en Misisipi 2026: 22 may–5 jul diario; desde el 4 sep solo fines de semana (vie–dom) hasta llenar la cuota. Los cierres entre semana y la fecha final no están modelados.",
+   "source": "https://mississippisportsman.com/fishing/offshore-fishing/snapper/mississippis-recreational-red-snapper-season-reopens/ ; https://dmr.ms.gov/mississippis-2026-recreational-red-snapper-season-will-open-may-22/",
+   "conf": "low (status after Sep 7 not found)"
+  },
+  {
+   "k": "rs-al",
+   "species": [
+    "red-snapper"
+   ],
+   "areas": [
+    "orangebeach"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     5,
+     21
+    ]
+   ],
+   "en": "Alabama red snapper 2026: open daily from May 22 until Dec 31 or until the quota is met.",
+   "es": "Huachinango en Alabama 2026: abierto diario del 22 may al 31 dic o hasta llenar la cuota.",
+   "source": "https://www.outdooralabama.com/mrd-season-closures-notices-and-updates",
+   "conf": "medium"
+  },
+  {
+   "k": "rs-fl-gulf",
+   "species": [
+    "red-snapper"
+   ],
+   "areas": [
+    "destin",
+    "tampa",
+    "naples"
+   ],
+   "periods": [
+    [
+     1,
+     5,
+     5,
+     21
+    ],
+    [
+     8,
+     1,
+     8,
+     31
+    ],
+    [
+     10,
+     5,
+     10,
+     8
+    ],
+    [
+     10,
+     26,
+     10,
+     29
+    ],
+    [
+     11,
+     2,
+     11,
+     6
+    ],
+    [
+     11,
+     9,
+     11,
+     13
+    ],
+    [
+     11,
+     16,
+     11,
+     20
+    ],
+    [
+     11,
+     23,
+     11,
+     25
+    ],
+    [
+     11,
+     30,
+     12,
+     4
+    ],
+    [
+     12,
+     7,
+     12,
+     11
+    ],
+    [
+     12,
+     14,
+     12,
+     18
+    ],
+    [
+     12,
+     21,
+     12,
+     24
+    ],
+    [
+     12,
+     28,
+     12,
+     31
+    ]
+   ],
+   "en": "Florida Gulf red snapper 2026 (private boats, state and federal waters): open May 22–Jul 31, Sep 1–Oct 25, Oct 30–Nov 1, set weekends in Nov–Dec and Jan 1–4, 2027; closed on all other days.",
+   "es": "Huachinango del Golfo de Florida 2026 (embarcación privada, aguas estatales y federales): abierto 22 may–31 jul, 1 sep–25 oct, 30 oct–1 nov, fines de semana fijos de nov–dic y 1–4 ene 2027; cerrado los demás días.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/snappers/",
+   "conf": "high (dates must be updated every year)"
+  },
+  {
+   "k": "rs-fl-atl",
+   "species": [
+    "red-snapper"
+   ],
+   "areas": [
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     5,
+     21
+    ],
+    [
+     6,
+     21,
+     10,
+     1
+    ],
+    [
+     10,
+     5,
+     10,
+     8
+    ],
+    [
+     10,
+     12,
+     10,
+     15
+    ],
+    [
+     10,
+     19,
+     12,
+     31
+    ]
+   ],
+   "en": "Florida Atlantic red snapper 2026 (state-managed EFP, state and federal waters): open May 22–Jun 20 and Oct 2–4, 9–11, 16–18 only.",
+   "es": "Huachinango del Atlántico de Florida 2026 (EFP estatal, aguas estatales y federales): abierto solo 22 may–20 jun y 2–4, 9–11, 16–18 oct.",
+   "source": "https://myfwc.com/news/all-news/efp-snapper-0526/ ; https://myfwc.com/fishing/saltwater/recreational/snappers/",
+   "conf": "medium (FWC page says the season \"concluded on October 22\"; possible extension not confirmed)"
+  },
+  {
+   "k": "gag-gulf",
+   "species": [
+    "gag-grouper"
+   ],
+   "areas": [
+    "venice",
+    "mscoast",
+    "orangebeach",
+    "destin",
+    "tampa",
+    "naples"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     8,
+     31
+    ],
+    [
+     10,
+     1,
+     12,
+     31
+    ]
+   ],
+   "en": "Gulf gag 2026: open Sep 1–30 only (federal waters; Florida, Alabama and Mississippi state waters follow).",
+   "es": "Abadejo del Golfo 2026: abierto solo del 1 al 30 sep (aguas federales; aguas estatales de Florida, Alabama y Misisipi igual).",
+   "source": "https://www.ecfr.gov/current/title-50/section-622.34 ; https://myfwc.com/fishing/saltwater/recreational/groupers/",
+   "conf": "high for FL/AL/MS and federal; medium for Louisiana state waters (LDWF page unclear)"
+  },
+  {
+   "k": "gag-atl",
+   "species": [
+    "gag-grouper"
+   ],
+   "areas": [
+    "keywest",
+    "keys",
+    "miami",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     4,
+     30
+    ],
+    [
+     8,
+     2,
+     12,
+     31
+    ]
+   ],
+   "en": "Atlantic gag (incl. all Monroe County state waters) 2026: open May 1 – Aug 1 only.",
+   "es": "Abadejo del Atlántico (incluye todo Monroe) 2026: abierto solo del 1 may al 1 ago.",
+   "source": "https://www.federalregister.gov/documents/2026/04/22/2026-07792 ; https://myfwc.com/fishing/saltwater/recreational/groupers/",
+   "conf": "high"
+  },
+  {
+   "k": "swg-atl",
+   "species": [
+    "red-grouper",
+    "black-grouper"
+   ],
+   "areas": [
+    "keywest",
+    "keys",
+    "miami",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     4,
+     30
+    ]
+   ],
+   "en": "Atlantic shallow-water grouper closure (incl. all Monroe County state waters): Jan 1 – Apr 30.",
+   "es": "Veda de meros de aguas someras del Atlántico (incluye todo Monroe): 1 ene–30 abr.",
+   "source": "https://www.ecfr.gov/current/title-50/section-622.183 ; https://myfwc.com/fishing/saltwater/recreational/groupers/",
+   "conf": "high"
+  },
+  {
+   "k": "gaj-gulf",
+   "species": [
+    "greater-amberjack"
+   ],
+   "areas": [
+    "venice",
+    "mscoast",
+    "orangebeach",
+    "destin",
+    "tampa",
+    "naples"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     8,
+     31
+    ],
+    [
+     10,
+     14,
+     12,
+     31
+    ]
+   ],
+   "en": "Gulf greater amberjack 2026: open Sep 1 – Oct 13 only.",
+   "es": "Medregal del Golfo 2026: abierto solo del 1 sep al 13 oct.",
+   "source": "https://www.fisheries.noaa.gov/bulletin/recreational-fishing-season-length-announcement-greater-amberjack-federal-waters-gulf",
+   "conf": "high"
+  },
+  {
+   "k": "gaj-atl",
+   "species": [
+    "greater-amberjack"
+   ],
+   "areas": [
+    "miami",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     4,
+     1,
+     4,
+     30
+    ]
+   ],
+   "en": "Atlantic greater amberjack spawning closure: April.",
+   "es": "Veda de desove del medregal en el Atlántico: abril.",
+   "source": "https://www.ecfr.gov/current/title-50/section-622.183 ; https://myfwc.com/fishing/saltwater/recreational/amberjack/",
+   "conf": "high"
+  },
+  {
+   "k": "snook-gulf-n",
+   "species": [
+    "common-snook"
+   ],
+   "areas": [
+    "destin",
+    "tampa"
+   ],
+   "periods": [
+    [
+     12,
+     1,
+     12,
+     31
+    ],
+    [
+     1,
+     1,
+     2,
+     29
+    ],
+    [
+     5,
+     1,
+     8,
+     31
+    ]
+   ],
+   "en": "Snook, Panhandle–Big Bend–Tampa Bay–Sarasota Bay regions: closed Dec 1 – end of Feb and May 1 – Aug 31.",
+   "es": "Robalo, regiones Panhandle–Big Bend–Tampa–Sarasota: cerrado 1 dic–fin de feb y 1 may–31 ago.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/snook/",
+   "conf": "high"
+  },
+  {
+   "k": "snook-gulf-s",
+   "species": [
+    "common-snook"
+   ],
+   "areas": [
+    "naples",
+    "keywest",
+    "keys"
+   ],
+   "periods": [
+    [
+     12,
+     1,
+     12,
+     31
+    ],
+    [
+     1,
+     1,
+     2,
+     29
+    ],
+    [
+     5,
+     1,
+     9,
+     30
+    ]
+   ],
+   "en": "Snook, Charlotte Harbor and Southwest (incl. the Keys) regions: closed Dec 1 – end of Feb and May 1 – Sep 30.",
+   "es": "Robalo, regiones Charlotte Harbor y Suroeste (incluye los Cayos): cerrado 1 dic–fin de feb y 1 may–30 sep.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/snook/",
+   "conf": "high (the naples chip also covers a strip of the Charlotte Harbor region — same dates)"
+  },
+  {
+   "k": "snook-atl",
+   "species": [
+    "common-snook"
+   ],
+   "areas": [
+    "miami",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     12,
+     15,
+     12,
+     31
+    ],
+    [
+     1,
+     1,
+     1,
+     31
+    ],
+    [
+     6,
+     1,
+     8,
+     31
+    ]
+   ],
+   "en": "Snook, Atlantic regions (Southeast, Indian River Lagoon, Northeast): closed Dec 15 – Jan 31 and Jun 1 – Aug 31.",
+   "es": "Robalo, regiones del Atlántico: cerrado 15 dic–31 ene y 1 jun–31 ago.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/snook/",
+   "conf": "high"
+  },
+  {
+   "k": "trout-panhandle",
+   "species": [
+    "spotted-seatrout"
+   ],
+   "areas": [
+    "destin"
+   ],
+   "periods": [
+    [
+     2,
+     1,
+     2,
+     29
+    ]
+   ],
+   "en": "Spotted seatrout, Florida Panhandle region: closed in February.",
+   "es": "Trucha pinta, región Panhandle de Florida: cerrada en febrero.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/spotted-seatrout/",
+   "conf": "high"
+  },
+  {
+   "k": "trout-irl",
+   "species": [
+    "spotted-seatrout"
+   ],
+   "areas": [
+    "treasure"
+   ],
+   "periods": [
+    [
+     11,
+     1,
+     12,
+     31
+    ]
+   ],
+   "en": "Spotted seatrout, Indian River Lagoon region: closed Nov 1 – Dec 31.",
+   "es": "Trucha pinta, región Indian River Lagoon: cerrada 1 nov–31 dic.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/spotted-seatrout/",
+   "conf": "high"
+  },
+  {
+   "k": "redfish-irl",
+   "species": [
+    "red-drum"
+   ],
+   "areas": [
+    "treasure"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     12,
+     31
+    ]
+   ],
+   "cr": true,
+   "en": "Red drum, Indian River Lagoon region: catch-and-release only, all year.",
+   "es": "Corvina roja, región Indian River Lagoon: solo captura y liberación todo el año.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/red-drum/",
+   "conf": "high"
+  },
+  {
+   "k": "permit-spz",
+   "species": [
+    "permit"
+   ],
+   "areas": [
+    "keywest",
+    "keys"
+   ],
+   "periods": [
+    [
+     4,
+     1,
+     7,
+     31
+    ]
+   ],
+   "en": "Permit, Special Permit Zone (south of Cape Florida and Cape Sable, incl. the Keys): closed Apr 1 – Jul 31.",
+   "es": "Palometa, Zona Especial (al sur de Cape Florida y Cape Sable, incluye los Cayos): cerrada 1 abr–31 jul.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/permit/",
+   "conf": "high"
+  },
+  {
+   "k": "bonefish-fl",
+   "species": [
+    "bonefish"
+   ],
+   "areas": [
+    "keywest",
+    "keys",
+    "miami"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     12,
+     31
+    ]
+   ],
+   "cr": true,
+   "en": "Bonefish: catch-and-release only in Florida.",
+   "es": "Macabí: solo captura y liberación en Florida.",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/bonefish/",
+   "conf": "high"
+  },
+  {
+   "k": "tarpon-fl",
+   "species": [
+    "tarpon"
+   ],
+   "areas": [
+    "destin",
+    "tampa",
+    "naples",
+    "keywest",
+    "keys",
+    "miami",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     12,
+     31
+    ]
+   ],
+   "cr": true,
+   "en": "Tarpon: catch-and-release in Florida (one tag a year only for a record attempt).",
+   "es": "Sábalo: captura y liberación en Florida (una etiqueta al año solo para récord).",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/tarpon/",
+   "conf": "high"
+  },
+  {
+   "k": "goliath",
+   "species": [
+    "goliath-grouper"
+   ],
+   "areas": [
+    "southpadre",
+    "portaransas",
+    "galveston",
+    "venice",
+    "mscoast",
+    "orangebeach",
+    "keywest",
+    "keys",
+    "miami"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     12,
+     31
+    ]
+   ],
+   "cr": true,
+   "en": "Goliath grouper: may not be kept (Texas to Alabama; Florida from Martin County south, the Atlantic Keys, Dry Tortugas NP and all federal waters).",
+   "es": "Mero guasa: no se puede retener (Texas a Alabama; Florida del condado Martin al sur, Cayos del Atlántico, Dry Tortugas y aguas federales).",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/goliath/ ; https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/grouper-bag-length-limits ; https://dmr.ms.gov/recreational-catch-limits/",
+   "conf": "high"
+  },
+  {
+   "k": "goliath-fl-permit",
+   "species": [
+    "goliath-grouper"
+   ],
+   "areas": [
+    "destin",
+    "tampa",
+    "naples",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     2,
+     28
+    ],
+    [
+     6,
+     1,
+     12,
+     31
+    ]
+   ],
+   "cr": true,
+   "en": "Goliath grouper: release only, except about 200 lottery permit holders, who may keep one 24–36 in fish in Florida state waters Mar 1 – May 31 (not Martin County).",
+   "es": "Mero guasa: solo liberar, salvo unos 200 ganadores del sorteo, que pueden quedarse uno de 61–91 cm en aguas estatales de Florida del 1 mar al 31 may (no en Martin).",
+   "source": "https://myfwc.com/fishing/saltwater/recreational/goliath/",
+   "conf": "high (for almost every angler it is catch-and-release all year)"
+  },
+  {
+   "k": "mako",
+   "species": [
+    "shortfin-mako"
+   ],
+   "areas": [
+    "southpadre",
+    "portaransas",
+    "galveston",
+    "venice",
+    "mscoast",
+    "orangebeach",
+    "destin",
+    "tampa",
+    "naples",
+    "keywest",
+    "keys",
+    "miami",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     12,
+     31
+    ]
+   ],
+   "cr": true,
+   "en": "Shortfin mako: zero retention in federal waters (since July 2022) and prohibited in Texas, Louisiana, Alabama and Florida state waters.",
+   "es": "Mako: retención cero en aguas federales (desde julio 2022) y prohibido en aguas estatales de Texas, Luisiana, Alabama y Florida.",
+   "source": "https://www.fisheries.noaa.gov/atlantic-highly-migratory-species/2026-atlantic-shark-commercial-fishery-landings-and-retention",
+   "conf": "high"
+  },
+  {
+   "k": "silky",
+   "species": [
+    "silky-shark"
+   ],
+   "areas": [
+    "southpadre",
+    "portaransas",
+    "galveston",
+    "venice",
+    "mscoast",
+    "orangebeach",
+    "destin",
+    "tampa",
+    "naples",
+    "keywest",
+    "keys",
+    "miami",
+    "treasure",
+    "jacksonville"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     12,
+     31
+    ]
+   ],
+   "cr": true,
+   "en": "Silky shark: recreational anglers may not keep it (federal and all five states).",
+   "es": "Tiburón piloto (silky): no se puede retener en pesca recreativa (federal y los cinco estados).",
+   "source": "https://www.ecfr.gov/current/title-50/section-635.22 ; https://myfwc.com/fishing/saltwater/recreational/sharks/",
+   "conf": "high"
+  }
+ ]
+}

@@ -1,0 +1,285 @@
+{
+ "pacific-sailfish": {
+  "us-gulf-tx": "000012332100",
+  "us-gulf-north": "000012332100",
+  "us-gulf-fl": "000011221000",
+  "us-fl-south": "333221111223",
+  "us-fl-east": "222211112222"
+ },
+ "blue-marlin": {
+  "us-gulf-tx": "000123332100",
+  "us-gulf-north": "000123332100",
+  "us-gulf-fl": "000011221000",
+  "us-fl-south": "000122221000",
+  "us-fl-east": "000122221000"
+ },
+ "white-marlin": {
+  "us-gulf-tx": "000122221000",
+  "us-gulf-north": "000123321000",
+  "us-gulf-fl": "000011111000",
+  "us-fl-south": "001122111000",
+  "us-fl-east": "001122111000"
+ },
+ "swordfish": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "111111111111",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "111111111111"
+ },
+ "yellowfin-tuna": {
+  "us-gulf-tx": "222233322222",
+  "us-gulf-north": "222333322222",
+  "us-gulf-fl": "000011111000",
+  "us-fl-south": "111111111111",
+  "us-fl-east": "111222111111"
+ },
+ "blackfin-tuna": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "222222222222",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "333222222233",
+  "us-fl-east": "222222111222"
+ },
+ "skipjack-tuna": {
+  "us-gulf-tx": "111122221111",
+  "us-gulf-north": "111122221111",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "111222221111",
+  "us-fl-east": "111122221111"
+ },
+ "dorado": {
+  "us-gulf-tx": "000123332100",
+  "us-gulf-north": "000123321000",
+  "us-gulf-fl": "000011221000",
+  "us-fl-south": "112333322111",
+  "us-fl-east": "112333221111"
+ },
+ "wahoo": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "211111111122",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "222111111222",
+  "us-fl-east": "211111111222"
+ },
+ "king-mackerel": {
+  "us-gulf-tx": "000123333210",
+  "us-gulf-north": "000123332210",
+  "us-gulf-fl": "112332112331",
+  "us-fl-south": "332211112333",
+  "us-fl-east": "111223333221"
+ },
+ "spanish-mackerel": {
+  "us-gulf-tx": "000123332100",
+  "us-gulf-north": "000123332210",
+  "us-gulf-fl": "112332223321",
+  "us-fl-south": "332211111233",
+  "us-fl-east": "111232222211"
+ },
+ "cero": {
+  "us-gulf-tx": null,
+  "us-gulf-north": null,
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "111111111111"
+ },
+ "cobia": {
+  "us-gulf-tx": "001233221000",
+  "us-gulf-north": "001332211000",
+  "us-gulf-fl": "122332222221",
+  "us-fl-south": "333211111223",
+  "us-fl-east": "112332211111"
+ },
+ "tarpon": {
+  "us-gulf-tx": "000012332100",
+  "us-gulf-north": "000013332100",
+  "us-gulf-fl": "000233221000",
+  "us-fl-south": "113333221111",
+  "us-fl-east": "000012233210"
+ },
+ "common-snook": {
+  "us-gulf-tx": "111122221111",
+  "us-gulf-north": null,
+  "us-gulf-fl": "112233322211",
+  "us-fl-south": "222233322222",
+  "us-fl-east": "112233332221"
+ },
+ "permit": {
+  "us-gulf-tx": null,
+  "us-gulf-north": null,
+  "us-gulf-fl": "111222221111",
+  "us-fl-south": "223333222222",
+  "us-fl-east": "111222222111"
+ },
+ "bonefish": {
+  "us-gulf-tx": null,
+  "us-gulf-north": null,
+  "us-gulf-fl": null,
+  "us-fl-south": "222333333222",
+  "us-fl-east": null
+ },
+ "red-drum": {
+  "us-gulf-tx": "222222233332",
+  "us-gulf-north": "222222233333",
+  "us-gulf-fl": "222222233332",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "222222233332"
+ },
+ "red-snapper": {
+  "us-gulf-tx": "222233332222",
+  "us-gulf-north": "222333332222",
+  "us-gulf-fl": "222233332222",
+  "us-fl-south": null,
+  "us-fl-east": "222233332222"
+ },
+ "mutton-snapper": {
+  "us-gulf-tx": null,
+  "us-gulf-north": null,
+  "us-gulf-fl": "111222221111",
+  "us-fl-south": "222333322222",
+  "us-fl-east": "111222111111"
+ },
+ "red-grouper": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "111111111111",
+  "us-gulf-fl": "333322222333",
+  "us-fl-south": "111111111111",
+  "us-fl-east": "111111111111"
+ },
+ "black-grouper": {
+  "us-gulf-tx": null,
+  "us-gulf-north": null,
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "111111111111"
+ },
+ "goliath-grouper": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "111111111111",
+  "us-gulf-fl": "222222222222",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "111111222111"
+ },
+ "greater-amberjack": {
+  "us-gulf-tx": "222222222222",
+  "us-gulf-north": "222222222222",
+  "us-gulf-fl": "222222222222",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "222222222222"
+ },
+ "almaco-jack": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "222222222222",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "111111111111",
+  "us-fl-east": "111111111111"
+ },
+ "atlantic-jack": {
+  "us-gulf-tx": "111122333221",
+  "us-gulf-north": "111123333221",
+  "us-gulf-fl": "222222233322",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "111122233321"
+ },
+ "great-barracuda": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "111111111111",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "333322222333",
+  "us-fl-east": "111111111111"
+ },
+ "bull-shark": {
+  "us-gulf-tx": "111222222111",
+  "us-gulf-north": "111222222111",
+  "us-gulf-fl": "111222222211",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "111222222111"
+ },
+ "shortfin-mako": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "111111111111",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "111111111111",
+  "us-fl-east": "111111111111"
+ },
+ "silky-shark": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "111111111111",
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "111111111111",
+  "us-fl-east": "111111111111"
+ },
+ "blue-shark": {
+  "us-gulf-tx": null,
+  "us-gulf-north": null,
+  "us-gulf-fl": null,
+  "us-fl-south": null,
+  "us-fl-east": null
+ },
+ "spotted-seatrout": {
+  "us-gulf-tx": "223332222333",
+  "us-gulf-north": "223332222333",
+  "us-gulf-fl": "223332222333",
+  "us-fl-south": "222222222222",
+  "us-fl-east": "223333222333"
+ },
+ "gag-grouper": {
+  "us-gulf-tx": "111111111111",
+  "us-gulf-north": "222222222333",
+  "us-gulf-fl": "333322222333",
+  "us-fl-south": "111111111111",
+  "us-fl-east": "222222222222"
+ },
+ "gray-snapper": {
+  "us-gulf-tx": "111122222111",
+  "us-gulf-north": "111222222111",
+  "us-gulf-fl": "222333333222",
+  "us-fl-south": "222333333222",
+  "us-fl-east": "111222222211"
+ },
+ "yellowtail-snapper": {
+  "us-gulf-tx": null,
+  "us-gulf-north": null,
+  "us-gulf-fl": "111111111111",
+  "us-fl-south": "222333333222",
+  "us-fl-east": "111111111111"
+ },
+ "_sources": {
+  "_all": "LOW confidence: built from general regional fishing patterns (tournament calendars, state species profiles, charter-fleet seasonality), not from published monthly catch data; tune with local captains. Season = when the fish are present and biting; legal closures are separate (rules.json). Regions: us-gulf-tx = Texas; us-gulf-north = Louisiana, Mississippi, Alabama, Florida Panhandle; us-gulf-fl = Florida west coast peninsula; us-fl-south = Keys, Miami–Palm Beach; us-fl-east = Stuart–Jacksonville.",
+  "pacific-sailfish": "Key used for Atlantic sailfish. SE Florida/Keys winter run (Dec–Mar) is the best-documented anchor (Stuart \"Sailfish Capital\", Miami/Palm Beach winter tournaments); northern Gulf is summer offshore.",
+  "blue-marlin": "Northern Gulf summer bluewater season (Jun–Sep; Gulf Coast billfish tournament calendar: Orange Beach, Venice, Port Aransas in Jun–Aug).",
+  "white-marlin": "Summer offshore in the northern Gulf; spring in the Florida Straits. Medium-low.",
+  "swordfish": "Year-round deep-drop fishery; Miami–Keys daytime swordfishing is the main US Gulf/Florida fishery.",
+  "yellowfin-tuna": "Rig/canyon fishery off Louisiana and Texas year-round, best spring and fall; rare off the Florida west coast shelf (deep water is far offshore).",
+  "blackfin-tuna": "Keys humps and Venice rigs; winter–spring peak in the Keys.",
+  "skipjack-tuna": "Present offshore year-round; mainly bait for billfish.",
+  "dorado": "Florida Straits peak Apr–Jul; northern Gulf summer.",
+  "wahoo": "Cooler-month peaks (winter rigs off LA, Keys/SE FL fall–winter).",
+  "king-mackerel": "Migratory: spring and fall runs on the Florida west coast; winter in the Keys/SE Florida; summer in the northern Gulf and NE Florida. (Gulf/Atlantic migratory groups, NOAA/Gulf Council.)",
+  "spanish-mackerel": "Same migratory pattern as king mackerel, more inshore.",
+  "cero": "South Florida reef species; rare north of Palm Beach / Tampa.",
+  "cobia": "Spring run Mar–Apr along the Panhandle and NE Florida; winter in the Keys and SE Florida.",
+  "tarpon": "Boca Grande/Tampa May–Jun peak; Keys Mar–Jul; Texas/Louisiana summer; NE Florida late-summer mullet run.",
+  "common-snook": "Tropical: south Florida core; south Texas (Lower Laguna Madre) secondary; rare in the northern Gulf (null).",
+  "permit": "Keys flats and wrecks; spawning aggregations Apr–Jul (when the SPZ harvest season is closed).",
+  "bonefish": "South Florida only (FWC bonefish page: Keys and Biscayne Bay, best Mar–Oct).",
+  "red-drum": "All coasts year-round; bull reds in the fall spawning run (Aug–Nov).",
+  "red-snapper": "Northern and western Gulf core; NE Florida Atlantic. Not a meaningful target in the Keys/SE Florida (null).",
+  "mutton-snapper": "South Florida; spawning aggregations May–Jul.",
+  "red-grouper": "West Florida shelf is the core of the Gulf stock (Gulf Council/SEDAR); scattered elsewhere.",
+  "black-grouper": "South Florida and the Keys reef tract.",
+  "goliath-grouper": "South and west Florida; Aug–Sep spawning aggregations on east-coast wrecks (FWC goliath page). Mapped for catch-and-release only.",
+  "greater-amberjack": "Wrecks, rigs and reefs everywhere, year-round; legal season is short (rules.json).",
+  "almaco-jack": "Rigs and wrecks; incidental.",
+  "atlantic-jack": "Crevalle jack, summer–fall schools.",
+  "great-barracuda": "South Florida reef species, best in winter.",
+  "bull-shark": "Inshore passes and beaches, warm months; year-round in south Florida.",
+  "shortfin-mako": "Present offshore at low density; may not be kept anywhere (rules.json).",
+  "silky-shark": "Offshore; may not be kept by recreational anglers (rules.json).",
+  "blue-shark": "Rare in the Gulf and off Florida (a cool-water shark); not mapped here (null).",
+  "spotted-seatrout": "New species. Bay/estuary fish everywhere; best spring and fall.",
+  "gag-grouper": "New species. West Florida shelf/Big Bend core; inshore in winter.",
+  "gray-snapper": "New species. Mangroves/bridges inshore, reefs offshore; summer spawning peak.",
+  "yellowtail-snapper": "New species. Keys and SE Florida reef fish; rare elsewhere."
+ }
+}

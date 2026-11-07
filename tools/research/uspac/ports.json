@@ -1,0 +1,205 @@
+[
+ {
+  "name": "San Diego – Shelter Island / Point Loma landings",
+  "lat": 32.7145,
+  "lon": -117.2281,
+  "region": "uspac",
+  "src": "OSM way 415327253 (Shelter Island marina); sportfishing landings ~0.4 km NE (OSM way 474295047)"
+ },
+ {
+  "name": "San Diego – Mission Bay (Quivira Basin)",
+  "lat": 32.7625,
+  "lon": -117.2389,
+  "region": "uspac",
+  "src": "OSM node 369165144 Quivira Basin"
+ },
+ {
+  "name": "San Diego – Harbor Island",
+  "lat": 32.7259,
+  "lon": -117.2009,
+  "region": "uspac",
+  "src": "OSM node 12339783502 Safe Harbor Cabrillo Isle"
+ },
+ {
+  "name": "Chula Vista (South Bay)",
+  "lat": 32.6219,
+  "lon": -117.1002,
+  "region": "uspac",
+  "src": "OSM node 13424117201 Safe Harbor South Bay"
+ },
+ {
+  "name": "Oceanside Harbor",
+  "lat": 33.2078,
+  "lon": -117.395,
+  "region": "uspac",
+  "src": "OSM node 358789993 Oceanside Harbor"
+ },
+ {
+  "name": "Dana Point Harbor",
+  "lat": 33.4603,
+  "lon": -117.7017,
+  "region": "uspac",
+  "src": "OSM node 358829720 West Basin"
+ },
+ {
+  "name": "Newport Beach (Balboa)",
+  "lat": 33.6099,
+  "lon": -117.915,
+  "region": "uspac",
+  "src": "OSM node 11914390437 (Lido/Newport Harbor); Balboa landings ~1 km E"
+ },
+ {
+  "name": "Long Beach – Alamitos Bay",
+  "lat": 33.7515,
+  "lon": -118.1125,
+  "region": "uspac",
+  "src": "OSM way 1460939373 Alamitos Bay Marina"
+ },
+ {
+  "name": "Long Beach (Pierpoint Landing)",
+  "lat": 33.7609,
+  "lon": -118.1965,
+  "region": "uspac",
+  "src": "OSM node 10278977653 Pierpoint Landing"
+ },
+ {
+  "name": "San Pedro (22nd Street Landing)",
+  "lat": 33.7242,
+  "lon": -118.2807,
+  "region": "uspac",
+  "src": "OSM way 670347082 22nd Street Landing"
+ },
+ {
+  "name": "Redondo Beach (King Harbor)",
+  "lat": 33.8459,
+  "lon": -118.3962,
+  "region": "uspac",
+  "src": "OSM way 854335933 King Harbor Marina"
+ },
+ {
+  "name": "Marina del Rey",
+  "lat": 33.9724,
+  "lon": -118.4511,
+  "region": "uspac",
+  "src": "OSM way 27624580 Marina del Rey"
+ },
+ {
+  "name": "Avalon (Catalina)",
+  "lat": 33.3462,
+  "lon": -118.3247,
+  "region": "uspac",
+  "src": "Avalon Harbor basin, from nautical chart position (approximate, ±200 m)"
+ },
+ {
+  "name": "Two Harbors (Catalina)",
+  "lat": 33.443,
+  "lon": -118.4985,
+  "region": "uspac",
+  "src": "Isthmus Cove, from nautical chart position (approximate, ±300 m)"
+ },
+ {
+  "name": "Channel Islands Harbor (Oxnard)",
+  "lat": 34.1642,
+  "lon": -119.2243,
+  "region": "uspac",
+  "src": "OSM node 358796410 Channel Islands Harbor"
+ },
+ {
+  "name": "Ventura Harbor",
+  "lat": 34.2461,
+  "lon": -119.2624,
+  "region": "uspac",
+  "src": "OSM way 1531568909 Ventura Harbor"
+ },
+ {
+  "name": "Santa Barbara Harbor",
+  "lat": 34.4058,
+  "lon": -119.6913,
+  "region": "uspac",
+  "src": "OSM way 452370893 Santa Barbara Harbor"
+ },
+ {
+  "name": "Port San Luis (Avila)",
+  "lat": 35.172,
+  "lon": -120.741,
+  "region": "uspac",
+  "src": "Harford Pier hoist, Port San Luis Harbor District (approximate, ±300 m; OSM way 202499335 is the district office)"
+ },
+ {
+  "name": "Morro Bay",
+  "lat": 35.37,
+  "lon": -120.859,
+  "region": "uspac",
+  "src": "Morro Bay Embarcadero (approximate, ±300 m)"
+ },
+ {
+  "name": "Monterey",
+  "lat": 36.6033,
+  "lon": -121.891,
+  "region": "uspac",
+  "src": "OSM way 35878154 Monterey Marina"
+ },
+ {
+  "name": "Moss Landing",
+  "lat": 36.8037,
+  "lon": -121.7895,
+  "region": "uspac",
+  "src": "OSM node 358795481 Moss Landing Harbor"
+ },
+ {
+  "name": "Santa Cruz Harbor",
+  "lat": 36.9682,
+  "lon": -122.001,
+  "region": "uspac",
+  "src": "OSM relation 9458343 Santa Cruz Small Craft Harbor"
+ },
+ {
+  "name": "Pillar Point Harbor (Half Moon Bay)",
+  "lat": 37.5007,
+  "lon": -122.4823,
+  "region": "uspac",
+  "src": "OSM node 358795791 Pillar Point Harbor"
+ },
+ {
+  "name": "San Francisco (Fisherman's Wharf)",
+  "lat": 37.8095,
+  "lon": -122.4191,
+  "region": "uspac",
+  "src": "OSM relation 14551822 Hyde Street Harbor"
+ },
+ {
+  "name": "Sausalito",
+  "lat": 37.8705,
+  "lon": -122.4981,
+  "region": "uspac",
+  "src": "OSM way 1310839271 Clipper Yacht Harbor"
+ },
+ {
+  "name": "Emeryville",
+  "lat": 37.8402,
+  "lon": -122.311,
+  "region": "uspac",
+  "src": "OSM node 3396258623 Emeryville Marina"
+ },
+ {
+  "name": "Berkeley Marina",
+  "lat": 37.8665,
+  "lon": -122.315,
+  "region": "uspac",
+  "src": "OSM way 117767451 Berkeley Marina"
+ },
+ {
+  "name": "Richmond (Marina Bay)",
+  "lat": 37.9106,
+  "lon": -122.3521,
+  "region": "uspac",
+  "src": "OSM node 358796100 Marina Bay"
+ },
+ {
+  "name": "Bodega Bay (Spud Point)",
+  "lat": 38.3287,
+  "lon": -123.0572,
+  "region": "uspac",
+  "src": "OSM way 1190045625 Spud Point Marina"
+ }
+]

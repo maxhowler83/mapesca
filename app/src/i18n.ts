@@ -30,7 +30,7 @@ const T = {
     rulesTitle: 'Reglas', limit: 'Límite', reserved: 'Reservada a la pesca deportiva a menos de 50 mn de la costa.',
     vedaNow: 'Veda en curso: no se marcan zonas.', beta: 'Perfil en prueba: puede fallar más que las otras especies.',
     sharks: 'Tiburones', neverKeep: 'Nunca se retienen (siempre liberar):',
-    checkRules: 'Revisa las reglas vigentes de', intlDisclaimer: 'Solo es un resumen. Mandan las reglas oficiales; revisa límites, tallas y temporadas antes de salir.', license: 'Licencia',
+    checkRules: 'Revisa las reglas vigentes de', releaseOnly: 'Solo captura y liberación:', pickArea: 'Las reglas cambian según el país o estado: elige un área para verlas.', intlDisclaimer: 'Solo es un resumen. Mandan las reglas oficiales; revisa límites, tallas y temporadas antes de salir.', license: 'Licencia',
     months: ['E', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
   },
   en: {
@@ -59,7 +59,7 @@ const T = {
     rulesTitle: 'Rules', limit: 'Limit', reserved: 'Reserved for sport fishing within 50 nm of the coast.',
     vedaNow: 'Closed season now: no zones are shown.', beta: 'Test profile: expect more misses than other species.',
     sharks: 'Sharks', neverKeep: 'Never kept (always release):',
-    checkRules: 'Check the current rules of', intlDisclaimer: 'Summary only. The official rules always win; check limits, sizes and seasons before you go.', license: 'License',
+    checkRules: 'Check the current rules of', releaseOnly: 'Catch and release only:', pickArea: 'Rules depend on the country or state: pick an area to see them.', intlDisclaimer: 'Summary only. The official rules always win; check limits, sizes and seasons before you go.', license: 'License',
     months: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
   },
 } as const;

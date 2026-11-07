@@ -1,4 +1,4 @@
-import { INTL_REGIONS, INTL_SEASONS, JURIS as INTL_JURIS, INTL_LIMITS, INTL_CLOSURES, INTL_INFO } from './intl.js';
+import { INTL_REGIONS, INTL_SEASONS, JURIS as INTL_JURIS, INTL_LIMITS, INTL_CLOSURES, INTL_INFO, INTL_OCEAN } from './intl.js';
 // Seasons, spawning and sport-fishing rules per species, for Mapesca.
 //
 // spawn: Jan…Dec, 0 = no spawning reported, 1 = within the reported range, 2 = peak.
@@ -100,16 +100,17 @@ export const CLOSURES = [
   { k: 'snook-south', species: ['common-snook'], areas: ['veracruz'], periods: [[7, 1, 8, 15]],
     en: 'Snook closed season, Chachalacas to Tonalá: Jul 1 – Aug 15.', es: 'Veda de robalo, de Chachalacas a Tonalá: 1 de julio al 15 de agosto.', source: 'Aviso DOF 16/03/1994' },
 ];
-const md = when => { const [m, d] = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Mazatlan', month: 'numeric', day: 'numeric' }).format(when).split('/').map(Number); return m * 100 + d; };
+const md = (when, tz = 'America/Mazatlan') => { const [m, d] = new Intl.DateTimeFormat('en-US', { timeZone: tz, month: 'numeric', day: 'numeric' }).format(when).split('/').map(Number); return m * 100 + d; };
 /** The closure in force for a species on a date in a region/area, or null. */
 export function closureFor(k, when = new Date(), region = 'cabo', area = null) {
-  const today = md(when);
-  return CLOSURES.find(c => c.species.includes(k)
+  // Full closures first; cr (catch-and-release only) closures don't remove zones.
+  const hits = CLOSURES.filter(c => c.species.includes(k)
     && (c.areas ? c.areas.includes(area) : c.regions.includes(region))
-    && c.periods.some(([fm, fd, tm, td]) => today >= fm * 100 + fd && today <= tm * 100 + td)) || null;
+    && c.periods.some(([fm, fd, tm, td]) => { const today = md(when, c.tz); return today >= fm * 100 + fd && today <= tm * 100 + td; }));
+  return hits.find(c => !c.cr) || hits[0] || null;
 }
 /** Kept for older callers: Pacific rules. */
-export function isClosed(k, when = new Date(), region = 'cabo', area = null) { return !!closureFor(k, when, region, area); }
+export function isClosed(k, when = new Date(), region = 'cabo', area = null) { const c = closureFor(k, when, region, area); return !!c && !c.cr; }
 
 // ── Regional fishing seasons (Mapesca) ─────────────────────────────────────
 // Jan…Dec on the 0–3 scale; null = the species isn't found / fished there (no zones).
@@ -166,6 +167,7 @@ export const OCEAN = {
   'atlantic-jack': 'atl', 'red-drum': 'atl', 'red-snapper': 'atl', 'mutton-snapper': 'atl', 'red-grouper': 'atl',
   'black-grouper': 'atl', 'goliath-grouper': 'atl',
 };
+Object.assign(OCEAN, INTL_OCEAN);
 export const oceanOf = k => OCEAN[k] || 'pac';
 export const regionOcean = r => (r && REGION_OCEAN[r]) || 'pac';
 

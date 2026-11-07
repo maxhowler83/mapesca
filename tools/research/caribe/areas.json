@@ -1,0 +1,198 @@
+[
+ {
+  "k": "bimini",
+  "d": "caribe",
+  "r": "bahamas",
+  "j": "bs",
+  "en": "Bimini & Cat Cay",
+  "es": "Bimini y Cat Cay",
+  "box": {
+   "w": -79.55,
+   "e": -78.85,
+   "s": 25.3,
+   "n": 26.1
+  },
+  "why": "Bimini, Gun & Cat Cay, Great Isaac and the eastern edge of the Gulf Stream; shallow Great Bahama Bank flats to the east."
+ },
+ {
+  "k": "abaco",
+  "d": "caribe",
+  "r": "bahamas",
+  "j": "bs",
+  "en": "Abaco & Walker's Cay",
+  "es": "Ábaco y Walker's Cay",
+  "box": {
+   "w": -78.6,
+   "e": -76.75,
+   "s": 25.85,
+   "n": 27.4
+  },
+  "why": "Walker's & Grand Cay, Green Turtle, Treasure Cay, Marsh Harbour, the Abaco canyons and drop-off to Hole in the Wall."
+ },
+ {
+  "k": "nassau",
+  "d": "caribe",
+  "r": "bahamas",
+  "j": "bs",
+  "en": "Nassau, Berry Islands & Eleuthera",
+  "es": "Nassau, islas Berry y Eleuthera",
+  "box": {
+   "w": -78.1,
+   "e": -76.3,
+   "s": 24.5,
+   "n": 25.95
+  },
+  "why": "New Providence, Chub Cay and the Berry Islands, north Tongue of the Ocean, Harbour Island/Eleuthera and north Exuma Sound."
+ },
+ {
+  "k": "havana",
+  "d": "caribe",
+  "r": "cuba",
+  "j": "cu",
+  "en": "Havana & Varadero",
+  "es": "La Habana y Varadero",
+  "box": {
+   "w": -82.75,
+   "e": -81.05,
+   "s": 22.95,
+   "n": 23.6
+  },
+  "why": "Marina Hemingway to Varadero along the Straits of Florida edge (Gulf Stream current close to shore)."
+ },
+ {
+  "k": "jardines",
+  "d": "caribe",
+  "r": "cuba",
+  "j": "cu",
+  "en": "Jardines de la Reina",
+  "es": "Jardines de la Reina",
+  "box": {
+   "w": -79.6,
+   "e": -77.9,
+   "s": 20.35,
+   "n": 21.65
+  },
+  "why": "Júcaro, the Jardines de la Reina cays, flats and outer reef drop-off (national park — see rules)."
+ },
+ {
+  "k": "cayman",
+  "d": "caribe",
+  "r": "carib-west",
+  "j": "ky",
+  "en": "Grand Cayman",
+  "es": "Gran Caimán",
+  "box": {
+   "w": -81.75,
+   "e": -80.9,
+   "s": 19.05,
+   "n": 19.65
+  },
+  "why": "Grand Cayman wall and North Sound, 12-Mile Bank to the west and the East End drop-off."
+ },
+ {
+  "k": "portantonio",
+  "d": "caribe",
+  "r": "carib-west",
+  "j": "jm",
+  "en": "Port Antonio (Jamaica)",
+  "es": "Port Antonio (Jamaica)",
+  "box": {
+   "w": -77.0,
+   "e": -76.1,
+   "s": 17.85,
+   "n": 18.55
+  },
+  "why": "Port Antonio and the northeast coast of Jamaica to Morant Point; deep water close to shore."
+ },
+ {
+  "k": "puntacana",
+  "d": "caribe",
+  "r": "carib-east",
+  "j": "do",
+  "en": "Punta Cana & Cap Cana",
+  "es": "Punta Cana y Cap Cana",
+  "box": {
+   "w": -68.95,
+   "e": -67.95,
+   "s": 18.1,
+   "n": 19.0
+  },
+  "why": "Cap Cana, Punta Cana and La Romana/Casa de Campo, west side of the Mona Passage."
+ },
+ {
+  "k": "prwest",
+  "d": "caribe",
+  "r": "carib-east",
+  "j": "us-pr",
+  "en": "West & south Puerto Rico",
+  "es": "Oeste y sur de Puerto Rico",
+  "box": {
+   "w": -67.98,
+   "e": -66.45,
+   "s": 17.55,
+   "n": 18.65
+  },
+  "why": "Rincón, Mayagüez, Boquerón, La Parguera and Ponce; Desecheo, Mona Passage banks (Bajo de Sico, Tourmaline, Abrir la Sierra) and Mona Island at the edge."
+ },
+ {
+  "k": "prnorth",
+  "d": "caribe",
+  "r": "carib-east",
+  "j": "us-pr",
+  "en": "San Juan, Fajardo & Culebra",
+  "es": "San Juan, Fajardo y Culebra",
+  "box": {
+   "w": -66.3,
+   "e": -65.15,
+   "s": 18.0,
+   "n": 18.85
+  },
+  "why": "San Juan, Fajardo/Puerto del Rey, Culebra and Vieques; the drop-off to the Puerto Rico Trench north of San Juan."
+ },
+ {
+  "k": "stthomas",
+  "d": "caribe",
+  "r": "carib-east",
+  "j": "us-vi",
+  "en": "St. Thomas & St. John",
+  "es": "St. Thomas y St. John",
+  "box": {
+   "w": -65.15,
+   "e": -64.6,
+   "s": 17.95,
+   "n": 18.85
+  },
+  "why": "St. Thomas and St. John, the North Drop and South Drop, Hind Bank and Grammanik Bank."
+ },
+ {
+  "k": "bvi",
+  "d": "caribe",
+  "r": "carib-east",
+  "j": "vg",
+  "en": "British Virgin Islands",
+  "es": "Islas Vírgenes Británicas",
+  "box": {
+   "w": -64.75,
+   "e": -64.2,
+   "s": 18.2,
+   "n": 18.9
+  },
+  "why": "Tortola, Virgin Gorda and Anegada; the eastern North Drop and Anegada flats."
+ },
+ {
+  "k": "caribe-all",
+  "d": "caribe",
+  "r": "carib-east",
+  "j": null,
+  "en": "All of the northern Caribbean",
+  "es": "Todo el Caribe norte",
+  "box": {
+   "w": -85.2,
+   "e": -64.2,
+   "s": 17.4,
+   "n": 27.4
+  },
+  "why": "Big view of the whole data region.",
+  "big": true
+ }
+]

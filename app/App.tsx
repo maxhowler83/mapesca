@@ -175,7 +175,7 @@ function Main() {
     ? (ES ? `Pronóstico para el ${wd(day, { weekday: 'long', day: 'numeric', month: 'short' })} · ${dayInfo.conf.es.toLowerCase()}` : `Outlook for ${wd(day, { weekday: 'long', month: 'short', day: 'numeric' })} · ${dayInfo.conf.en.toLowerCase()}`)
     : (ES ? `Satélite NOAA del ${wd(sat, { day: 'numeric', month: 'short' })}` : `NOAA satellite of ${wd(sat, { month: 'short', day: 'numeric' })}`);
   const bigView = !AREAS_BY_K[area].r;
-  const note = !res || !species ? '' : res.closure ? `${t.vedaNow} ${L(res.closure)}`
+  const note = !res || !species ? '' : res.closure ? `${res.closure.cr ? t.releaseOnly : t.vedaNow} ${L(res.closure)}`
     : res.notHere ? (ES ? `${spName} no se encuentra en esta área. Prueba otra.` : `${spName} isn't found in this area. Try another.`)
     : !res.here
     ? (ES ? `${day ? 'Ese día no se ve' : 'Hoy no hay'} agua que destaque para ${spName.toLowerCase()} en esta área. Prueba otra área.` : `No water stands out for ${spName.toLowerCase()} in this area ${day ? 'that day' : 'today'}. Try another area.`)
@@ -328,10 +328,11 @@ function Main() {
             <Text style={s.groupTitle}>{ES ? 'Vedas' : 'Closed seasons'}</Text>
             {(inp.manifest.rules as any).closures?.filter((c: any) => closureApplies(c, area)).map((c: any) => <Text key={c.k} style={[s.body, { marginBottom: 4 }]}>· {L(c)}</Text>) ?? <Text style={s.body}>{L(inp.manifest.rules.sharkVeda)}</Text>}
             {(() => {
-              const j = jurisOfArea(area), J = inp.manifest.rules.juris?.[j], nk = (j !== 'mx' && J?.neverKeep) || inp.manifest.rules.neverKeep;
+              const j = jurisOfArea(area), J = inp.manifest.rules.juris?.[j], nk = j === 'mx' ? inp.manifest.rules.neverKeep : (J?.neverKeep || { en: [], es: [] });
               return (<>
+                {j === 'multi' && <Text style={[s.body, { marginTop: 8 }]}>{t.pickArea}</Text>}
                 {j !== 'mx' && J && <Text style={[s.body, { marginTop: 8 }]}>{t.checkRules} {J.agency}: {J.url}</Text>}
-                <Text style={[s.body, { marginTop: 8, fontWeight: '600' }]}>{t.neverKeep}</Text>
+                {nk[LANG].length > 0 && <Text style={[s.body, { marginTop: 8, fontWeight: '600' }]}>{t.neverKeep}</Text>}
                 {nk[LANG].map((n: string) => <Text key={n} style={s.body}>· {n}</Text>)}
                 {nk.note && <Text style={[s.body, { marginTop: 8 }]}>{L(nk.note)}</Text>}
               </>);
@@ -466,7 +467,9 @@ function SpeciesDetail({ species, manifest, areaName, areaK }: { species: Specie
       {species.spawnSources.map(x => <Text key={x} style={s.small}>{x}</Text>)}
       <Text style={s.groupTitle}>{t.rulesTitle}</Text>
       {lim ? <Text style={s.body}>{t.limit}: {L(lim)}</Text>
-        : <Text style={s.body}>{t.checkRules} {J?.agency ?? L(J ?? { en: '', es: '' })}.</Text>}
+        : j === 'multi' ? <Text style={s.body}>{t.pickArea}</Text>
+        : (manifest.rules as any).limitsGeneral?.[j] ? <Text style={s.body}>{t.limit}: {L((manifest.rules as any).limitsGeneral[j])}</Text>
+        : <Text style={s.body}>{t.checkRules} {J?.agency ?? ''}.</Text>}
       {!mx && J?.license && <Text style={[s.body, { marginTop: 6 }]}>{t.license}: {L(J.license)}</Text>}
       {mx && species.reserved50nm && <Text style={[s.body, { marginTop: 6 }]}>{t.reserved}</Text>}
       {((manifest.rules as any).closures || []).filter((c: any) => c.species.includes(species.k) && closureApplies(c, areaK)).map((c: any) => <Text key={c.k} style={[s.body, { marginTop: 6 }]}>{L(c)} <Text style={s.small}>({c.source})</Text></Text>)}
