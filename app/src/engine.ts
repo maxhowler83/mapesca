@@ -54,7 +54,9 @@ const crops = new Map<string, any>();
 function crop(B: any, box: Box, key: string) {
   const k = `${key}|${box.w},${box.e},${box.s},${box.n}`;
   if (crops.has(k)) return crops.get(k);
-  const m = 0.25, rows: number[] = [], cols: number[] = [];
+  // Wide margin (~45 nm): like the Bite Map, the water around the area is drawn too (ranked by the
+  // area's own cut-offs), so Cabo shows its Pacific grounds, not only what fits in the box.
+  const m = 0.75, rows: number[] = [], cols: number[] = [];
   B.lat.forEach((la: number, i: number) => { if (la >= box.s - m && la <= box.n + m) rows.push(i); });
   B.lon.forEach((lo: number, j: number) => { if (lo >= box.w - m && lo <= box.e + m) cols.push(j); });
   const out = { lat: rows.map(i => B.lat[i]), lon: cols.map(j => B.lon[j]), depth: rows.map(i => cols.map(j => B.depth[i][j])), relief: rows.map(i => cols.map(j => B.relief[i][j])) };

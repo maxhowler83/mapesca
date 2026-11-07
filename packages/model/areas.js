@@ -17,7 +17,8 @@ export const REGIONS_BY_K = Object.fromEntries(REGIONS.map(r => [r.k, r]));
 // d: data region. r: season region (species-info.js SEASONS); null = big view.
 export const AREAS = [
   // Baja California Sur
-  { k: 'cabo', d: 'baja', r: 'cabo', en: 'Los Cabos', es: 'Los Cabos', box: { w: -110.6, e: -109.3, s: 22.55, n: 23.3 } },
+  // Los Cabos includes the Pacific grounds the Cabo fleet fishes (Golden Gate, San Jaime, Cabo Falso and offshore).
+  { k: 'cabo', d: 'baja', r: 'cabo', en: 'Los Cabos', es: 'Los Cabos', box: { w: -110.9, e: -109.3, s: 22.3, n: 23.3 } },
   { k: 'todos', d: 'baja', r: 'cabo', en: 'Todos Santos', es: 'Todos Santos', box: { w: -110.8, e: -109.85, s: 22.85, n: 23.95 } },
   { k: 'eastcape', d: 'baja', r: 'cabo', en: 'East Cape', es: 'East Cape', box: { w: -110.05, e: -109.25, s: 23.0, n: 23.95 } },
   { k: 'lapaz', d: 'baja', r: 'gulf-south', en: 'La Paz', es: 'La Paz', box: { w: -110.85, e: -109.6, s: 23.85, n: 24.75 } },
