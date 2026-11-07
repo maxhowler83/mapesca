@@ -16,7 +16,7 @@ import { prepareAreas, maskProtected } from '../packages/model/protected.js';
 import { AREAS, REGIONS, COVERAGE } from '../packages/model/areas.js';
 import { existsSync } from 'node:fs';
 import { seasonFor, oceanOf } from '../packages/model/species-info.js';
-import { INFO, LIMITS, LIMITS_SOURCE, SHARK_VEDA, NEVER_KEEP, closureFor, CLOSURES } from '../packages/model/species-info.js';
+import { INFO, LIMITS, LIMITS_SOURCE, SHARK_VEDA, NEVER_KEEP, closureFor, CLOSURES, JURIS, LIMITS_BY_J } from '../packages/model/species-info.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'out', 'v1');
@@ -207,6 +207,8 @@ async function main() {
       seasonLevel: anyZ.seasonLevel, closedByProtection: bz?.closedByProtection ?? 0, closedSeason: anyZ.closedSeason,
       season: sp.season, spawn: info.spawn ?? null, spawnConfidence: info.conf ?? 'low', spawnSources: info.src ?? [],
       limit: info.limit ? LIMITS[info.limit] : LIMITS.general, reserved50nm: !!info.reserved50nm, beta: !!info.beta,
+      // Outside Mexico: limits per jurisdiction (intl.js); the app picks the one of the area on screen.
+      limits: Object.fromEntries(Object.entries(LIMITS_BY_J).filter(([, m]) => m[sp.k]).map(([j, m]) => [j, m[sp.k]])),
     });
     const c = anyZ.counts;
     console.log(`${sp.k.padEnd(22)} ${where.map(r => r.k).join(',').padEnd(18)} elite ${String(c.elite).padStart(5)}`);
@@ -226,7 +228,7 @@ async function main() {
       en: 'Scores rate how well today\'s water fits each species. They are not a catch forecast. Check the weather and port status before going out, and follow protected-area rules.',
       es: 'La puntuación indica qué tan bien el agua de hoy le queda a cada especie. No es un pronóstico de captura. Revisa el clima y el estado del puerto antes de salir, y respeta las reglas de las áreas protegidas.',
     },
-    rules: { source: LIMITS_SOURCE, sharkVeda: SHARK_VEDA, closures: CLOSURES, neverKeep: NEVER_KEEP,
+    rules: { source: LIMITS_SOURCE, sharkVeda: SHARK_VEDA, closures: CLOSURES, neverKeep: NEVER_KEEP, juris: JURIS,
       reserved50nm: { en: 'Billfish, dorado, roosterfish and tarpon are reserved for sport fishing within 50 nautical miles of the coast.', es: 'Picudos, dorado, pez gallo y sábalo están reservados a la pesca deportiva dentro de 50 millas náuticas de la costa.' },
       disclaimer: { en: 'Summary only. Official NOM and DOF texts always win; you need a valid sport-fishing license.', es: 'Solo es un resumen. Mandan los textos oficiales de las NOM y el DOF; necesitas un permiso de pesca deportiva vigente.' } },
     attribution: [

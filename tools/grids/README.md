@@ -15,6 +15,9 @@ These scripts build the depth grids and land outlines in `packages/model/data/`:
 | `baja` (default) | 32.75, 22.0, -118.6, -105.4 | Baja California, both coasts, and the Gulf of California | 430×528 | 157,872 |
 | `pacsur` | 23.2, 14.3, -107.5, -92.0 | Mexican Pacific from Mazatlán to the Guatemala border | 356×620 | 119,265 |
 | `golfo` | 26.1, 17.8, -98.0, -86.3 | Gulf of Mexico and the Mexican Caribbean, Tamaulipas to Quintana Roo (Cozumel, Banco Chinchorro) | 332×468 | 283,598 |
+| `uspac` | 38.6, 32.3, -125.0, -117.0 | California, from the Mexican border to Bodega Bay, with the Channel Islands and the offshore banks | 252×320 | 32,087 |
+| `usgulf` | 30.8, 24.2, -97.9, -79.0 | US Gulf of Mexico from Brownsville to the Florida Keys, and Florida's Atlantic coast to Jacksonville | 264×756 | 523,719 |
+| `caribe` | 27.4, 17.4, -85.2, -64.2 | Northern Caribbean: Bahamas, Cuba, Cayman, Jamaica, Hispaniola, Turks & Caicos, Puerto Rico and the Virgin Islands | 400×840 | 374,550 |
 
 The old BCS box was N 28.1, S 22.3, W -115.4, E -109.0. Built with `--no-pad`, these scripts recreate `bathy-bcs.json`, `bathy-bcs-coast.json` and `land-bcs.json` byte for byte.
 
@@ -48,6 +51,10 @@ python3 tools/grids/fetch_etopo.py $W --box $BOX --name golfo
 python3 tools/grids/build_bathy.py $W packages/model/data --box $BOX --name golfo
 python3 tools/grids/build_land.py  $W/ne packages/model/data/land-golfo.json --box $BOX
 
+# uspac, usgulf, caribe (same three steps with their boxes)
+#   uspac  "38.6 32.3 -125.0 -117.0"   usgulf "30.8 24.2 -97.9 -79.0"   caribe "27.4 17.4 -85.2 -64.2"
+python3 tools/grids/clean_lagoons.py packages/model/data baja pacsur golfo uspac usgulf caribe
+
 python3 tools/grids/validate_regions.py packages/model/data          # spot-check depths, islands and sizes for pacsur and golfo
 ```
 
@@ -77,3 +84,4 @@ The docstring of each script has the full rules.
   - Huizache-Caimanero, Sinaloa, in `baja` already: up to 136 m.
 - **Banco Chinchorro**: ETOPO mixes land and 100–200 m pixels across the reef bank. The main grid shows the lagoon at a median of about 60 m, but it is really only a few metres deep.
 - **Small islands**: Natural Earth 1:10m leaves out small islands, so they are water in `land-*.json`. These include Isla Isabel, Islas Marietas, Isla Lobos and the Veracruz reef cays. Isla Mujeres is a coarse polygon of 7 points.
+- **US and Caribbean boxes**: Death Valley lies below sea level, so ETOPO puts "water" there inside the `uspac` box; `clean_lagoons.py` removes it (it isn't connected to the sea). It also removes Lake Pontchartrain, closed Cuban pocket bays and inland blue holes on Andros and Cat Island. The Bahamas banks and the West Florida Shelf make the `usgulf` and `caribe` coast grids large (about 1.4–1.7 MB gzipped).

@@ -7,7 +7,7 @@ import * as Location from 'expo-location';
 import * as Clipboard from 'expo-clipboard';
 import * as Sharing from 'expo-sharing';
 import {
-  loadInputs, loadRegion, loadCoast, compute, regionOfArea, closureFor, availableRegions, explain, pinText, AREAS, AREAS_BY_K, areaFor, PORTS, SPECIES_BY_K, outlookDays, caboToday,
+  loadInputs, loadRegion, loadCoast, compute, regionOfArea, closureApplies, jurisOfArea, closureFor, availableRegions, explain, pinText, AREAS, AREAS_BY_K, areaFor, PORTS, SPECIES_BY_K, outlookDays, caboToday,
   nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt, COVERAGE, outlookCovers, seasonFor,
   type Inputs, type Result,
 } from './src/engine';
@@ -302,7 +302,7 @@ function Main() {
       </Sheet>
 
       <Sheet open={sheet === 'detail'} onClose={() => setSheet(null)}>
-        {species && inp && <SpeciesDetail species={{ ...species, season: seasonFor(SPECIES_BY_K[species.k], AREAS_BY_K[area].r) || [0,0,0,0,0,0,0,0,0,0,0,0] }} manifest={inp.manifest} areaName={L(AREAS_BY_K[area])} />}
+        {species && inp && <SpeciesDetail species={{ ...species, season: seasonFor(SPECIES_BY_K[species.k], AREAS_BY_K[area].r) || [0,0,0,0,0,0,0,0,0,0,0,0] }} manifest={inp.manifest} areaName={L(AREAS_BY_K[area])} areaK={area} />}
       </Sheet>
 
       <GotoSheet open={sheet === 'goto'} onClose={() => setSheet(null)} onGo={p => { setSheet(null); goTo(p); }} />
@@ -326,10 +326,16 @@ function Main() {
         {inp && (
           <>
             <Text style={s.groupTitle}>{ES ? 'Vedas' : 'Closed seasons'}</Text>
-            {(inp.manifest.rules as any).closures?.map((c: any) => <Text key={c.k} style={[s.body, { marginBottom: 4 }]}>· {L(c)}</Text>) ?? <Text style={s.body}>{L(inp.manifest.rules.sharkVeda)}</Text>}
-            <Text style={[s.body, { marginTop: 8, fontWeight: '600' }]}>{t.neverKeep}</Text>
-            {inp.manifest.rules.neverKeep[LANG].map(n => <Text key={n} style={s.body}>· {n}</Text>)}
-            <Text style={[s.body, { marginTop: 8 }]}>{L(inp.manifest.rules.neverKeep.note)}</Text>
+            {(inp.manifest.rules as any).closures?.filter((c: any) => closureApplies(c, area)).map((c: any) => <Text key={c.k} style={[s.body, { marginBottom: 4 }]}>· {L(c)}</Text>) ?? <Text style={s.body}>{L(inp.manifest.rules.sharkVeda)}</Text>}
+            {(() => {
+              const j = jurisOfArea(area), J = inp.manifest.rules.juris?.[j], nk = (j !== 'mx' && J?.neverKeep) || inp.manifest.rules.neverKeep;
+              return (<>
+                {j !== 'mx' && J && <Text style={[s.body, { marginTop: 8 }]}>{t.checkRules} {J.agency}: {J.url}</Text>}
+                <Text style={[s.body, { marginTop: 8, fontWeight: '600' }]}>{t.neverKeep}</Text>
+                {nk[LANG].map((n: string) => <Text key={n} style={s.body}>· {n}</Text>)}
+                {nk.note && <Text style={[s.body, { marginTop: 8 }]}>{L(nk.note)}</Text>}
+              </>);
+            })()}
           </>
         )}
         <Text style={s.groupTitle}>{t.sources}</Text>
@@ -437,7 +443,9 @@ function Sheet({ open, onClose, title, children }: { open: boolean; onClose: () 
 }
 
 /** Month strip: fishing season (0–3) and spawning (0/1/2), current month outlined. */
-function SpeciesDetail({ species, manifest, areaName }: { species: SpeciesInfo; manifest: Manifest; areaName: string }) {
+function SpeciesDetail({ species, manifest, areaName, areaK }: { species: SpeciesInfo; manifest: Manifest; areaName: string; areaK: string }) {
+  const j = jurisOfArea(areaK), J = manifest.rules.juris?.[j], mx = j === 'mx';
+  const lim = mx ? species.limit : species.limits?.[j];
   const now = new Date().getMonth();
   const fishColor = (v: number) => ['#EEF1F4', '#CFE3F3', '#7FB3DD', '#1F6FB2'][v] ?? '#EEF1F4';
   const spawnColor = (v: number) => ['#EEF1F4', '#F6C9A9', '#E07A3F'][v] ?? '#EEF1F4';
@@ -457,12 +465,14 @@ function SpeciesDetail({ species, manifest, areaName }: { species: SpeciesInfo; 
         : <Text style={[s.body, { color: C.muted }]}>{t.spawning}: {t.noSpawnData}</Text>}
       {species.spawnSources.map(x => <Text key={x} style={s.small}>{x}</Text>)}
       <Text style={s.groupTitle}>{t.rulesTitle}</Text>
-      <Text style={s.body}>{t.limit}: {L(species.limit)}</Text>
-      {species.reserved50nm && <Text style={[s.body, { marginTop: 6 }]}>{t.reserved}</Text>}
-      {((manifest.rules as any).closures || []).filter((c: any) => c.species.includes(species.k)).map((c: any) => <Text key={c.k} style={[s.body, { marginTop: 6 }]}>{L(c)} <Text style={s.small}>({c.source})</Text></Text>)}
+      {lim ? <Text style={s.body}>{t.limit}: {L(lim)}</Text>
+        : <Text style={s.body}>{t.checkRules} {J?.agency ?? L(J ?? { en: '', es: '' })}.</Text>}
+      {!mx && J?.license && <Text style={[s.body, { marginTop: 6 }]}>{t.license}: {L(J.license)}</Text>}
+      {mx && species.reserved50nm && <Text style={[s.body, { marginTop: 6 }]}>{t.reserved}</Text>}
+      {((manifest.rules as any).closures || []).filter((c: any) => c.species.includes(species.k) && closureApplies(c, areaK)).map((c: any) => <Text key={c.k} style={[s.body, { marginTop: 6 }]}>{L(c)} <Text style={s.small}>({c.source})</Text></Text>)}
       {species.beta && <Text style={[s.body, { marginTop: 6, color: C.muted }]}>{t.beta}</Text>}
-      <Text style={[s.small, { marginTop: 8 }]}>{L(manifest.rules.disclaimer)}</Text>
-      <Text style={s.small}>{manifest.rules.source}</Text>
+      <Text style={[s.small, { marginTop: 8 }]}>{mx ? L(manifest.rules.disclaimer) : t.intlDisclaimer}</Text>
+      <Text style={s.small}>{mx ? manifest.rules.source : ((lim as any)?.src || J?.url || '')}</Text>
     </View>
   );
 }

@@ -5,13 +5,13 @@
 import { scoreZones, explainAt, tierOf, TIERS, SPECIES_BY_K, coastGrid, reachFromPorts, nearestPort, PORTS } from '../../packages/model/zones.js';
 import { prepareAreas, maskProtected, areaAt } from '../../packages/model/protected.js';
 import { projectConditions, outlookDays, caboToday } from '../../packages/model/outlook.js';
-import { closureFor, INFO, seasonFor, CLOSURES } from '../../packages/model/species-info.js';
+import { closureFor, INFO, seasonFor, CLOSURES, JURIS, jurisOf } from '../../packages/model/species-info.js';
 import { AREAS, AREAS_BY_K, areaFor, COVERAGE, REGIONS_BY_K } from '../../packages/model/areas.js';
 import { nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM } from '../../packages/model/route.js';
 import { parseCoords } from '../../packages/model/coords.js';
 import { DATA_URL, type Manifest } from './data';
 
-export { TIERS, SPECIES_BY_K, PORTS, AREAS, AREAS_BY_K, areaFor, COVERAGE, seasonFor, closureFor, CLOSURES, nearestPort, outlookDays, caboToday, nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt, INFO };
+export { TIERS, SPECIES_BY_K, PORTS, AREAS, AREAS_BY_K, areaFor, COVERAGE, seasonFor, closureFor, CLOSURES, nearestPort, outlookDays, caboToday, nmBetween, bearing, minutesAt, fmtDuration, crossesLand, NM_TO_MI, NM_TO_KM, parseCoords, areaAt, INFO, JURIS, jurisOf };
 
 export type Box = { w: number; e: number; s: number; n: number };
 /** One data region's inputs (Baja & Sea of Cortez, Pacific south, Gulf & Caribbean). */
@@ -137,3 +137,12 @@ export function explain(r: Result, lat: number, lon: number, es: boolean): Expla
 
 const dm = (v: number, pos: string, neg: string) => { const a = Math.abs(v), d = Math.floor(a), m = (a - d) * 60; return `${d}°${m.toFixed(2)}'${v >= 0 ? pos : neg}`; };
 export const pinText = (p: { lat: number; lon: number }) => `${dm(p.lat, 'N', 'S')} ${dm(p.lon, 'E', 'W')}`;
+
+/** Does a closed season apply to this area? Big views include every closure of their data region. */
+export function closureApplies(c: any, areaKey: string) {
+  const A = AREAS_BY_K[areaKey] || AREAS_BY_K.cabo, big = !A.r || A.big;
+  if (c.areas) return c.areas.includes(A.k) || (big && c.areas.some((k: string) => AREAS_BY_K[k]?.d === A.d));
+  return c.regions.includes(A.r) || (big && AREAS.some((a: any) => a.d === A.d && c.regions.includes(a.r)));
+}
+/** Jurisdiction of an area (rules, licence, never-keep list). */
+export const jurisOfArea = (areaKey: string) => jurisOf((AREAS_BY_K[areaKey] || AREAS_BY_K.cabo).r);

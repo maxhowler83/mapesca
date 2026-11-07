@@ -4,18 +4,19 @@ import Constants from 'expo-constants';
 export const DATA_URL: string =
   process.env.EXPO_PUBLIC_DATA_URL || (Constants.expoConfig?.extra?.dataUrl as string) || 'https://data.mapesca.org/v1';
 
+type Txt = { en: string; es: string };
 export type Tier = { k: 'elite' | 'priority' | 'candidate'; en: string; es: string; color: [number, number, number] };
 export type SpeciesInfo = {
   k: string; g: string; en: string; es: string; seasonLevel: number;
   cut: Record<Tier['k'], number>; counts: Record<Tier['k'], number>; file: string;
   season: number[]; spawn: number[] | null; spawnConfidence: 'high' | 'medium' | 'low'; spawnSources: string[];
-  limit: { n: number; en: string; es: string }; reserved50nm: boolean; closedSeason: boolean; beta: boolean;
+  limit: { n: number; en: string; es: string }; limits?: Record<string, Txt & { src?: string }>; reserved50nm: boolean; closedSeason: boolean; beta: boolean;
 };
-type Txt = { en: string; es: string };
 export type Rules = {
   source: string; reserved50nm: Txt; disclaimer: Txt;
   sharkVeda: Txt & { source: string };
   neverKeep: { en: string[]; es: string[]; note: Txt; source: string };
+  juris?: Record<string, Txt & { agency: string; url: string; license?: Txt; neverKeep?: { en: string[]; es: string[]; note?: Txt } }>;
 };
 export type Manifest = {
   updatedAt: string;

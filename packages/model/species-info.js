@@ -1,3 +1,4 @@
+import { INTL_REGIONS, INTL_SEASONS, JURIS as INTL_JURIS, INTL_LIMITS, INTL_CLOSURES, INTL_INFO } from './intl.js';
 // Seasons, spawning and sport-fishing rules per species, for Mapesca.
 //
 // spawn: Jan…Dec, 0 = no spawning reported, 1 = within the reported range, 2 = peak.
@@ -151,6 +152,9 @@ export const SEASONS = {
  */
 // Which ocean each season region is in, and which ocean each species lives in.
 export const REGION_OCEAN = { 'gom-west': 'atl', 'gom-south': 'atl', caribe: 'atl' }; // everything else: Pacific
+for (const [r, x] of Object.entries(INTL_REGIONS)) REGION_OCEAN[r] = x.ocean;
+/** Season regions with no fallback calendar (outside Mexico). */
+export const STRICT_REGIONS = new Set(Object.keys(INTL_REGIONS));
 export const OCEAN = {
   // Both oceans (same species in the Pacific and the Atlantic)
   'blue-marlin': 'both', 'pacific-sailfish': 'both', 'yellowfin-tuna': 'both', dorado: 'both', wahoo: 'both',
@@ -177,6 +181,7 @@ export function seasonFor(sp, region) {
     return sp.season;
   }
   if (byR && region in byR) return byR[region];
+  if (STRICT_REGIONS.has(region)) return null; // outside Mexico: only species with a local calendar
   // No regional calendar yet: Pacific species fall back on their own (Los Cabos)
   // calendar — unless they aren't found around Los Cabos at all (northern species);
   // in the Atlantic only species with an Atlantic calendar show.
@@ -290,3 +295,21 @@ Object.assign(INFO, {
   'spotted-rose-snapper': { spawn: null, conf: 'low', limit: 'general', beta: true, src: ['FishBase (depth)'] },
   'bull-shark': { spawn: null, conf: 'low', limit: 'shark', beta: true, src: ['FishBase (depth); Playa del Carmen winter aggregation'] },
 });
+
+// ── US waters and the northern Caribbean (intl.js) ──
+for (const [k, byR] of Object.entries(INTL_SEASONS)) {
+  SEASONS[k] = SEASONS[k] || {};
+  for (const [r, str] of Object.entries(byR)) SEASONS[k][r] = S(str);
+}
+CLOSURES.push(...INTL_CLOSURES);
+Object.assign(INFO, INTL_INFO);
+/** Jurisdictions: Mexico (NOM-017) plus the ones in intl.js. */
+export const JURIS = {
+  mx: { en: 'Mexico', es: 'México', agency: 'CONAPESCA', url: 'https://www.gob.mx/conapesca',
+    license: { en: 'Sport-fishing license required (CONAPESCA), also for boats.', es: 'Se necesita permiso de pesca deportiva (CONAPESCA), también para las embarcaciones.' },
+    neverKeep: NEVER_KEEP, source: LIMITS_SOURCE },
+  ...INTL_JURIS,
+};
+export const LIMITS_BY_J = INTL_LIMITS;
+/** Jurisdiction of a season region (Mexico unless intl.js says otherwise). */
+export const jurisOf = r => (r && INTL_REGIONS[r]?.j) || 'mx';
