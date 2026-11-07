@@ -50,3 +50,5 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000 # ~400 MB of zone files takes longer than the 10-minute default to sync
