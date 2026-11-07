@@ -152,6 +152,11 @@
     "en": "2 per day, minimum 22 in total length (§28.27). North of Point Conception: closed Jan 1–Mar 31, open all depths Apr 1–Dec 31. Southern area: closed Jan 1–Mar 31; all depths Apr 1–Jun 30; inside 50 fathoms only Jul 1–Sep 30; outside 50 fathoms only Oct 1–Dec 31. Closed in Groundfish Exclusion Areas and Cordell Bank.",
     "es": "2 al día, mínimo 22 pulgadas (§28.27). Al norte de Point Conception: cerrado 1 ene–31 mar, abierto a toda profundidad 1 abr–31 dic. Zona sur: cerrado 1 ene–31 mar; toda profundidad 1 abr–30 jun; solo dentro de 50 brazas 1 jul–30 sep; solo fuera de 50 brazas 1 oct–31 dic. Cerrado en zonas de exclusión y Cordell Bank.",
     "src": "https://wildlife.ca.gov/Fishing/Ocean/Regulations/Groundfish-Summary"
+   },
+   "chinook-salmon": {
+    "en": "2 salmon per day (no coho). Minimum size depends on area and season (20 in in the fall season); check CDFW before each trip — open days change in season.",
+    "es": "2 salmones al día (ningún coho). La talla mínima depende del área y la temporada (20 pulgadas en otoño); revisa CDFW antes de cada viaje: los días abiertos cambian durante la temporada.",
+    "src": "https://wildlife.ca.gov/Fishing/ocean/Regulations/Salmon/Pre-Season (updated Aug 19, 2026)"
    }
   }
  },
@@ -201,6 +206,107 @@
    "en": "California sheephead closed to boat anglers Jan 1 – end of February (shore anglers and divers exempt).",
    "es": "Vieja de California cerrada para embarcaciones del 1 ene a fin de febrero (orilla y buceo exentos).",
    "source": "https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=239985 (14 CCR §28.26)",
+   "conf": "high"
+  },
+  {
+   "k": "salmon-monterey",
+   "species": [
+    "chinook-salmon"
+   ],
+   "areas": [
+    "morrobay",
+    "monterey"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     4,
+     10
+    ],
+    [
+     10,
+     1,
+     12,
+     31
+    ]
+   ],
+   "en": "Salmon closed south of Pigeon Point except Apr 11 – Sep 30 (2026).",
+   "es": "Salmón cerrado al sur de Pigeon Point salvo del 11 abr al 30 sep (2026).",
+   "source": "https://wildlife.ca.gov/Fishing/ocean/Regulations/Salmon/Pre-Season (updated Aug 19, 2026)",
+   "conf": "high"
+  },
+  {
+   "k": "salmon-sf",
+   "species": [
+    "chinook-salmon"
+   ],
+   "areas": [
+    "halfmoonbay",
+    "sanfrancisco"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     6,
+     26
+    ],
+    [
+     7,
+     23,
+     7,
+     31
+    ],
+    [
+     8,
+     24,
+     8,
+     31
+    ],
+    [
+     11,
+     1,
+     12,
+     31
+    ]
+   ],
+   "en": "Salmon open Pigeon Point – Point Reyes only Jun 27 – Jul 22, Aug 1 – 23 and Sep 1 – Oct 31 (2026).",
+   "es": "Salmón abierto de Pigeon Point a Point Reyes solo 27 jun – 22 jul, 1 – 23 ago y 1 sep – 31 oct (2026).",
+   "source": "https://wildlife.ca.gov/Fishing/ocean/Regulations/Salmon/Pre-Season (updated Aug 19, 2026)",
+   "conf": "high"
+  },
+  {
+   "k": "salmon-bodega",
+   "species": [
+    "chinook-salmon"
+   ],
+   "areas": [
+    "bodega"
+   ],
+   "periods": [
+    [
+     1,
+     1,
+     6,
+     26
+    ],
+    [
+     7,
+     23,
+     7,
+     31
+    ],
+    [
+     8,
+     24,
+     12,
+     31
+    ]
+   ],
+   "en": "Salmon open north of Point Reyes (Bodega) only Jun 27 – Jul 22 and Aug 1 – 23 (2026); the fall season is south of 38°02′N only.",
+   "es": "Salmón abierto al norte de Point Reyes (Bodega) solo 27 jun – 22 jul y 1 – 23 ago (2026); la temporada de otoño es solo al sur de 38°02′N.",
+   "source": "https://wildlife.ca.gov/Fishing/ocean/Regulations/Salmon/Pre-Season (updated Aug 19, 2026)",
    "conf": "high"
   }
  ]

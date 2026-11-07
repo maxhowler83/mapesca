@@ -320,5 +320,50 @@
     "Pupping spring in the SoCal Bight nursery (NOAA SWFSC)"
    ]
   }
+ },
+ {
+  "k": "chinook-salmon",
+  "g": "inshore",
+  "en": "Chinook (king) salmon",
+  "es": "Salmón chinook (rey)",
+  "temp": [
+   7,
+   9,
+   13,
+   16
+  ],
+  "depth": [
+   15,
+   30,
+   150,
+   300
+  ],
+  "chl": [
+   0.5,
+   10
+  ],
+  "season": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "info": {
+   "spawn": null,
+   "conf": "low",
+   "src": [
+    "Spawns in rivers in fall, not in the ocean",
+    "Ocean temperatures and depths: LOW-confidence starting profile (troll fishery over the shelf in cool, productive upwelling water); tune with catch reports",
+    "https://wildlife.ca.gov/Fishing/ocean/Regulations/Salmon/Pre-Season (updated Aug 19, 2026)"
+   ]
+  }
  }
 ]

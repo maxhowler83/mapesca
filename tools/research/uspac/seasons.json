@@ -249,6 +249,12 @@
   "lingcod": "Year-round availability, larger fish shallower in late fall–winter before nesting; Jan–Mar boat closure handled by closures. low",
   "california-sheephead": "SoCal reef species, rare north of Pt Conception (range to Monterey Bay); Jan–Feb boat closure. low",
   "common-thresher": "Spring–early summer coastal run in SoCal (Santa Monica Bay, San Diego), summer in SF Bay/Monterey (Cartamil et al. 2010; NOAA SWFSC). low",
-  "_others": "All other existing zones.js species are tropical/Gulf of California species not caught (or extremely rare) in California → null."
+  "_others": "All other existing zones.js species are tropical/Gulf of California species not caught (or extremely rare) in California → null.",
+  "chinook-salmon": "LOW confidence: Monterey spring fishery (Apr–Jun), San Francisco/Bodega summer–fall; legal open days are closures in rules.json"
+ },
+ "chinook-salmon": {
+  "us-socal": null,
+  "us-central": "000332221000",
+  "us-norcal": "000012333100"
  }
 }
