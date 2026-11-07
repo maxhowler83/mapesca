@@ -35,7 +35,7 @@ function bboxOf(polys) {
 export function prepareAreas(fc) {
   return (fc?.features || []).map(f => {
     const polys = polygonsOf(f.geometry);
-    return { name: f.properties.name, rule: f.properties.rule, category: f.properties.category, note: f.properties.note || null, polys, bbox: bboxOf(polys) };
+    return { name: f.properties.name, rule: f.properties.rule, category: f.properties.category, note: f.properties.note || null, species: f.properties.species || null, polys, bbox: bboxOf(polys) };
   });
 }
 
@@ -54,12 +54,16 @@ export function areaAt(areas, lat, lon) {
 }
 
 /**
+ * species: optional list on a "rules" area — those species may not be taken there.
  * Sets every square whose centre is inside a no-take area to 0 (ruled out),
  * in place, and returns how many squares were closed. Works on any scoreZones()
  * result ({ lat[], lon[], v[][] }).
  */
-export function maskProtected(z, areas) {
-  const noTake = areas.filter(a => a.rule === 'no-take');
+export function maskProtected(z, areas, speciesK = null) {
+  // No-take areas, plus "rules" areas that ban this species only (e.g. California groundfish
+  // exclusion areas: no rockfish or lingcod, pelagics allowed).
+  const noTake = areas.filter(a => a.rule === 'no-take' || (speciesK && a.species && a.species.includes(speciesK)))
+    .map(a => (a.rule === 'no-take' ? a : { ...a, rule: 'no-take' }));
   let closed = 0;
   z.lat.forEach((la, i) => z.lon.forEach((lo, j) => {
     if (z.v[i][j] == null || z.v[i][j] === 0) return;

@@ -139,7 +139,7 @@ async function buildRegion(reg, dir, areas, now, offline) {
     if (!season) continue; // not found in this region
     const inshore = sp.g === 'inshore';
     const z = scoreZones({ ...sp, season }, conditions, null, now, { bathy: inshore ? coast : bathy, reach: reachFromPorts });
-    const closed = maskProtected(z, areas);
+    const closed = maskProtected(z, areas, sp.k);
     const vedaNow = !!closureFor(sp.k, now, overview);
     if (vedaNow) z.v = z.v.map(row => row.map(x => (x == null ? null : 0)));
     const counts = { elite: 0, priority: 0, candidate: 0 };

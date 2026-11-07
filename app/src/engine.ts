@@ -99,7 +99,7 @@ export function compute(inp: Inputs, sp: string, areaKey: string, day: string): 
   // Regional season (null = not found in this area: no zones).
   const season = seasonFor(S, area.r);
   const z = scoreZones({ ...S, season: season || S.season }, cond, null, when, { bathy: B, reach: reachFromPorts });
-  maskProtected(z, inp.areas);
+  maskProtected(z, inp.areas, sp);
   const closure = closureFor(sp, when, area.r, area.k), notHere = !season;
   if (closure || notHere) z.v = z.v.map((row: any[]) => row.map(x => (x == null ? null : 0)));
   const az = areaZones(z, area.box);
