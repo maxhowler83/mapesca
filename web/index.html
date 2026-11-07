@@ -77,7 +77,10 @@
   .partner { background: #fff; border-radius: var(--radius); padding: 22px; border: 1px solid var(--line); }
   .partner b { display: block; font-size: 17px; }
   .partner span { color: var(--muted); font-size: 14px; }
-  .partner a { font-size: 14px; color: var(--muted); }
+  a.partner { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: inherit; transition: box-shadow .2s, border-color .2s; }
+  a.partner:hover, a.partner:focus-visible { box-shadow: var(--shadow); border-color: #C9D2DB; }
+  .partner u { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--teal-dark); text-decoration: none; }
+  footer .links a { margin-right: 14px; display: inline-block; }
   .rules li { margin: 6px 0; }
   .rules { color: var(--muted); padding-left: 20px; margin: 0; }
   footer { background: var(--navy); padding: 40px 0 52px; color: #B8C4D2; font-size: 13px; }
@@ -169,9 +172,9 @@
     <div class="wrap">
       <h2 data-i18n="byTitle">Un regalo de la pesca de México al mundo</h2>
       <div class="partners">
-        <div class="partner"><b>Top Anglers Sportfishing Charters</b><span>Cabo San Lucas · desde 2004</span><br><a href="https://www.topanglerscharters.com">topanglerscharters.com</a></div>
-        <div class="partner"><b>Asociación Sudcaliforniana de Pesca Deportiva</b><span>Baja California Sur</span></div>
-        <div class="partner"><b>Federación Nacional de Pesca Deportiva</b><span>México</span><br><a href="https://pescaenmexico.com">pescaenmexico.com</a></div>
+        <a class="partner" href="https://www.topanglerscharters.com" target="_blank" rel="noopener"><b>Top Anglers Sportfishing Charters</b><span data-i18n="pTA">Cabo San Lucas · desde 2004 · creadores del Bite Map</span><u>topanglerscharters.com ↗</u></a>
+        <a class="partner" href="https://pescadeportivabcs.com" target="_blank" rel="noopener"><b>Asociación Sudcaliforniana de Pesca Deportiva</b><span>Baja California Sur</span><u>pescadeportivabcs.com ↗</u></a>
+        <a class="partner" href="https://pescaenmexico.com" target="_blank" rel="noopener"><b>Federación Nacional de Pesca Deportiva</b><span>México</span><u>pescaenmexico.com ↗</u></a>
       </div>
       <p class="note" style="margin-top:18px" data-i18n="edu">Pronto: edupesca.org, para aprender a vivir de lo que el mar nos da. También gratis, para siempre.</p>
     </div>
@@ -183,7 +186,8 @@
     <img class="flogo" src="/brand/mapesca/mapesca-logo-horizontal-white.svg" alt="Mapesca" width="170" height="36">
     <p data-i18n="sources">Fuentes: NOAA CoastWatch (temperatura y clorofila), NOAA NCEI ETOPO 2022 (profundidad), Natural Earth (costa). Áreas protegidas: CONANP, CDFW, NOAA, The Nature Conservancy y gobiernos de cada país. Mapa © OpenStreetMap · OpenFreeMap.</p>
     <p data-i18n="safety">Revisa el clima y el estado del puerto antes de salir. Los límites de las áreas protegidas son aproximados; manda el texto oficial.</p>
-    <p>Datos abiertos: <a href="https://data.mapesca.org/v1/manifest.json">data.mapesca.org</a> · <a href="https://github.com/maxhowler83/mapesca">GitHub</a></p>
+    <p class="links"><a href="https://www.topanglerscharters.com" target="_blank" rel="noopener">Top Anglers</a><a href="https://pescadeportivabcs.com" target="_blank" rel="noopener">Asociación Sudcaliforniana de Pesca Deportiva</a><a href="https://pescaenmexico.com" target="_blank" rel="noopener">Federación Nacional de Pesca Deportiva</a></p>
+    <p><span data-i18n="open">Datos abiertos:</span> <a href="https://data.mapesca.org/v1/manifest.json">data.mapesca.org</a> · <a href="https://github.com/maxhowler83/mapesca">GitHub</a></p>
   </div>
 </footer>
 
@@ -212,6 +216,7 @@
       r5: 'You need a valid sport-fishing license. Official texts always win (NOM-017-PESC-1994, NOM-029-PESC-2006, DOF).',
       byTitle: 'A gift from Mexican sport fishing to the world',
       promiseTitle: 'Our promise',
+      pTA: 'Cabo San Lucas · since 2004 · makers of the Bite Map', open: 'Open data:',
       mission: 'Read the sea twice a day from public satellite data and turn it into a clear map of where to fish, when, and under which rules. So no one heads out blind.',
       p1t: 'Free forever', p1p: 'No subscription, no paid features and no ads.',
       p2t: 'Your data is not for sale', p2p: 'No accounts, no tracking. Your location is used on your phone or browser and stays there.',
