@@ -4,7 +4,7 @@
   "us-gulf-north": "000012332100",
   "us-gulf-fl": "000011221000",
   "us-fl-south": "333221111223",
-  "us-fl-east": "222211112222"
+  "us-fl-east": "333211001123"
  },
  "blue-marlin": {
   "us-gulf-tx": "000123332100",
@@ -246,7 +246,7 @@
  },
  "_sources": {
   "_all": "LOW confidence: built from general regional fishing patterns (tournament calendars, state species profiles, charter-fleet seasonality), not from published monthly catch data; tune with local captains. Season = when the fish are present and biting; legal closures are separate (rules.json). Regions: us-gulf-tx = Texas; us-gulf-north = Louisiana, Mississippi, Alabama, Florida Panhandle; us-gulf-fl = Florida west coast peninsula; us-fl-south = Keys, Miami–Palm Beach; us-fl-east = Stuart–Jacksonville.",
-  "pacific-sailfish": "Key used for Atlantic sailfish. SE Florida/Keys winter run (Dec–Mar) is the best-documented anchor (Stuart \"Sailfish Capital\", Miami/Palm Beach winter tournaments); northern Gulf is summer offshore.",
+  "pacific-sailfish": "Key used for Atlantic sailfish. SE Florida/Keys winter run (Dec–Mar) is the best-documented anchor (Stuart \"Sailfish Capital\", Miami/Palm Beach winter tournaments); northern Gulf is summer offshore. | us-fl-east corrected: Stuart/Jupiter (\"Sailfish Capital of the World\") winter run Dec–Mar, peak with cold fronts; pending captain review",
   "blue-marlin": "Northern Gulf summer bluewater season (Jun–Sep; Gulf Coast billfish tournament calendar: Orange Beach, Venice, Port Aransas in Jun–Aug).",
   "white-marlin": "Summer offshore in the northern Gulf; spring in the Florida Straits. Medium-low.",
   "swordfish": "Year-round deep-drop fishery; Miami–Keys daytime swordfishing is the main US Gulf/Florida fishery.",
